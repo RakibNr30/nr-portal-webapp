@@ -15,7 +15,7 @@ use Modules\Ums\Datatables\UserDataTable;
 
 // services...
 use Modules\Ums\Services\RoleService;
-use Modules\Ums\Services\UserPersonalInfoService;
+use Modules\Ums\Services\UserBasicInfoService;
 use Modules\Ums\Services\UserService;
 use function GuzzleHttp\Promise\all;
 
@@ -27,9 +27,9 @@ class UserController extends Controller
     protected $userService;
 
     /**
-     * @var $personalInfoService
+     * @var $basicInfoService
      */
-    protected $userPersonalInfoService;
+    protected $userBasicInfoService;
 
     /**
      * @var $roleService
@@ -40,13 +40,13 @@ class UserController extends Controller
      * Constructor
      *
      * @param UserService $userService
-     * @param UserPersonalInfoService $userPersonalInfoService
+     * @param UserBasicInfoService $userBasicInfoService
      * @param RoleService $roleService
      */
-    public function __construct(UserService $userService, UserPersonalInfoService $userPersonalInfoService, RoleService $roleService)
+    public function __construct(UserService $userService, UserBasicInfoService $userBasicInfoService, RoleService $roleService)
     {
         $this->userService = $userService;
-        $this->userPersonalInfoService = $userPersonalInfoService;
+        $this->userBasicInfoService = $userBasicInfoService;
         $this->roleService = $roleService;
     }
 
@@ -91,7 +91,8 @@ class UserController extends Controller
         // create user
         $user = $this->userService->create($data);
         // assign roles
-        if (count($data['roles']) > 0) {
+        $user->assignRole($data['roles']);
+        /*if (count($data['roles']) > 0) {
             // remove chairman role
             if (in_array('Chairman', $data['roles'])) {
                 $chairman = User::role('Chairman')->first();
@@ -99,7 +100,7 @@ class UserController extends Controller
             }
             // assign roles
             $user->assignRole($data['roles']);
-        }
+        }*/
         // upload files
         $user->uploadFiles();
         // check if user created
@@ -107,10 +108,10 @@ class UserController extends Controller
             $data['user_id'] = $user->id;
             $data['personal_email'] = $user->email;
             $data['personal_phone'] = $user->phone;
-            $personalInfo = $this->userPersonalInfoService->create($data);
+            $basicInfo = $this->userBasicInfoService->create($data);
             // upload files
-            $personalInfo->uploadFiles();
-            if ($personalInfo) {
+            $basicInfo->uploadFiles();
+            if ($basicInfo) {
                 // flash notification
                 notifier()->success('User created successfully.');
             } else {
@@ -135,6 +136,7 @@ class UserController extends Controller
     {
         // get user
         $user = $this->userService->find($id);
+
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
@@ -197,25 +199,14 @@ class UserController extends Controller
         $user->uploadFiles();
         // update user
         $user = $this->userService->update($data, $id);
-        // assign roles
-        if (count($data['roles']) > 0) {
-            // remove chairman role
-            if (in_array('Chairman', $data['roles'])) {
-                $chairman = User::role('Chairman')->first();
-
-                $chairman->removeRole('Chairman');
-            }
-            // assign roles
-            $user->syncRoles($data['roles']);
-        }
         // check if user updated
         if ($user) {
             $data['personal_email'] = $user->email;
             $data['personal_phone'] = $user->phone;
-            $personalInfo = $this->userPersonalInfoService->updateOrCreate(['user_id' => $user->id], $data);
+            $basicInfo = $this->userBasicInfoService->updateOrCreate(['user_id' => $user->id], $data);
             // upload files
-            $personalInfo->uploadFiles();
-            if ($personalInfo) {
+            $basicInfo->uploadFiles();
+            if ($basicInfo) {
                 // flash notification
                 notifier()->success('User updated successfully.');
             } else {

@@ -1,0 +1,28 @@
+{
+  "contacts": {
+    "email": "email@example.com",
+    "phone": "+880 1XXX XXXXXX",
+    "mobile": "+880 1XXX XXXXXX",
+    "fax": "",
+    "website": "https://www.example.com",
+    "address": "Mymensingh, Bangladesh",
+    "google_map": "https://goo.gl/maps/r1ybUXG3DqJDq7Me6",
+    "longitude": 24.2378044,
+    "latitude": 89.8887497,
+    "facebook": "#",
+    "twitter": "#",
+    "linked_in": "#",
+    "youtube": "#",
+    "instagram": "#",
+    "skype": "#",
+    "whatsapp": "#",
+    "working_hours": "",
+    "working_days": ""
+  },
+  "seos": {},
+  "sites": {
+    "title": "Web Portal",
+    "description": ""
+  },
+  "socialite": {}
+}

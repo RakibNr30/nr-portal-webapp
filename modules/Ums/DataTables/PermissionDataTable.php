@@ -72,9 +72,7 @@ class PermissionDataTable extends DataTable
         return [
             Column::computed('DT_RowIndex')
                 ->title('Sl'),
-            Column::make('name'),
-            Column::make('guard_name'),
-            Column::make('module_id'),
+            Column::make('name')->title('Permission'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

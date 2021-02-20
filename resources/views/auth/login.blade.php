@@ -1,68 +1,69 @@
 @extends('auth.layouts.master')
-@section('title', 'Login')
-@section('content')
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-            {!! Form::open(['route' => 'login', 'method' => 'post']) !!}
-                <div class="input-group mb-3">
-                    <input id="email" name="email" placeholder="Enter your email" value="{{ old('email') }}" type="email" class="form-control @error('email') is-invalid @enderror" required autocomplete="email" autofocus>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <div class="input-group mb-3">
-                    <input id="password" name="password" placeholder="Enter your password" type="password" class="form-control @error('password') is-invalid @enderror" required autocomplete="current-password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                            <input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                            <label for="remember">
-                                Remember Me
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                    </div>
-                </div>
-            {!! Form::close() !!}
-            {{--
-            <div class="social-auth-links text-center mb-3">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
-            </div>
 
-            <p class="mb-1">
-                <a href="{{ route('password.request') }}">I forgot my password</a>
-            </p>
-            <p class="mb-0">
-                <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
-            </p>
-            --}}
+@section('title')
+    Login
+@stop
+
+@section('content')
+    <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="card overflow-hidden">
+            <div class="bg-login text-center">
+                <div class="bg-login-overlay"></div>
+                <div class="position-relative">
+                    <h5 class="text-white font-size-20">Welcome Back !</h5>
+                    <p class="text-white-50 mb-0">Sign in to continue to {{ $global_site->title ?? 'Web Portal' }}</p>
+                    <a href="#" class="logo logo-admin mt-4">
+                        <img src="{{ asset('admin/images/logo-sm-dark.png') }}" alt="" height="30">
+                    </a>
+                </div>
+            </div>
+            <div class="card-body pt-5">
+                <div class="p-2">
+                    {!! Form::open(['route' => 'login', 'method' => 'post']) !!}
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email') }}" placeholder="Enter email" required autocomplete="email" autofocus>
+                        @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" value="{{ old('password') }}" placeholder="Enter password" required autocomplete="password" autofocus>
+                        @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customControlInline">
+                        <label class="custom-control-label" for="customControlInline">Remember me</label>
+                    </div>
+
+                    <div class="mt-3">
+                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Log In</button>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="#" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 text-center">
+            <p>Don't have an account ? <a href="#" class="font-weight-medium text-primary"> Signup now </a> </p>
         </div>
     </div>
-@endsection
+@stop
+
+@section('style')
+@stop
+
+@section('script')
+@stop

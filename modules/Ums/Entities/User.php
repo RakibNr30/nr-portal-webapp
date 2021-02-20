@@ -9,39 +9,14 @@ class User extends \App\User implements hasMedia
     protected $table = 'users';
     protected $guard_name = 'web';
 
-    public function personalInfo()
+    public function basicInfo()
     {
-        return $this->hasOne(UserPersonalInfo::class, 'user_id', 'id');
+        return $this->hasOne(UserBasicInfo::class, 'user_id', 'id');
     }
 
     public function residentialInfo()
     {
         return $this->hasOne(UserResidentialInfo::class, 'user_id', 'id');
-    }
-
-    public function workInfos()
-    {
-        return $this->hasMany(UserWorkInfo::class, 'user_id', 'id');
-    }
-
-    public function educationalInfos()
-    {
-        return $this->hasMany(UserEducationalInfo::class, 'user_id', 'id');
-    }
-
-    public function contents()
-    {
-        return $this->hasMany(UserContent::class, 'user_id', 'id');
-    }
-
-    public function languages()
-    {
-        return $this->hasMany(UserLanguage::class, 'user_id', 'id');
-    }
-
-    public function interests()
-    {
-        return $this->hasMany(UserInterest::class, 'user_id', 'id');
     }
 
     public function socialAccount()

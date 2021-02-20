@@ -1,0 +1,52 @@
+[
+    {
+        "name": "dashboard",
+        "roles": [
+            "Super Admin",
+            "Admin"
+        ]
+    },
+    {
+        "name": "cms",
+        "roles": [
+            "Super Admin",
+            "Admin"
+        ]
+    },
+    {
+        "name": "access_controls",
+        "roles": [
+            "Super Admin",
+            "Admin"
+        ]
+    },
+    {
+        "name": "core_settings",
+        "roles": [
+            "Super Admin"
+        ]
+    },
+    {
+        "name": "common_settings",
+        "roles": [
+            "Super Admin",
+            "Admin"
+        ]
+    },
+    {
+        "name": "app_settings",
+        "roles": [
+            "Super Admin",
+            "Admin"
+        ]
+    },
+    {
+        "name": "my_profile",
+        "roles": [
+            "Super Admin",
+            "Admin",
+            "Company",
+            "Customer"
+        ]
+    }
+]

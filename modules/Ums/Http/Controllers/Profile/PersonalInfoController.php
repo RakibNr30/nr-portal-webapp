@@ -5,63 +5,63 @@ namespace Modules\Ums\Http\Controllers\Profile;
 use App\Http\Controllers\Controller;
 
 // requests...
-use Modules\Ums\Http\Requests\UserPersonalInfoStoreRequest;
+use Modules\Ums\Http\Requests\UserBasicInfoStoreRequest;
 
 // services...
-use Modules\Ums\Services\UserPersonalInfoService;
+use Modules\Ums\Services\UserBasicInfoService;
 
-class PersonalInfoController extends Controller
+class BasicInfoController extends Controller
 {
     /**
-     * @var $userPersonalInfoService
+     * @var $userBasicInfoService
      */
-    protected $userPersonalInfoService;
+    protected $userBasicInfoService;
 
     /**
      * Constructor
      *
-     * @param UserPersonalInfoService $userPersonalInfoService
+     * @param UserBasicInfoService $userBasicInfoService
      */
-    public function __construct(UserPersonalInfoService $userPersonalInfoService)
+    public function __construct(UserBasicInfoService $userBasicInfoService)
     {
-        $this->userPersonalInfoService = $userPersonalInfoService;
+        $this->userBasicInfoService = $userBasicInfoService;
     }
 
     /**
-     * UserPersonalInfo list
+     * UserBasicInfo list
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
         // first or create user personal info
-        $userPersonalInfo = $this->userPersonalInfoService->firstOrCreate([
+        $userBasicInfo = $this->userBasicInfoService->firstOrCreate([
             'user_id' => auth()->user()->id
         ]);
         // return view
-        return view('ums::profile.personal_info.index', compact('userPersonalInfo'));
+        return view('ums::profile.basic_info.index', compact('userBasicInfo'));
     }
 
     /**
-     * Store userPersonalInfo
+     * Store userBasicInfo
      *
-     * @param UserPersonalInfoStoreRequest $request
+     * @param UserBasicInfoStoreRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserPersonalInfoStoreRequest $request, $id)
+    public function update(UserBasicInfoStoreRequest $request, $id)
     {
-        // create userPersonalInfo
-        $userPersonalInfo = $this->userPersonalInfoService->update($request->all(), $id);
+        // create userBasicInfo
+        $userBasicInfo = $this->userBasicInfoService->update($request->all(), $id);
         // upload files
-        $userPersonalInfo->uploadFiles();
-        // check if userPersonalInfo created
-        if ($userPersonalInfo) {
+        $userBasicInfo->uploadFiles();
+        // check if userBasicInfo created
+        if ($userBasicInfo) {
             // flash notification
-            notifier()->success('UserPersonalInfo created successfully.');
+            notifier()->success('UserBasicInfo created successfully.');
         } else {
             // flash notification
-            notifier()->error('UserPersonalInfo cannot be created successfully.');
+            notifier()->error('UserBasicInfo cannot be created successfully.');
         }
         // redirect back
         return redirect()->back();

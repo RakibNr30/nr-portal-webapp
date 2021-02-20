@@ -27,6 +27,7 @@ class User extends Authenticatable implements hasMedia
         'remember_token',
         'approved_at',
         'approved_by',
+        'role',
     ];
 
     /**
@@ -53,6 +54,7 @@ class User extends Authenticatable implements hasMedia
         'remember_token' => 'string',
         'approved_at' => 'timestamp',
         'approved_by' => 'string',
+        'role' => 'string',
     ];
 
     // get avatar attribute

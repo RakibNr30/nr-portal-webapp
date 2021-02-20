@@ -1,0 +1,13 @@
+.image-output {
+    height: fit-content;
+    width: fit-content;
+    border: #b10e2e 1px dashed;
+    margin-top: 10px;
+    padding: 3px;
+}
+.image-output img {
+    height: 40px;
+}
+input[type=file] {
+    height: 44px;
+}

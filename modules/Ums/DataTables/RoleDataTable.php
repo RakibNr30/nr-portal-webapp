@@ -73,7 +73,6 @@ class RoleDataTable extends DataTable
             Column::computed('DT_RowIndex')
                 ->title('Sl'),
             Column::make('name'),
-            Column::make('guard_name'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

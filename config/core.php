@@ -9,85 +9,15 @@ return [
             "id" => "dashboard",
             "icon" => "fa-chart-line",
             "url" => "/backend/dashboard",
-            "permission" => "Dashboard",
+            "permission" => "dashboard",
             "children" => []
         ],
         [
             "name" => "My Profile",
             "id" => "my_profile",
-            "icon" => "fa-user-circle",
+            "icon" => "fa-user-alt",
             "url" => "/backend/profile/personal-info",
-            "permission" => "My Profile",
-            "children" => []
-        ],
-        [
-            "name" => "Chairman Message",
-            "id" => "chairman_message",
-            "icon" => "fa-envelope",
-            "url" => "/backend/chairman-message",
-            "permission" => "Chairman Message",
-            "children" => []
-        ],
-        [
-            "name" => "Article",
-            "id" => "article",
-            "icon" => "fa-newspaper",
-            "url" => "",
-            "permission" => "Article",
-            "children" => [
-                [
-                    "name" => "Approved Article",
-                    "id" => "approved_article",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/article?type=approved",
-                    "permission" => "Approved Article",
-                ],
-                [
-                    "name" => "Pending Article",
-                    "id" => "pending_article",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/article?type=pending",
-                    "permission" => "Pending Article",
-                ],
-                [
-                    "name" => "Write Article",
-                    "id" => "write_article",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/article/create",
-                    "permission" => "Write Article",
-                ]
-            ]
-        ],
-        /*[
-            "name" => "Research",
-            "id" => "research",
-            "icon" => "fa-chart-area",
-            "url" => "/backend/research",
-            "permission" => "Research",
-            "children" => []
-        ],*/
-        [
-            "name" => "Publication",
-            "id" => "publication",
-            "icon" => "fa-chart-area",
-            "url" => "/backend/publication",
-            "permission" => "Publication",
-            "children" => []
-        ],
-        [
-            "name" => "Project",
-            "id" => "project",
-            "icon" => "fa-puzzle-piece",
-            "url" => "/backend/project",
-            "permission" => "Dashboard",
-            "children" => []
-        ],
-        [
-            "name" => "Gallery",
-            "id" => "gallery",
-            "icon" => "fa-photo-video",
-            "url" => "/backend/gallery",
-            "permission" => "Gallery",
+            "permission" => "my_profile",
             "children" => []
         ],
         [
@@ -95,209 +25,72 @@ return [
             "id" => "cms",
             "icon" => "fa-cogs",
             "url" => "",
-            "permission" => "Cms",
+            "permission" => "cms",
             "children" => [
                 [
                     "name" => "Slider",
                     "id" => "slider",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/slider",
-                    "permission" => "Slider",
+                    "permission" => "slider",
                 ],
                 [
                     "name" => "Page",
                     "id" => "page",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/page",
-                    "permission" => "Page",
+                    "permission" => "page",
                 ],
                 [
                     "name" => "Content",
                     "id" => "content",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/content",
-                    "permission" => "Content",
+                    "permission" => "content",
                 ],
                 [
                     "name" => "Faq",
                     "id" => "faq",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/faq",
-                    "permission" => "Faq",
-                ],
-                [
-                    "name" => "Quote",
-                    "id" => "quote",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/quote",
-                    "permission" => "quote",
+                    "permission" => "faq",
                 ],
                 [
                     "name" => "Testimonial",
                     "id" => "testimonial",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/testimonial",
-                    "permission" => "Testimonial",
+                    "permission" => "testimonial",
                 ],
-                [
-                    "name" => "Important Person",
-                    "id" => "important_person",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/important-person",
-                    "permission" => "Important Person",
-                ],
-                [
-                    "name" => "Academic Calendar",
-                    "id" => "academic_calendar",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/academic-calendar",
-                    "permission" => "Academic Calender",
-                ],
-                [
-                    "name" => "Class Schedule",
-                    "id" => "class_schedule",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/class-schedule",
-                    "permission" => "Class Schedule",
-                ]
             ]
         ],
-        /*[
-            "name" => "Geo",
-            "id" => "geo",
-            "icon" => "fa-map-marked-alt",
-            "url" => "",
-            "permission" => "Geo",
-            "children" => [
-                [
-                    "name" => "Country",
-                    "id" => "country",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/country",
-                    "permission" => "Country",
-                ],
-                [
-                    "name" => "State",
-                    "id" => "state",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/state",
-                    "permission" => "State",
-                ],
-                [
-                    "name" => "City",
-                    "id" => "city",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/city",
-                    "permission" => "City",
-                ],
-                [
-                    "name" => "Division",
-                    "id" => "division",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/division",
-                    "permission" => "Division",
-                ],
-                [
-                    "name" => "District",
-                    "id" => "district",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/district",
-                    "permission" => "District",
-                ],
-                [
-                    "name" => "Upazila",
-                    "id" => "upazila",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/upazila",
-                    "permission" => "Upazila",
-                ],
-                [
-                    "name" => "Union",
-                    "id" => "union",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/union",
-                    "permission" => "Union",
-                ]
-            ]
-        ],*/
         [
-            "name" => "Access Controls",
+            "name" => "User Controls",
             "id" => "access_controls",
-            "icon" => "fa-sliders-h",
+            "icon" => "fa-users",
             "url" => "",
-            "permission" => "Access Controls",
+            "permission" => "access_controls",
             "children" => [
                 [
-                    "name" => "Role",
+                    "name" => "Admin",
                     "id" => "role",
                     "icon" => "fa-arrow-right",
-                    "url" => "/backend/role",
-                    "permission" => "Role",
+                    "url" => "/backend/admin",
+                    "permission" => "admin",
                 ],
                 [
-                    "name" => "User",
+                    "name" => "Company",
                     "id" => "user",
                     "icon" => "fa-arrow-right",
-                    "url" => "/backend/user",
-                    "permission" => "User",
-                ]
-            ]
-        ],
-        [
-            "name" => "Core Settings",
-            "id" => "core_settings",
-            "icon" => "fa-cog",
-            "url" => "",
-            "permission" => "Core Settings",
-            "children" => [
-                [
-                    "name" => "Faculty",
-                    "id" => "faculty",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/faculty",
-                    "permission" => "Faculty",
+                    "url" => "/backend/company",
+                    "permission" => "company",
                 ],
                 [
-                    "name" => "Department",
-                    "id" => "department",
+                    "name" => "Client Request",
+                    "id" => "user",
                     "icon" => "fa-arrow-right",
-                    "url" => "/backend/department",
-                    "permission" => "Department",
-                ],
-                [
-                    "name" => "Hall",
-                    "id" => "hall",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/hall",
-                    "permission" => "Hall",
-                ],
-                [
-                    "name" => "Program",
-                    "id" => "program",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/program",
-                    "permission" => "Program",
-                ],
-                [
-                    "name" => "Semester",
-                    "id" => "semester",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/semester",
-                    "permission" => "Semester",
-                ],
-                [
-                    "name" => "Session",
-                    "id" => "session",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/session",
-                    "permission" => "Session",
-                ],
-                [
-                    "name" => "Course",
-                    "id" => "course",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/course",
-                    "permission" => "Course",
+                    "url" => "/backend/client-request",
+                    "permission" => "client_request",
                 ]
             ]
         ],
@@ -306,64 +99,22 @@ return [
             "id" => "common_settings",
             "icon" => "fa-wrench",
             "url" => "",
-            "permission" => "Common Settings",
+            "permission" => "common_settings",
             "children" => [
-                [
-                    "name" => "Publisher",
-                    "id" => "publisher",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/publisher",
-                    "permission" => "Publisher",
-                ],
                 [
                     "name" => "Page Category",
                     "id" => "page_category",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/page-category",
-                    "permission" => "Page Category",
+                    "permission" => "page_category",
                 ],
                 [
                     "name" => "Content Category",
                     "id" => "content_category",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/content-category",
-                    "permission" => "Content Category",
+                    "permission" => "content_category",
                 ],
-                [
-                    "name" => "Academic Calendar Category",
-                    "id" => "academic_calendar_category",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/academic-calendar-category",
-                    "permission" => "Academic Calendar Category",
-                ],
-                [
-                    "name" => "Research Category",
-                    "id" => "research_category",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/research-category",
-                    "permission" => "Research Category",
-                ],
-                [
-                    "name" => "Project Category",
-                    "id" => "project_category",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/project-category",
-                    "permission" => "Project Category",
-                ],
-                [
-                    "name" => "Publication Category",
-                    "id" => "publication_category",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/publication-category",
-                    "permission" => "Publication Category",
-                ],
-                [
-                    "name" => "Article Category",
-                    "id" => "article_category",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/article-category",
-                    "permission" => "Article Category",
-                ]
             ]
         ],
         [
@@ -371,35 +122,35 @@ return [
             "id" => "app_settings",
             "icon" => "fa-tools",
             "url" => "",
-            "permission" => "App Settings",
+            "permission" => "app_settings",
             "children" => [
                 [
                     "name" => "Site",
                     "id" => "site",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/site",
-                    "permission" => "Site",
+                    "permission" => "site",
                 ],
                 [
                     "name" => "Contact",
                     "id" => "contact",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/contact",
-                    "permission" => "Contact",
+                    "permission" => "contact",
                 ],
                 [
                     "name" => "Seo",
                     "id" => "seo",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/seo",
-                    "permission" => "Seo",
+                    "permission" => "seo",
                 ],
                 [
                     "name" => "Socialite",
                     "id" => "socialite",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/socialite",
-                    "permission" => "Socialite",
+                    "permission" => "socialite",
                 ]
             ]
         ]
@@ -407,11 +158,11 @@ return [
     // profile menu
     'profile_menu' => [
         [
-            "name" => "Personal Info",
-            "id" => "personal_info",
+            "name" => "Basic Info",
+            "id" => "basic_info",
             "icon" => "fa-user",
-            "url" => "/backend/profile/personal-info",
-            "permission" => "personal_info",
+            "url" => "/backend/profile/basic-info",
+            "permission" => "basic_info",
             "children" => []
         ],
         [
@@ -420,78 +171,6 @@ return [
             "icon" => "fa-user",
             "url" => "/backend/profile/residential-info",
             "permission" => "residential_info",
-            "children" => []
-        ],
-        [
-            "name" => "Educational Info",
-            "id" => "educational_info",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/educational-info",
-            "permission" => "educational_info",
-            "children" => []
-        ],
-        [
-            "name" => "Experience Info",
-            "id" => "experience_info",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/work-info",
-            "permission" => "experience_info",
-            "children" => []
-        ],
-        [
-            "name" => "Language",
-            "id" => "language",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/language",
-            "permission" => "language",
-            "children" => []
-        ],
-        [
-            "name" => "Research Interest",
-            "id" => "interest",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/interest",
-            "permission" => "interest",
-            "children" => []
-        ],
-        [
-            "name" => "Honor & Awards",
-            "id" => "honor_and_awards",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/content?category=1",
-            "permission" => "content",
-            "children" => []
-        ],
-        [
-            "name" => "Areas Of Expertise",
-            "id" => "areas_of_expertise",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/content?category=2",
-            "permission" => "content",
-            "children" => []
-        ],
-        [
-            "name" => "Areas Of Teaching",
-            "id" => "areas_of_teaching",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/content?category=3",
-            "permission" => "content",
-            "children" => []
-        ],
-        [
-            "name" => "Ongoing Courses",
-            "id" => "ongoing_courses",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/content?category=4",
-            "permission" => "content",
-            "children" => []
-        ],
-        [
-            "name" => "Skills",
-            "id" => "skills",
-            "icon" => "fa-user",
-            "url" => "/backend/profile/content?category=5",
-            "permission" => "content",
             "children" => []
         ],
         [

@@ -2,6 +2,7 @@
 
 namespace Modules\Ums\DataTables;
 
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -38,7 +39,8 @@ class UserDataTable extends DataTable
         // user model instance
         $user = $model->newQuery();
         // apply joins
-        $user->join('users as approvers', 'users.approved_by', 'approvers.id');
+        $user->join('users as approvers', 'users.approved_by', 'approvers.id')
+            ->join('user_basic_infos as approver_basic_info', 'approvers.approved_by', 'approver_basic_info.user_id');
 
         // select queries
         $user->select([
@@ -46,9 +48,8 @@ class UserDataTable extends DataTable
             'users.username',
             'users.phone',
             'users.email',
-            'approvers.username as approver_username',
-            'users.created_at',
-            'users.updated_at'
+            DB::raw('CONCAT(approver_basic_info.first_name," ",approver_basic_info.last_name) as approver_name'),
+            'users.created_at'
         ]);
 
         // return data
@@ -92,7 +93,8 @@ class UserDataTable extends DataTable
             Column::make('username'),
             Column::make('phone'),
             Column::make('email'),
-            Column::make('approver_username')->name('approvers.username')->title('Approved By'), // alias used
+            Column::make('approver_name')->name('approver_basic_info.first_name')->title('Approved By'), // alias used
+            //Column::make('name')->name('user_basic_infos.last_name')->hidden(), // alias used
             Column::make('created_at')->title('Registered At'),
             Column::computed('action')
                 ->exportable(false)

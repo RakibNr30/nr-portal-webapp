@@ -1,19 +1,28 @@
 @extends('admin.layouts.master')
 
 @section('content')
-    <div class="content-header pt-2"></div>
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    @include('admin.partials._alert')
-                    <div class="card card-gray-dark card-outline">
-                        <div class="card-header">
-                            <h3 class="card-title">Permission List</h3>
-                        </div>
-                        <div class="card-body table-responsive p-0">
-                            {!! $dataTable->table(['class' => 'table table-hover', 'style' => 'width: 100%;']) !!}
-                        </div>
+    <div class="page-content">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="page-title mb-0 font-size-18">Permission</h4>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Access Controls</a></li>
+                            <li class="breadcrumb-item active">Permission</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                @include('admin.partials._alert')
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Permission List</h4>
+                        {!! $dataTable->table(['class' => 'table table-bordered dt-responsive nowrap', 'style' => 'width: 100%;']) !!}
                     </div>
                 </div>
             </div>
@@ -22,8 +31,9 @@
 @stop
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('common/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('common/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link href="{{ asset('common/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('common/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('common/plugins/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 @stop
 
 @section('script')
@@ -32,6 +42,10 @@
     <script src="{{ asset('common/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('common/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('common/plugins/datatables-ssr/buttons.server-side.js') }}"></script>
+    <script src="{{ asset('common/plugins/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('common/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+
     {!! $dataTable->scripts() !!}
-    <script src="{{ asset('admin/js/datatable.init.js') }}"></script>
+
+    <script src="{{ asset('admin/js/datatables.init.js') }}"></script>
 @stop

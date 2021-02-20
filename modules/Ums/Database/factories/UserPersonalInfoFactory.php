@@ -5,9 +5,9 @@
 use Faker\Generator as Faker;
 
 // models...
-use Modules\Ums\Entities\UserPersonalInfo;
+use Modules\Ums\Entities\UserBasicInfo;
 
-$factory->define(UserPersonalInfo::class, function (Faker $faker) {
+$factory->define(UserBasicInfo::class, function (Faker $faker) {
     return [
         'first_name' => $faker->firstName,
 		'last_name' => $faker->lastName,

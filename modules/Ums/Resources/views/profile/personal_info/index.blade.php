@@ -14,7 +14,7 @@
                         <div class="card-header">
                             <h3 class="card-title mt-1">Update your personal information</h3>
                         </div>
-                        {!! Form::open(['url' => route('backend.ums.profile-personal-info.update', [$userPersonalInfo->id]), 'method' => 'put', 'files' => true]) !!}
+                        {!! Form::open(['url' => route('backend.ums.profile-personal-info.update', [$userBasicInfo->id]), 'method' => 'put', 'files' => true]) !!}
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -22,7 +22,7 @@
                                         <label for="first_name" class="@error('first_name') text-danger @enderror">First
                                             Name</label>
                                         <input id="first_name" name="first_name"
-                                               value="{{ old('first_name') ?: $userPersonalInfo->first_name }}"
+                                               value="{{ old('first_name') ?: $userBasicInfo->first_name }}"
                                                type="text"
                                                class="form-control @error('first_name') is-invalid @enderror"
                                                placeholder="Enter first name" autofocus>
@@ -37,7 +37,7 @@
                                         <label for="last_name" class="@error('last_name') text-danger @enderror">Last
                                             Name</label>
                                         <input id="last_name" name="last_name"
-                                               value="{{ old('last_name') ?: $userPersonalInfo->last_name }}"
+                                               value="{{ old('last_name') ?: $userBasicInfo->last_name }}"
                                                type="text" class="form-control @error('last_name') is-invalid @enderror"
                                                placeholder="Enter last name" autofocus>
                                         @error('last_name')
@@ -51,7 +51,7 @@
                                         <label for="first_name_bn" class="@error('first_name_bn') text-danger @enderror">First
                                             Name (Bengali)</label>
                                         <input id="first_name_bn" name="first_name_bn"
-                                               value="{{ old('first_name_bn') ?: $userPersonalInfo->first_name_bn }}"
+                                               value="{{ old('first_name_bn') ?: $userBasicInfo->first_name_bn }}"
                                                type="text"
                                                class="form-control @error('first_name_bn') is-invalid @enderror"
                                                placeholder="Enter first name (bengali)" autofocus>
@@ -66,7 +66,7 @@
                                         <label for="last_name_bn" class="@error('last_name_bn') text-danger @enderror">Last
                                             Name (Bengali)</label>
                                         <input id="last_name_bn" name="last_name_bn"
-                                               value="{{ old('last_name_bn') ?: $userPersonalInfo->last_name_bn }}"
+                                               value="{{ old('last_name_bn') ?: $userBasicInfo->last_name_bn }}"
                                                type="text" class="form-control @error('last_name_bn') is-invalid @enderror"
                                                placeholder="Enter last name (bengali)" autofocus>
                                         @error('last_name_bn')
@@ -79,7 +79,7 @@
                                     <div class="form-group">
                                         <label for="designation" class="@error('designation') text-danger @enderror">Designation</label>
                                         <input id="designation" name="designation"
-                                               value="{{ old('designation') ?: $userPersonalInfo->designation }}"
+                                               value="{{ old('designation') ?: $userBasicInfo->designation }}"
                                                type="text" class="form-control @error('designation') is-invalid @enderror"
                                                placeholder="Enter designation" autofocus>
                                         @error('designation')
@@ -93,7 +93,7 @@
                                         <label for="about" class="@error('about') text-danger @enderror">About</label>
                                         <textarea id="about" name="about" rows="3"
                                                   class="form-control @error('about') is-invalid @enderror"
-                                                  placeholder="Enter about yourself">{{ old('about') ?: $userPersonalInfo->about }}</textarea>
+                                                  placeholder="Enter about yourself">{{ old('about') ?: $userBasicInfo->about }}</textarea>
                                         @error('about')
                                         <span class="invalid-feedback"
                                               role="alert"><strong>{{ $message }}</strong></span>
@@ -103,10 +103,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="personal_email"
-                                               class="@error('personal_email') text-danger @enderror">Personal
+                                               class="@error('personal_email') text-danger @enderror">Basic
                                             Email</label>
                                         <input id="personal_email" name="personal_email"
-                                               value="{{ old('personal_email') ?: $userPersonalInfo->personal_email }}"
+                                               value="{{ old('personal_email') ?: $userBasicInfo->personal_email }}"
                                                type="text"
                                                class="form-control @error('personal_email') is-invalid @enderror"
                                                placeholder="Enter personal email" autofocus>
@@ -122,7 +122,7 @@
                                                class="@error('professional_email') text-danger @enderror">Professional
                                             Email</label>
                                         <input id="professional_email" name="professional_email"
-                                               value="{{ old('professional_email') ?: $userPersonalInfo->professional_email }}"
+                                               value="{{ old('professional_email') ?: $userBasicInfo->professional_email }}"
                                                type="text"
                                                class="form-control @error('professional_email') is-invalid @enderror"
                                                placeholder="Enter professional email" autofocus>
@@ -137,7 +137,7 @@
                                         <label for="phone_no" class="@error('phone_no') text-danger @enderror">Phone
                                             No</label>
                                         <input id="phone_no" name="phone_no"
-                                               value="{{ old('phone_no') ?: $userPersonalInfo->phone_no }}"
+                                               value="{{ old('phone_no') ?: $userBasicInfo->phone_no }}"
                                                type="text" class="form-control @error('phone_no') is-invalid @enderror"
                                                placeholder="Enter phone no" autofocus>
                                         @error('phone_no')
@@ -151,7 +151,7 @@
                                         <label for="mobile_no" class="@error('mobile_no') text-danger @enderror">Mobile
                                             No</label>
                                         <input id="mobile_no" name="mobile_no"
-                                               value="{{ old('mobile_no') ?: $userPersonalInfo->mobile_no }}"
+                                               value="{{ old('mobile_no') ?: $userBasicInfo->mobile_no }}"
                                                type="text" class="form-control @error('mobile_no') is-invalid @enderror"
                                                placeholder="Enter mobile no" autofocus>
                                         @error('mobile_no')
@@ -165,7 +165,7 @@
                                         <label for="fax_no" class="@error('fax_no') text-danger @enderror">Fax
                                             No</label>
                                         <input id="fax_no" name="fax_no"
-                                               value="{{ old('fax_no') ?: $userPersonalInfo->fax_no }}" type="text"
+                                               value="{{ old('fax_no') ?: $userBasicInfo->fax_no }}" type="text"
                                                class="form-control @error('fax_no') is-invalid @enderror"
                                                placeholder="Enter fax no" autofocus>
                                         @error('fax_no')
@@ -178,7 +178,7 @@
                                     <div class="form-group">
                                         <label for="website_url" class="@error('website_url') text-danger @enderror">Website Url</label>
                                         <input id="website_url" name="website_url"
-                                               value="{{ old('website_url') ?: $userPersonalInfo->website_url }}"
+                                               value="{{ old('website_url') ?: $userBasicInfo->website_url }}"
                                                type="text" class="form-control @error('website_url') is-invalid @enderror"
                                                placeholder="Enter website url" autofocus>
                                         @error('website_url')
@@ -191,7 +191,7 @@
                                     <div class="form-group">
                                         <label for="dob" class="@error('dob') text-danger @enderror">Date of
                                             Birth</label>
-                                        <input id="dob" name="dob" value="{{ old('dob') ?: $userPersonalInfo->dob }}"
+                                        <input id="dob" name="dob" value="{{ old('dob') ?: $userBasicInfo->dob }}"
                                                type="text" class="form-control datepicker @error('dob') is-invalid @enderror"
                                                placeholder="Enter dob" autofocus>
                                         @error('dob')
@@ -209,7 +209,7 @@
                                             <option value="">Select Blood Group</option>
                                             @foreach(config('core.blood_groups') as $blood_group_key => $blood_group)
                                                 <option
-                                                    value="{{ $blood_group_key }}" {{ $blood_group_key == $userPersonalInfo->blood_group ? 'selected' : '' }}>{{ $blood_group }}</option>
+                                                    value="{{ $blood_group_key }}" {{ $blood_group_key == $userBasicInfo->blood_group ? 'selected' : '' }}>{{ $blood_group }}</option>
                                             @endforeach
                                         </select>
                                         @error('blood_group')
@@ -227,7 +227,7 @@
                                             <option value="">Select Gender</option>
                                             @foreach(config('core.genders') as $gender_key => $gender)
                                                 <option
-                                                    value="{{ $gender_key }}" {{ $gender_key == $userPersonalInfo->gender ? 'selected' : '' }}>{{ $gender }}</option>
+                                                    value="{{ $gender_key }}" {{ $gender_key == $userBasicInfo->gender ? 'selected' : '' }}>{{ $gender }}</option>
                                             @endforeach
                                         </select>
                                         @error('gender')
@@ -241,8 +241,8 @@
                                     <div class="form-group">
                                         <label for="image" class="@error('image') text-danger @enderror">Image</label>
                                         <input id="image" name="image" value="{{ old('image') }}" type="file" class="form-control @error('image') is-invalid @enderror" placeholder="Select File" autofocus>
-                                        @if(isset($userPersonalInfo->image->file_name))
-                                            <span class="invalid-feedback text-dark" role="alert"><strong>Image: {{ $userPersonalInfo->image->file_name }}</strong></span>
+                                        @if(isset($userBasicInfo->image->file_name))
+                                            <span class="invalid-feedback text-dark" role="alert"><strong>Image: {{ $userBasicInfo->image->file_name }}</strong></span>
                                         @endif
                                         @error('image')
                                         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>

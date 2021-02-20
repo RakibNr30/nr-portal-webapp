@@ -39,14 +39,8 @@ class ObserverServiceProvider extends ServiceProvider
         \Modules\Cms\Entities\ContentCategory::observe(\Modules\Cms\Observers\ContentCategoryObserver::class);
         \Modules\Cms\Entities\Content::observe(\Modules\Cms\Observers\ContentObserver::class);
         \Modules\Cms\Entities\ContentCategory::observe(\Modules\Cms\Observers\ContentCategoryObserver::class);
-        \Modules\Cms\Entities\Content::observe(\Modules\Cms\Observers\ContentObserver::class);
-        \Modules\Cms\Entities\ArticleCategory::observe(\Modules\Cms\Observers\ArticleCategoryObserver::class);
-        \Modules\Cms\Entities\Article::observe(\Modules\Cms\Observers\ArticleObserver::class);
-        \Modules\Cms\Entities\ArticleView::observe(\Modules\Cms\Observers\ArticleViewObserver::class);
         \Modules\Cms\Entities\Faq::observe(\Modules\Cms\Observers\FaqObserver::class);
-        \Modules\Cms\Entities\Quote::observe(\Modules\Cms\Observers\QuoteObserver::class);
         \Modules\Cms\Entities\Testimonial::observe(\Modules\Cms\Observers\TestimonialObserver::class);
-        \Modules\Cms\Entities\ImportantPerson::observe(\Modules\Cms\Observers\ImportantPersonObserver::class);
-        //[OBSERVER_REGISTER]
+       //[OBSERVER_REGISTER]
     }
 }

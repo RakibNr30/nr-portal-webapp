@@ -1,0 +1,21 @@
+[
+    {
+        "roles": ["Super Admin"],
+        "username": "Abdur Rakib",
+        "phone": "+880 1515 233336",
+        "email": "abdurrakib.cs@gmail.com",
+        "password": "password",
+        "basic_info":
+        {
+            "first_name": "Abdur Rakib",
+            "last_name": null,
+            "first_name_bn": null,
+            "last_name_bn": null,
+            "designation": "Student",
+            "personal_email": "abdurrakib.cs@gmail.com",
+            "mobile_no": "+880 1515 233336",
+            "blood_group": "B+",
+            "gender": "Male"
+        }
+    }
+]

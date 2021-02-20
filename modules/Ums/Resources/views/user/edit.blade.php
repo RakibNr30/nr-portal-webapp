@@ -18,7 +18,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="first_name" class="@error('first_name') text-danger @enderror">First Name</label>
-                                        <input id="first_name" name="first_name" value="{{ old('first_name') ?: $user->personalInfo->first_name }}"
+                                        <input id="first_name" name="first_name" value="{{ old('first_name') ?: $user->basicInfo->first_name }}"
                                                type="text"
                                                class="form-control @error('first_name') is-invalid @enderror"
                                                placeholder="Enter first name" autofocus>
@@ -31,7 +31,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="last_name" class="@error('last_name') text-danger @enderror">Last Name</label>
-                                        <input id="last_name" name="last_name" value="{{ old('last_name') ?: $user->personalInfo->last_name }}"
+                                        <input id="last_name" name="last_name" value="{{ old('last_name') ?: $user->basicInfo->last_name }}"
                                                type="text" class="form-control @error('last_name') is-invalid @enderror"
                                                placeholder="Enter last name" autofocus>
                                         @error('last_name')

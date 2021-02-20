@@ -40,14 +40,14 @@ class UserResidentialInfoDataTable extends DataTable
         $user_residential_info = $model->newQuery();
 
         // apply joins
-        $user_residential_info->join('user_personal_infos', 'user_residential_infos.user_id', 'user_personal_infos.id')
+        $user_residential_info->join('user_basic_infos', 'user_residential_infos.user_id', 'user_basic_infos.id')
             ->join('users', 'user_residential_infos.user_id', 'users.id');
 
         // select queries
         $user_residential_info->select([
             'user_residential_infos.id',
             'users.username as username',
-            DB::raw('CONCAT(user_personal_infos.first_name," ",user_personal_infos.last_name) as name'),
+            DB::raw('CONCAT(user_basic_infos.first_name," ",user_basic_infos.last_name) as name'),
             'user_residential_infos.present_country',
             'user_residential_infos.present_city',
             'user_residential_infos.present_state',
@@ -94,8 +94,8 @@ class UserResidentialInfoDataTable extends DataTable
             Column::computed('DT_RowIndex')
                 ->title('Sl'),
             Column::make('username')->name('users.username')->hidden(), // alias used
-            Column::make('name')->name('user_personal_infos.first_name'), // alias used
-            Column::make('name')->name('user_personal_infos.last_name')->hidden(), // alias used
+            Column::make('name')->name('user_basic_infos.first_name'), // alias used
+            Column::make('name')->name('user_basic_infos.last_name')->hidden(), // alias used
             Column::make('present_country'),
             Column::make('present_city'),
             Column::make('present_state'),

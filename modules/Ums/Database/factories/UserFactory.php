@@ -17,5 +17,6 @@ $factory->define(User::class, function (Faker $faker) {
 		'remember_token' => null,
 		'approved_at' => $faker->dateTime($max = 'now', $timezone = null),
 		'approved_by' => 1,
+		'roles' => [],
     ];
 });

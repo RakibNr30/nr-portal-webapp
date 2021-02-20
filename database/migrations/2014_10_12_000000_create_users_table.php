@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('profile_completeness')->default(10);
             $table->timestamp('approved_at')->nullable();
             $table->unsignedBigInteger('approved_by');
+            $table->string('role');
             $table->commonFields();
         });
     }

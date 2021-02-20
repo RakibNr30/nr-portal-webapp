@@ -33,7 +33,7 @@ class ResidentialInfoController extends Controller
     }
 
     /**
-     * UserPersonalInfo list
+     * UserBasicInfo list
      *
      * @return \Illuminate\View\View
      */

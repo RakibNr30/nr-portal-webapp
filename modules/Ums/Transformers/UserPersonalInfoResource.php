@@ -4,7 +4,7 @@ namespace Modules\Ums\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserPersonalInfoResource extends JsonResource
+class UserBasicInfoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

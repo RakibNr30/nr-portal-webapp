@@ -86,7 +86,7 @@ class UserService
     public function authorInfo($id)
     {
         return $this->userRepository->model->with([
-            'personalInfo'
+            'basicInfo'
         ])->where('id', $id)->first();
     }
 
@@ -103,7 +103,7 @@ class UserService
 
     public function allTeachers()
     {
-        return $this->userRepository->model->with(['personalInfo'])
+        return $this->userRepository->model->with(['basicInfo'])
             ->whereHas("roles", function ($query) {
                 $query->where("name", "Teacher");
             })->get();
