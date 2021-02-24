@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 
 // requests...
 use Carbon\Carbon;
-use Modules\Ums\Entities\User;
 use Modules\Ums\Http\Requests\UserStoreRequest;
 use Modules\Ums\Http\Requests\UserUpdateRequest;
 
@@ -140,6 +139,10 @@ class CompanyController extends Controller
         }
         // given roles
         $givenRoles = $user->roles->pluck('name')->toArray();
+        // check role
+        if (!in_array('company', $givenRoles)) {
+            return redirect()->to('/');
+        }
         // return view
         return view('ums::company.show', compact('user', 'givenRoles'));
     }
@@ -165,6 +168,10 @@ class CompanyController extends Controller
         $roles = $this->roleService->all();
         // given roles
         $givenRoles = $user->roles->pluck('name')->toArray();
+        // check role
+        if (!in_array('company', $givenRoles)) {
+            return redirect()->to('/');
+        }
         // return view
         return view('ums::company.edit', compact('user', 'roles', 'givenRoles'));
     }

@@ -23,13 +23,8 @@ class Site extends BaseModel implements HasMedia
 
     protected $appends = [
         'logo',
-        'favicon',
-        'banner_image',
-        'breadcrumb_image',
-        'parallax_image_1',
-        'parallax_image_2',
-        'parallax_image_3',
-        'footer_image'
+        'logo_sm',
+        'favicon'
     ];
 
     protected $casts = [
@@ -49,81 +44,21 @@ class Site extends BaseModel implements HasMedia
         return null;
     }
 
+    public function getLogoSmAttribute()
+    {
+        $media = $this->getMedia(config('core.media_collection.setting_site.logo_sm'));
+        if (isset($media[0])) {
+            return json_decode(json_encode([
+                'file_name' => $media[0]->file_name,
+                'file_url' => $media[0]->getUrl()
+            ]));
+        }
+        return null;
+    }
+
     public function getFaviconAttribute()
     {
         $media = $this->getMedia(config('core.media_collection.setting_site.favicon'));
-        if (isset($media[0])) {
-            return json_decode(json_encode([
-                'file_name' => $media[0]->file_name,
-                'file_url' => $media[0]->getUrl()
-            ]));
-        }
-        return null;
-    }
-
-    public function getBannerImageAttribute()
-    {
-        $media = $this->getMedia(config('core.media_collection.setting_site.banner_image'));
-        if (isset($media[0])) {
-            return json_decode(json_encode([
-                'file_name' => $media[0]->file_name,
-                'file_url' => $media[0]->getUrl()
-            ]));
-        }
-        return null;
-    }
-
-    public function getBreadcrumbImageAttribute()
-    {
-        $media = $this->getMedia(config('core.media_collection.setting_site.breadcrumb_image'));
-        if (isset($media[0])) {
-            return json_decode(json_encode([
-                'file_name' => $media[0]->file_name,
-                'file_url' => $media[0]->getUrl()
-            ]));
-        }
-        return null;
-    }
-
-    public function getParallaxImage1Attribute()
-    {
-        $media = $this->getMedia(config('core.media_collection.setting_site.parallax_image_1'));
-        if (isset($media[0])) {
-            return json_decode(json_encode([
-                'file_name' => $media[0]->file_name,
-                'file_url' => $media[0]->getUrl()
-            ]));
-        }
-        return null;
-    }
-
-    public function getParallaxImage2Attribute()
-    {
-        $media = $this->getMedia(config('core.media_collection.setting_site.parallax_image_2'));
-        if (isset($media[0])) {
-            return json_decode(json_encode([
-                'file_name' => $media[0]->file_name,
-                'file_url' => $media[0]->getUrl()
-            ]));
-        }
-        return null;
-    }
-
-    public function getParallaxImage3Attribute()
-    {
-        $media = $this->getMedia(config('core.media_collection.setting_site.parallax_image_3'));
-        if (isset($media[0])) {
-            return json_decode(json_encode([
-                'file_name' => $media[0]->file_name,
-                'file_url' => $media[0]->getUrl()
-            ]));
-        }
-        return null;
-    }
-
-    public function getFooterImageAttribute()
-    {
-        $media = $this->getMedia(config('core.media_collection.setting_site.footer_image'));
         if (isset($media[0])) {
             return json_decode(json_encode([
                 'file_name' => $media[0]->file_name,
@@ -146,6 +81,17 @@ class Site extends BaseModel implements HasMedia
                 ->toMediaCollection(config('core.media_collection.setting_site.logo'));
         }
 
+        // check for logo small
+        if (request()->hasFile('logo_sm')) {
+            // remove old file from collection
+            if ($this->hasMedia(config('core.media_collection.setting_site.logo_sm'))) {
+                $this->clearMediaCollection(config('core.media_collection.setting_site.logo_sm'));
+            }
+            // upload new file to collection
+            $this->addMediaFromRequest('logo_sm')
+                ->toMediaCollection(config('core.media_collection.setting_site.logo_sm'));
+        }
+
         // check for favicon
         if (request()->hasFile('favicon')) {
             // remove old file from collection
@@ -155,72 +101,6 @@ class Site extends BaseModel implements HasMedia
             // upload new file to collection
             $this->addMediaFromRequest('favicon')
                 ->toMediaCollection(config('core.media_collection.setting_site.favicon'));
-        }
-
-        // check for banner image
-        if (request()->hasFile('banner_image')) {
-            // remove old file from collection
-            if ($this->hasMedia(config('core.media_collection.setting_site.banner_image'))) {
-                $this->clearMediaCollection(config('core.media_collection.setting_site.banner_image'));
-            }
-            // upload new file to collection
-            $this->addMediaFromRequest('banner_image')
-                ->toMediaCollection(config('core.media_collection.setting_site.banner_image'));
-        }
-
-        // check for banner image
-        if (request()->hasFile('breadcrumb_image')) {
-            // remove old file from collection
-            if ($this->hasMedia(config('core.media_collection.setting_site.breadcrumb_image'))) {
-                $this->clearMediaCollection(config('core.media_collection.setting_site.breadcrumb_image'));
-            }
-            // upload new file to collection
-            $this->addMediaFromRequest('breadcrumb_image')
-                ->toMediaCollection(config('core.media_collection.setting_site.breadcrumb_image'));
-        }
-
-        // check for parallax image 1
-        if (request()->hasFile('parallax_image_1')) {
-            // remove old file from collection
-            if ($this->hasMedia(config('core.media_collection.setting_site.parallax_image_1'))) {
-                $this->clearMediaCollection(config('core.media_collection.setting_site.parallax_image_1'));
-            }
-            // upload new file to collection
-            $this->addMediaFromRequest('parallax_image_1')
-                ->toMediaCollection(config('core.media_collection.setting_site.parallax_image_1'));
-        }
-
-        // check for parallax image 2
-        if (request()->hasFile('parallax_image_2')) {
-            // remove old file from collection
-            if ($this->hasMedia(config('core.media_collection.setting_site.parallax_image_2'))) {
-                $this->clearMediaCollection(config('core.media_collection.setting_site.parallax_image_2'));
-            }
-            // upload new file to collection
-            $this->addMediaFromRequest('parallax_image_2')
-                ->toMediaCollection(config('core.media_collection.setting_site.parallax_image_2'));
-        }
-
-        // check for parallax image 3
-        if (request()->hasFile('parallax_image_3')) {
-            // remove old file from collection
-            if ($this->hasMedia(config('core.media_collection.setting_site.parallax_image_3'))) {
-                $this->clearMediaCollection(config('core.media_collection.setting_site.parallax_image_3'));
-            }
-            // upload new file to collection
-            $this->addMediaFromRequest('parallax_image_3')
-                ->toMediaCollection(config('core.media_collection.setting_site.parallax_image_3'));
-        }
-
-        // check for footer image
-        if (request()->hasFile('footer_image')) {
-            // remove old file from collection
-            if ($this->hasMedia(config('core.media_collection.setting_site.footer_image'))) {
-                $this->clearMediaCollection(config('core.media_collection.setting_site.footer_image'));
-            }
-            // upload new file to collection
-            $this->addMediaFromRequest('footer_image')
-                ->toMediaCollection(config('core.media_collection.setting_site.footer_image'));
         }
     }
 }

@@ -71,7 +71,7 @@
                             <input id="password" name="password" value="{{ old('password') }}"
                                    type="password"
                                    class="form-control @error('password') is-invalid @enderror"
-                                   placeholder="Enter password" autofocus>
+                                   placeholder="Enter password" autofocus required>
                             @error('password')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
@@ -83,7 +83,7 @@
                             <input id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}"
                                    type="password"
                                    class="form-control @error('password_confirmation') is-invalid @enderror"
-                                   placeholder="Re-enter password" autofocus>
+                                   placeholder="Re-enter password" autofocus required>
                             @error('password_confirmation')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
@@ -99,12 +99,13 @@
                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <input type="hidden" name="roles[]" value="Company">
-                        <div class="button-items">
+                        <input type="hidden" name="roles[]" value="company">
+                        <div class="button-items float-right">
+                            <a href="{{ route('backend.ums.company.index') }}" type="button"
+                               class="btn btn-danger waves-effect waves-light">Cancel
+                            </a>
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Submit
                             </button>
-                            <a href="{{ route('backend.ums.company.index') }}" type="button"
-                               class="btn btn-danger waves-effect waves-light">Cancel</a>
                         </div>
                         {!! Form::close() !!}
                     </div>

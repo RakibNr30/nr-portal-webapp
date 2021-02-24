@@ -24,7 +24,7 @@ class SocialAccountDataTable extends DataTable
             ->eloquent($query)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                return view('ums::profile.social_account.action', compact('data'))->render();
+                return view('ums::profile.social-account.action', compact('data'))->render();
             });
     }
 

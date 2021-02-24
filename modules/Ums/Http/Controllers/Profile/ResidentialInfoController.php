@@ -44,7 +44,7 @@ class ResidentialInfoController extends Controller
             'user_id' => auth()->user()->id
         ]);
         // return view
-        return view('ums::profile.residential_info.index', compact('userResidentialInfo'));
+        return view('ums::profile.residential-info.index', compact('userResidentialInfo'));
     }
 
     /**
@@ -61,10 +61,10 @@ class ResidentialInfoController extends Controller
         // check if userResidentialInfo created
         if ($userResidentialInfo) {
             // flash notification
-            notifier()->success('UserResidentialInfo created successfully.');
+            notifier()->success('Your Residential Info updated successfully.');
         } else {
             // flash notification
-            notifier()->error('UserResidentialInfo cannot be created successfully.');
+            notifier()->error('Your Residential Info cannot be updated successfully.');
         }
         // redirect back
         return redirect()->back();

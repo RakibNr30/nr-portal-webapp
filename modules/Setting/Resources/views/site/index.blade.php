@@ -57,6 +57,21 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="logo_sm" class="@error('logo_sm') text-danger @enderror">Logo Small</label>
+                            <input id="logo_sm" name="logo_sm" value="{{ old('logo_sm') }}" type="file"
+                                   class="form-control @error('logo_sm') is-invalid @enderror"
+                                   placeholder="Select File" autofocus>
+                            @if(isset($site->logo_sm))
+                                <div class="image-output">
+                                    <img src="{{ $site->logo_sm->file_url }}">
+                                </div>
+                            @endif
+                            @error('logo_sm')
+                            <span class="invalid-feedback"
+                                  role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="favicon"
                                    class="@error('favicon') text-danger @enderror">Favicon</label>
                             <input id="favicon" name="favicon" value="{{ old('favicon') }}" type="file"
@@ -68,108 +83,6 @@
                                 </div>
                             @endif
                             @error('favicon')
-                            <span class="invalid-feedback"
-                                  role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="banner_image" class="@error('banner_image') text-danger @enderror">Banner
-                                Image</label>
-                            <input id="banner_image" name="banner_image" value="{{ old('banner_image') }}"
-                                   type="file"
-                                   class="form-control @error('banner_image') is-invalid @enderror"
-                                   placeholder="Select File" autofocus>
-                            @if(isset($site->banner_image))
-                                <div class="image-output">
-                                    <img src="{{ $site->banner_image->file_url }}">
-                                </div>
-                            @endif
-                            @error('banner_image')
-                            <span class="invalid-feedback"
-                                  role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="breadcrumb_image" class="@error('breadcrumb_image') text-danger @enderror">Breadcrumb Image
-                            </label>
-                            <input id="breadcrumb_image" name="breadcrumb_image" value="{{ old('breadcrumb_image') }}"
-                                   type="file"
-                                   class="form-control @error('breadcrumb_image') is-invalid @enderror"
-                                   placeholder="Select File" autofocus>
-                            @if(isset($site->breadcrumb_image))
-                                <div class="image-output">
-                                    <img src="{{ $site->breadcrumb_image->file_url }}">
-                                </div>
-                            @endif
-                            @error('breadcrumb_image')
-                            <span class="invalid-feedback"
-                                  role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="footer_image" class="@error('footer_image') text-danger @enderror">Footer
-                                Image</label>
-                            <input id="footer_image" name="footer_image" value="{{ old('footer_image') }}"
-                                   type="file"
-                                   class="form-control @error('footer_image') is-invalid @enderror"
-                                   placeholder="Select File" autofocus>
-                            @if(isset($site->footer_image))
-                                <div class="image-output">
-                                    <img src="{{ $site->footer_image->file_url }}">
-                                </div>
-                            @endif
-                            @error('footer_image')
-                            <span class="invalid-feedback"
-                                  role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="parallax_image_1"
-                                   class="@error('parallax_image_1') text-danger @enderror">Parallax Image 1</label>
-                            <input id="parallax_image_1" name="parallax_image_1"
-                                   value="{{ old('parallax_image_1') }}" type="file"
-                                   class="form-control @error('parallax_image_1') is-invalid @enderror"
-                                   placeholder="Select File" autofocus>
-                            @if(isset($site->parallax_image_1))
-                                <div class="image-output">
-                                    <img src="{{ $site->parallax_image_1->file_url }}">
-                                </div>
-                            @endif
-                            @error('parallax_image_1')
-                            <span class="invalid-feedback"
-                                  role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="parallax_image_2"
-                                   class="@error('parallax_image_2') text-danger @enderror">Parallax Image 2</label>
-                            <input id="parallax_image_2" name="parallax_image_2"
-                                   value="{{ old('parallax_image_2') }}" type="file"
-                                   class="form-control @error('parallax_image_2') is-invalid @enderror"
-                                   placeholder="Select File" autofocus>
-                            @if(isset($site->parallax_image_2))
-                                <div class="image-output">
-                                    <img src="{{ $site->parallax_image_2->file_url }}">
-                                </div>
-                            @endif
-                            @error('parallax_image_2')
-                            <span class="invalid-feedback"
-                                  role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="parallax_image_3"
-                                   class="@error('parallax_image_3') text-danger @enderror">Parallax Image 3</label>
-                            <input id="parallax_image_3" name="parallax_image_3"
-                                   value="{{ old('parallax_image_3') }}" type="file"
-                                   class="form-control @error('parallax_image_3') is-invalid @enderror"
-                                   placeholder="Select File" autofocus>
-                            @if(isset($site->parallax_image_3))
-                                <div class="image-output">
-                                    <img src="{{ $site->parallax_image_3->file_url }}">
-                                </div>
-                            @endif
-                            @error('parallax_image_3')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror

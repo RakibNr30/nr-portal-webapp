@@ -35,7 +35,7 @@ class AccountInfoController extends Controller
             'id' => auth()->user()->id
         ]);
         // return view
-        return view('ums::profile.account_info.index', compact('user'));
+        return view('ums::profile.account-info.index', compact('user'));
     }
 
     /**
@@ -47,10 +47,10 @@ class AccountInfoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required',
-			'avatar' => 'sometimes|image|max:512',
-			'email' => 'required',
-			'phone' => 'required',
+            'username' => 'alpha_dash|required|unique:users,username,' . $id,
+            'avatar' => 'sometimes|image|max:1024',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone' => 'required|unique:users,phone,' . $id,
         ]);
         // create user
         $user = $this->userService->update($request->all(), $id);

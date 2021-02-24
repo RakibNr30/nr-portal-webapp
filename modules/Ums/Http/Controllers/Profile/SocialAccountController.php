@@ -47,7 +47,7 @@ class SocialAccountController extends Controller
      */
     public function index(SocialAccountDataTable $datatable)
     {
-        return $datatable->render('ums::profile.social_account.index');
+        return $datatable->render('ums::profile.social-account.index');
     }
 
     /**
@@ -60,7 +60,7 @@ class SocialAccountController extends Controller
         // social sites
         $socialSites = $this->socialSiteService->all();
         // return view
-        return view('ums::profile.social_account.create', compact('socialSites'));
+        return view('ums::profile.social-account.create', compact('socialSites'));
     }
 
 
@@ -72,39 +72,21 @@ class SocialAccountController extends Controller
      */
     public function store(UserSocialAccountStoreRequest $request)
     {
+        // get data
+        $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
         // create userSocialAccount
-        $userSocialAccount = $this->userSocialAccountService->create($request->all());
+        $userSocialAccount = $this->userSocialAccountService->create($data);
         // check if userSocialAccount created
         if ($userSocialAccount) {
             // flash notification
-            notifier()->success('UserSocialAccount created successfully.');
+            notifier()->success('Your Social Account created successfully.');
         } else {
             // flash notification
-            notifier()->error('UserSocialAccount cannot be created successfully.');
+            notifier()->error('Your Social Account cannot be created successfully.');
         }
         // redirect back
         return redirect()->back();
-    }
-
-    /**
-     * Show userSocialAccount.
-     *
-     * @param $id
-     * @return mixed
-     */
-    public function show($id)
-    {
-        // get userSocialAccount
-        $userSocialAccount = $this->userSocialAccountService->find($id);
-        // check if userSocialAccount doesn't exists
-        if (empty($userSocialAccount)) {
-            // flash notification
-            notifier()->error('UserSocialAccount not found!');
-            // redirect back
-            return redirect()->back();
-        }
-        // return view
-        return view('ums::profile.social_account.show', compact('userSocialAccount'));
     }
 
     /**
@@ -122,12 +104,17 @@ class SocialAccountController extends Controller
         // check if userSocialAccount doesn't exists
         if (empty($userSocialAccount)) {
             // flash notification
-            notifier()->error('UserSocialAccount not found!');
+            notifier()->error('Your Social Account not found!');
             // redirect back
             return redirect()->back();
         }
+
+        if (!($userSocialAccount->user_id == auth()->user()->id)) {
+            return redirect()->to('/');
+        }
+
         // return view
-        return view('ums::profile.social_account.edit', compact('socialSites', 'userSocialAccount'));
+        return view('ums::profile.social-account.edit', compact('socialSites', 'userSocialAccount'));
     }
 
     /**
@@ -144,7 +131,7 @@ class SocialAccountController extends Controller
         // check if userSocialAccount doesn't exists
         if (empty($userSocialAccount)) {
             // flash notification
-            notifier()->error('UserSocialAccount not found!');
+            notifier()->error('Your Social Account not found!');
             // redirect back
             return redirect()->back();
         }
@@ -153,10 +140,10 @@ class SocialAccountController extends Controller
         // check if userSocialAccount updated
         if ($userSocialAccount) {
             // flash notification
-            notifier()->success('UserSocialAccount updated successfully.');
+            notifier()->success('Your Social Account updated successfully.');
         } else {
             // flash notification
-            notifier()->error('UserSocialAccount cannot be updated successfully.');
+            notifier()->error('Your Social Account cannot be updated successfully.');
         }
         // redirect back
         return redirect()->back();
@@ -175,17 +162,17 @@ class SocialAccountController extends Controller
         // check if userSocialAccount doesn't exists
         if (empty($userSocialAccount)) {
             // flash notification
-            notifier()->error('UserSocialAccount not found!');
+            notifier()->error('Your Social Account not found!');
             // redirect back
             return redirect()->back();
         }
         // delete userSocialAccount
         if ($this->userSocialAccountService->delete($id)) {
             // flash notification
-            notifier()->success('UserSocialAccount deleted successfully.');
+            notifier()->success('Your Social Account deleted successfully.');
         } else {
             // flash notification
-            notifier()->success('UserSocialAccount cannot be deleted successfully.');
+            notifier()->success('Your Social Account cannot be deleted successfully.');
         }
         // redirect back
         return redirect()->back();

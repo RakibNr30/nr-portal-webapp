@@ -10,7 +10,7 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">User Control</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('backend.ums.admin.index') }}">Admin</a></li>
-                            <li class="breadcrumb-item active">Edit</li>
+                            <li class="breadcrumb-item active">Update</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             <input id="first_name" name="first_name" value="{{ old('first_name') ?: $user->basicInfo->first_name }}"
                                    type="text"
                                    class="form-control @error('first_name') is-invalid @enderror"
-                                   placeholder="Enter first name" autofocus>
+                                   placeholder="Enter first name" autofocus required>
                             @error('first_name')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
@@ -49,7 +49,7 @@
                                    class="@error('username') text-danger @enderror">Username</label>
                             <input id="username" name="username" value="{{ old('username') ?: $user->username }}" type="text"
                                    class="form-control @error('username') is-invalid @enderror"
-                                   placeholder="Enter username" autofocus>
+                                   placeholder="Enter username" autofocus required>
                             @error('username')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
@@ -59,7 +59,7 @@
                             <label for="email" class="@error('email') text-danger @enderror">Email</label>
                             <input id="email" name="email" value="{{ old('email') ?: $user->email }}" type="text"
                                    class="form-control @error('email') is-invalid @enderror"
-                                   placeholder="Enter email" autofocus>
+                                   placeholder="Enter email" autofocus required>
                             @error('email')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
@@ -69,7 +69,7 @@
                             <label for="phone" class="@error('phone') text-danger @enderror">Phone</label>
                             <input id="phone" name="phone" value="{{ old('phone') ?: $user->phone }}" type="text"
                                    class="form-control @error('phone') is-invalid @enderror"
-                                   placeholder="Enter phone" autofocus>
+                                   placeholder="Enter phone" autofocus required>
                             @error('phone')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
@@ -87,11 +87,12 @@
                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="button-items">
+                        <div class="button-items float-right">
+                            <a href="{{ route('backend.ums.admin.index') }}" type="button"
+                               class="btn btn-danger waves-effect waves-light">Cancel
+                            </a>
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Submit
                             </button>
-                            <a href="{{ route('backend.ums.admin.index') }}" type="button"
-                               class="btn btn-danger waves-effect waves-light">Cancel</a>
                         </div>
                         {!! Form::close() !!}
                     </div>

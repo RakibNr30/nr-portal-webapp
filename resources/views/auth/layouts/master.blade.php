@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
-    <link rel="shortcut icon" href="{{ asset('admin/images/favicon.ico') }}">
+    <meta content="" name="description" />
+
+    <link rel="shortcut icon" href="{{ $global_site->favicon->file_url ?? config('core.image.default.favicon') }}">
     <link href="{{ 'admin/css/bootstrap.min.css' }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <link href="{{ 'admin/css/icons.min.css' }}" rel="stylesheet" type="text/css" />
     <link href="{{ 'admin/css/app.min.css' }}" id="app-style" rel="stylesheet" type="text/css" />
@@ -18,7 +18,7 @@
 
 <body>
 <div class="home-btn d-none d-sm-block">
-    <a href="#" class="text-dark"><i class="fas fa-home h2"></i></a>
+    <a href="{{ url('/backend/dashboard') }}" class="text-dark"><i class="fas fa-home h2"></i></a>
 </div>
 <div class="account-pages my-5 pt-sm-5">
     <div class="container">

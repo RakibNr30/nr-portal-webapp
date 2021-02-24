@@ -1,14 +1,14 @@
 [
     {
-        "name": "Super Admin"
+        "name": "super_admin"
     },
     {
-        "name": "Admin"
+        "name": "admin"
     },
     {
-        "name": "Company"
+        "name": "company"
     },
     {
-        "name": "Customer"
+        "name": "client"
     }
 ]

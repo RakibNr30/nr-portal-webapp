@@ -12,8 +12,8 @@
                 <div class="position-relative">
                     <h5 class="text-white font-size-20">Welcome Back !</h5>
                     <p class="text-white-50 mb-0">Sign in to continue to {{ $global_site->title ?? 'Web Portal' }}</p>
-                    <a href="#" class="logo logo-admin mt-4">
-                        <img src="{{ asset('admin/images/logo-sm-dark.png') }}" alt="" height="30">
+                    <a href="{{ url('/backend/dashboard') }}" class="logo logo-admin mt-4">
+                        <img src="{{ $global_site->logo_sm->favicon ?? config('core.image.default.favicon') }}" alt="" height="30">
                     </a>
                 </div>
             </div>
@@ -50,14 +50,11 @@
                     </div>
 
                     <div class="mt-4 text-center">
-                        <a href="#" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
+                        <a href="{{ '' }}" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
                     </div>
                     {!! Form::close() !!}
                 </div>
             </div>
-        </div>
-        <div class="mt-5 text-center">
-            <p>Don't have an account ? <a href="#" class="font-weight-medium text-primary"> Signup now </a> </p>
         </div>
     </div>
 @stop

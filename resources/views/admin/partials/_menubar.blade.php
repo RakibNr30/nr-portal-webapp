@@ -6,13 +6,12 @@
             @endphp
         <div class="user-wid text-center py-4">
             <div class="user-img">
-                <img src="{{ asset('admin/images/users/avatar-2.jpg') }}" alt="" class="avatar-md mx-auto rounded-circle">
+                <img src="{{ $global_site->favicon->file_url ?? config('core.image.default.favicon') }}" alt="" class="avatar-md mx-auto rounded-circle" style="height: 50px; width: 50px">
             </div>
             <div class="mt-3">
-                <a href="#" class="text-dark font-weight-medium font-size-16">
-                    {{ $user->basicInfo->first_name }} {{ $user->basicInfo->last_name }}
+                <a href="{{ url('/backend/dashboard') }}" class="text-dark font-weight-medium font-size-14">
+                    {{ $global_site->title ?? 'Web Portal' }}
                 </a>
-                <p class="text-body mt-1 mb-0 font-size-13">{{ $user->basicInfo->designation }}</p>
             </div>
         </div>
 
@@ -35,12 +34,31 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     @foreach($nav['children'] as $subNav)
-                                        <li>
-                                            <a href="{{ $subNav['url'] }}">
-                                                <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
-                                                {{ $subNav['name'] }}
-                                            </a>
-                                        </li>
+                                        @if(empty($subNav['children']))
+                                            <li>
+                                                <a href="{{ $subNav['url'] }}">
+                                                    <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
+                                                    {{ $subNav['name'] }}
+                                                </a>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                    <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
+                                                    <span>{{ $subNav['name'] }}</span>
+                                                </a>
+                                                <ul class="sub-menu" aria-expanded="true">
+                                                    @foreach($subNav['children'] as $superSubNav)
+                                                        <li>
+                                                            <a href="{{ $superSubNav['url'] }}">
+                                                                <i style="font-size: 12px" class="fas {{ $superSubNav['icon'] }}"></i>
+                                                                {{ $superSubNav['name'] }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </li>

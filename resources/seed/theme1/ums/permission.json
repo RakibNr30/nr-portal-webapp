@@ -2,51 +2,51 @@
     {
         "name": "dashboard",
         "roles": [
-            "Super Admin",
-            "Admin"
+            "super_admin",
+            "admin"
         ]
     },
     {
         "name": "cms",
         "roles": [
-            "Super Admin",
-            "Admin"
+            "super_admin",
+            "admin"
         ]
     },
     {
         "name": "access_controls",
         "roles": [
-            "Super Admin",
-            "Admin"
+            "super_admin",
+            "admin"
         ]
     },
     {
         "name": "core_settings",
         "roles": [
-            "Super Admin"
+            "super_admin"
         ]
     },
     {
         "name": "common_settings",
         "roles": [
-            "Super Admin",
-            "Admin"
+            "super_admin",
+            "admin"
         ]
     },
     {
         "name": "app_settings",
         "roles": [
-            "Super Admin",
-            "Admin"
+            "super_admin",
+            "admin"
         ]
     },
     {
         "name": "my_profile",
         "roles": [
-            "Super Admin",
-            "Admin",
-            "Company",
-            "Customer"
+            "super_admin",
+            "admin",
+            "company",
+            "client"
         ]
     }
 ]

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @php
+        $user = \Modules\Ums\Entities\User::find(auth()->user()->id);
+    @endphp
+
     <meta charset="utf-8" />
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="" name="description" />
 
-    {!! SEO::generate(true) !!}
-
-    <link rel="shortcut icon" href="{{ asset('admin/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ $global_site->favicon->file_url ?? config('core.image.default.favicon') }}">
+    <link href="{{ asset('common/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
     <link href="{{ asset('common/plugins/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -19,7 +21,6 @@
     @yield('style')
 
 </head>
-
 <body data-layout="detached" data-topbar="colored">
     <div class="container-fluid">
         <div id="layout-wrapper">
@@ -45,11 +46,23 @@
     <script src="{{ asset('common/plugins/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('common/plugins/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('common/plugins/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js') }}"></script>
+    <script src="{{ asset('common/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('admin/js/pages/dashboard.init.js') }}"></script>
 
     @yield('script')
 
     <script src="{{ asset('admin/js/app.js') }}"></script>
+    <script src="{{ asset('admin/js/custom.js') }}"></script>
+
+<script>
+    $('.datepicker').datepicker({
+        todayHighlight: false,
+        format: 'yyyy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+        autoclose: true
+    })
+</script>
 
 </body>
 </html>

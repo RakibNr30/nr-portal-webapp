@@ -62,4 +62,9 @@ class User extends \App\User implements hasMedia
     {
         return \Carbon\Carbon::parse($value)->format($this->format);
     }
+
+    public function getApprovedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format($this->format);
+    }
 }

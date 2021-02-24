@@ -33,29 +33,15 @@
                         <img class="" src="{{ asset('admin/images/flags/us.jpg') }}" alt="Header Language" height="16">
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="{{ asset('admin/images/flags/spain.jpg') }}" alt="user-image" class="mr-1"
-                                 height="12"> <span class="align-middle">Spanish</span>
+                            <img src="{{ asset('admin/images/flags/us.jpg') }}" alt="user-image" class="mr-1"
+                                 height="12"> <span class="align-middle">English</span>
                         </a>
-
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="{{ asset('admin/images/flags/germany.jpg') }}" alt="user-image" class="mr-1"
-                                 height="12"> <span class="align-middle">German</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="{{ asset('admin/images/flags/italy.jpg') }}" alt="user-image" class="mr-1"
-                                 height="12"> <span class="align-middle">Italian</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <img src="{{ asset('admin/images/flags/russia.jpg') }}" alt="user-image" class="mr-1"
-                                 height="12"> <span class="align-middle">Russian</span>
+                            <img src="{{ asset('admin/images/flags/dutch.png') }}" alt="user-image" class="mr-1"
+                                 height="12"> <span class="align-middle">Dutch</span>
                         </a>
                     </div>
                 </div>
@@ -66,12 +52,22 @@
                     </button>
                 </div>
 
+                @php
+                $notification = 100;
+                @endphp
+
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item noti-icon waves-effect"
                             id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         <i class="mdi mdi-bell-outline"></i>
-                        <span class="badge badge-danger badge-pill">3</span>
+                        <span class="badge badge-danger badge-pill">
+                            @if($notification > 99)
+                                99+
+                            @else
+                                {{ $notification }}
+                            @endif
+                        </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                          aria-labelledby="page-header-notifications-dropdown">
@@ -158,21 +154,23 @@
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle header-profile-user"
-                             src="{{ asset('admin/images/users/avatar-2.jpg') }}" alt="Header Avatar">
-                        <span class="d-none d-xl-inline-block ml-1">Patrick</span>
+                             src="{{ $user->avatar->file_url ?? config('core.image.default.avatar') }}" alt="">
+                        <span class="d-none d-xl-inline-block ml-1">{{ $user->basicInfo->first_name }}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <!-- item-->
-                        <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle mr-1"></i>
-                            Profile</a>
-                        <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle mr-1"></i> My
-                            Wallet</a>
-                        <a class="dropdown-item d-block" href="#"><span
-                                    class="badge badge-success float-right">11</span><i
-                                    class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
                         <a class="dropdown-item" href="#">
-                            <i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen
+                            <i class="bx bx-user font-size-16 align-middle mr-1"></i>
+                            My Profile
+                        </a>
+                        <a class="dropdown-item d-block" href="#">
+                            <i class="bx bx-wrench font-size-16 align-middle mr-1"></i>
+                            Account Settings
+                        </a>
+                        <a class="dropdown-item d-block" href="#">
+                            <i class="bx bxs-key font-size-16 align-middle mr-1"></i>
+                            Change Password
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-danger" href="{{ route('logout') }}"
@@ -185,32 +183,16 @@
                         </form>
                     </div>
                 </div>
-
-                <div class="dropdown d-inline-block">
-                    <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                        <i class="mdi mdi-settings-outline"></i>
-                    </button>
-                </div>
-
             </div>
 
             <div>
                 <div class="navbar-brand-box">
-                    <a href="index-2.html" class="logo logo-dark">
+                    <a href="{{ '/backend/dashboard' }}" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="{{ asset('admin/images/logo-sm.png') }}" alt="" height="20">
+                            <img src="{{ $global_site->logo_sm->file_url ?? config('core.image.default.logo_sm') }}" alt="" height="20">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('admin/images/logo-dark.png') }}" alt="" height="17">
-                        </span>
-                    </a>
-
-                    <a href="index-2.html" class="logo logo-light">
-                        <span class="logo-sm">
-                            <img src="{{ asset('admin/images/logo-sm.png') }}" alt="" height="20">
-                        </span>
-                        <span class="logo-lg">
-                            <img src="{{ asset('admin/images/logo-light.png') }}" alt="" height="19">
+                            <img src="{{ $global_site->logo->file_url ?? config('core.image.default.logo') }}" alt="" height="19">
                         </span>
                     </a>
                 </div>
@@ -220,7 +202,6 @@
                     <i class="fa fa-fw fa-bars"></i>
                 </button>
 
-                <!-- App Search-->
                 <form class="app-search d-none d-lg-inline-block">
                     <div class="position-relative">
                         <input type="text" class="form-control" placeholder="Search...">

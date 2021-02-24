@@ -26,12 +26,8 @@ class SiteStoreRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'logo' => 'sometimes|image',
-            'favicon' => 'sometimes|image',
-            'banner_image' => 'sometimes|image',
-            'parallax_image_1' => 'sometimes|image',
-            'parallax_image_2' => 'sometimes|image',
-            'parallax_image_3' => 'sometimes|image',
-            'footer_image' => 'sometimes|image'
+            'logo_sm' => 'sometimes|image',
+            'favicon' => 'sometimes|mimes:png,ico',
         ];
     }
 }

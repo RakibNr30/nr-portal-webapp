@@ -140,8 +140,13 @@ class AdminController extends Controller
         }
         // given roles
         $givenRoles = $user->roles->pluck('name')->toArray();
+        // check role
+        if (!in_array('admin', $givenRoles)) {
+            return redirect()->to('/');
+        }
+
         // return view
-        return view('ums::user.show', compact('user', 'givenRoles'));
+        return view('ums::admin.show', compact('user', 'givenRoles'));
     }
 
     /**
@@ -165,6 +170,10 @@ class AdminController extends Controller
         $roles = $this->roleService->all();
         // given roles
         $givenRoles = $user->roles->pluck('name')->toArray();
+        // check role
+        if (!in_array('admin', $givenRoles)) {
+            return redirect()->to('/');
+        }
         // return view
         return view('ums::admin.edit', compact('user', 'roles', 'givenRoles'));
     }

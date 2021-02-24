@@ -38,9 +38,10 @@ class AdminDataTable extends DataTable
     {
         // user model instance
         $user = $model->newQuery();
+
         // apply joins
-        $user->join('users as approvers', 'users.approved_by', 'approvers.id')
-            ->join('user_basic_infos as approver_basic_info', 'approvers.approved_by', 'approver_basic_info.user_id');
+        $user->join('user_basic_infos as user_basic_info', 'users.id', 'user_basic_info.user_id')
+            ->join('user_basic_infos as approver_basic_info', 'users.approved_by', 'approver_basic_info.user_id');
 
         // select queries
         $user->select([
@@ -48,12 +49,13 @@ class AdminDataTable extends DataTable
             'users.username',
             'users.phone',
             'users.email',
-            DB::raw('CONCAT(approver_basic_info.first_name," ",approver_basic_info.last_name) as approver_name'),
+            DB::raw('CONCAT(user_basic_info.first_name, if(user_basic_info.last_name is not null, CONCAT(" ", user_basic_info.last_name), "")) as name'),
+            DB::raw('CONCAT(approver_basic_info.first_name, if(approver_basic_info.last_name is not null, CONCAT(" ", approver_basic_info.last_name), "")) as approver_name'),
             'users.created_at'
         ]);
 
         // filter admin
-        $user->where('users.role', 'Admin');
+        $user->where('users.role', 'admin');
 
         // return data
         return $user;
@@ -93,11 +95,13 @@ class AdminDataTable extends DataTable
         return [
             Column::computed('DT_RowIndex')
                 ->title('Sl'),
+            Column::make('name')->name('user_basic_info.first_name'), // alias used,
+            Column::make('name')->name('user_basic_info.last_name')->hidden(), // alias used,
             Column::make('username'),
             Column::make('phone'),
             Column::make('email'),
-            Column::make('approver_name')->name('approver_basic_info.first_name')->title('Approved By'), // alias used
-            //Column::make('name')->name('user_basic_infos.last_name')->hidden(), // alias used
+            Column::make('approver_name')->name('approver_basic_info.first_name')->title('Registered By'), // alias used
+            Column::make('approver_name')->name('approver_basic_info.last_name')->hidden(), // alias used
             Column::make('created_at')->title('Registered At'),
             Column::computed('action')
                 ->exportable(false)

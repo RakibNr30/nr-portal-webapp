@@ -24,11 +24,15 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+
+            // find route id
+            $id = request()->route()->parameters()[request()->route()->parameterNames[0]],
+
             'first_name' => 'required',
-            'username' => 'required',
+            'username' => 'alpha_dash|required|unique:users,username,' . $id,
             'avatar' => 'sometimes|image|max:512',
-            'email' => 'required',
-            'phone' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone' => 'required|unique:users,phone,' . $id,
             // 'password' => 'required|min:6|confirmed',
             //'roles' => 'required|array|min:1',
         ];

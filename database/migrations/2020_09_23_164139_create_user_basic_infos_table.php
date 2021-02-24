@@ -17,8 +17,6 @@ class CreateUserBasicInfosTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name')->nullable();
 			$table->string('last_name')->nullable();
-			$table->string('first_name_bn')->nullable();
-			$table->string('last_name_bn')->nullable();
 			$table->string('designation')->nullable();
 			$table->longText('about')->nullable();
 			$table->string('phone_no')->nullable();

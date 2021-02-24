@@ -10,7 +10,7 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">User Control</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('backend.ums.company.index') }}">Company</a></li>
-                            <li class="breadcrumb-item active">Edit</li>
+                            <li class="breadcrumb-item active">Update</li>
                         </ol>
                     </div>
                 </div>
@@ -77,11 +77,12 @@
                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="button-items">
+                        <div class="button-items float-right">
+                            <a href="{{ route('backend.ums.company.index') }}" type="button"
+                               class="btn btn-danger waves-effect waves-light">Cancel
+                            </a>
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Submit
                             </button>
-                            <a href="{{ route('backend.ums.company.index') }}" type="button"
-                               class="btn btn-danger waves-effect waves-light">Cancel</a>
                         </div>
                         {!! Form::close() !!}
                     </div>
