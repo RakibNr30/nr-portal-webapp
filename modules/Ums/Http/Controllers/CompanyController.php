@@ -47,6 +47,7 @@ class CompanyController extends Controller
         $this->userService = $userService;
         $this->userBasicInfoService = $userBasicInfoService;
         $this->roleService = $roleService;
+        $this->middleware(['permission:user_controls']);
     }
 
     /**

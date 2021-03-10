@@ -36,6 +36,7 @@ class UserResidentialInfoController extends Controller
     {
         $this->userResidentialInfoService = $userResidentialInfoService;
         $this->userService = $userService;
+        $this->middleware(['permission:core_settings']);
     }
 
     /**

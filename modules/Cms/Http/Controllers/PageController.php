@@ -36,6 +36,7 @@ class PageController extends Controller
     {
         $this->pageService = $pageService;
         $this->pageCategoryService = $pageCategoryService;
+        $this->middleware(['permission:cms']);
     }
 
     /**

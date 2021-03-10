@@ -37,6 +37,7 @@ class UserBasicInfoController extends Controller
     {
         $this->userBasicInfoService = $userBasicInfoService;
         $this->userService = $userService;
+        $this->middleware(['permission:core_settings']);
     }
 
     /**

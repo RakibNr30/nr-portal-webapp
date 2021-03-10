@@ -29,6 +29,7 @@ class ContentCategoryController extends Controller
     public function __construct(ContentCategoryService $contentCategoryService)
     {
         $this->contentCategoryService = $contentCategoryService;
+        $this->middleware(['permission:common_settings']);
     }
 
     /**

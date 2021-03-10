@@ -29,6 +29,7 @@ class MenuLinkController extends Controller
     public function __construct(MenuLinkService $menuLinkService)
     {
         $this->menuLinkService = $menuLinkService;
+        $this->middleware(['permission:cms']);
     }
 
     /**

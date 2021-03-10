@@ -29,6 +29,7 @@ class ModuleController extends Controller
     public function __construct(ModuleService $moduleService)
     {
         $this->moduleService = $moduleService;
+        $this->middleware(['permission:core_settings']);
     }
 
     /**

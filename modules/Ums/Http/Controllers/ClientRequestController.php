@@ -48,6 +48,7 @@ class ClientRequestController extends Controller
         $this->userService = $userService;
         $this->clientRequestService = $clientRequestService;
         $this->userBasicInfoService = $userBasicInfoService;
+        $this->middleware(['permission:user_controls']);
     }
 
     /**

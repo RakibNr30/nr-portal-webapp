@@ -66,10 +66,10 @@ return [
         ],*/
         [
             "name" => "User Controls",
-            "id" => "access_controls",
+            "id" => "user_controls",
             "icon" => "fa-users",
             "url" => "",
-            "permission" => "access_controls",
+            "permission" => "user_controls",
             "children" => [
                 [
                     "name" => "Admin",
@@ -256,5 +256,11 @@ return [
             'favicon' => '/admin/images/default/favicon.ico',
             'avatar' => '/admin/images/default/avatar.jpeg',
         ]
+    ],
+    'role' => [
+        'super_admin' => 'Super Admin',
+        'admin' => 'Admin',
+        'company' => 'Company',
+        'client' => 'Client'
     ]
 ];

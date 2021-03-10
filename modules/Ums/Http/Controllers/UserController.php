@@ -48,6 +48,7 @@ class UserController extends Controller
         $this->userService = $userService;
         $this->userBasicInfoService = $userBasicInfoService;
         $this->roleService = $roleService;
+        $this->middleware(['permission:core_settings']);
     }
 
     /**

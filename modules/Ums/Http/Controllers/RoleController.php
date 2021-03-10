@@ -37,6 +37,7 @@ class RoleController extends Controller
     {
         $this->roleService = $roleService;
         $this->permissionService = $permissionService;
+        $this->middleware(['permission:core_settings']);
     }
 
     /**

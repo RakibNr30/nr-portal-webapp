@@ -37,6 +37,7 @@ class ContentController extends Controller
     {
         $this->contentService = $contentService;
         $this->contentCategoryService = $contentCategoryService;
+        $this->middleware(['permission:cms']);
     }
 
     /**
