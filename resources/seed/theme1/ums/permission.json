@@ -18,6 +18,48 @@
         ]
     },
     {
+        "name": "my_project",
+        "roles": [
+            "super_admin",
+            "admin",
+            "client",
+            "company"
+        ]
+    },
+    {
+        "name": "create_project",
+        "roles": [
+            "super_admin",
+            "client"
+        ]
+    },
+    {
+        "name": "pending_project",
+        "roles": [
+            "super_admin",
+            "admin",
+            "client"
+        ]
+    },
+    {
+        "name": "approved_project",
+        "roles": [
+            "super_admin",
+            "admin",
+            "client",
+            "company"
+        ]
+    },
+    {
+        "name": "accepted_project",
+        "roles": [
+            "super_admin",
+            "admin",
+            "client",
+            "company"
+        ]
+    },
+    {
         "name": "cms",
         "roles": [
             "super_admin",
@@ -32,6 +74,34 @@
         ]
     },
     {
+        "name": "client_request",
+        "roles": [
+            "super_admin",
+            "admin"
+        ]
+    },
+    {
+        "name": "client_approved",
+        "roles": [
+            "super_admin",
+            "admin"
+        ]
+    },
+    {
+        "name": "admin",
+        "roles": [
+            "super_admin",
+            "admin"
+        ]
+    },
+    {
+        "name": "company",
+        "roles": [
+            "super_admin",
+            "admin"
+        ]
+    },
+    {
         "name": "core_settings",
         "roles": [
             "super_admin"
@@ -40,12 +110,39 @@
     {
         "name": "common_settings",
         "roles": [
+            "super_admin"
+        ]
+    },
+    {
+        "name": "app_settings",
+        "roles": [
             "super_admin",
             "admin"
         ]
     },
     {
-        "name": "app_settings",
+        "name": "site_settings",
+        "roles": [
+            "super_admin",
+            "admin"
+        ]
+    },
+    {
+        "name": "contact_settings",
+        "roles": [
+            "super_admin",
+            "admin"
+        ]
+    },
+    {
+        "name": "seo_settings",
+        "roles": [
+            "super_admin",
+            "admin"
+        ]
+    },
+    {
+        "name": "socialite_settings",
         "roles": [
             "super_admin",
             "admin"

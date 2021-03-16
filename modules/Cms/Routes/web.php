@@ -30,3 +30,15 @@ Route::resource('content', 'ContentController');
 Route::resource('faq', 'FaqController');
 // Testimonial routes...
 Route::resource('testimonial', 'TestimonialController');
+
+// Project routes
+Route::prefix('project')->name('project-')->group(function () {
+    // pending routes...
+    Route::resource('pending', 'PendingProjectController')->except(['create']);
+    Route::put('pending/approve/{id}', 'PendingProjectController@approve')->name('pending.approve');
+    // approved routes...
+    Route::resource('approved', 'ApprovedProjectController')->except(['create']);
+});
+
+// create routes...
+Route::resource('project', 'CreateProjectController')->only(['create', 'store']);

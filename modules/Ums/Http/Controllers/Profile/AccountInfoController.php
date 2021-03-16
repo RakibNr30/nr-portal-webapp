@@ -47,7 +47,6 @@ class AccountInfoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username' => 'alpha_dash|required|unique:users,username,' . $id,
             'avatar' => 'sometimes|image|max:1024',
             'email' => 'required|email|unique:users,email,' . $id,
             'phone' => 'required|unique:users,phone,' . $id,

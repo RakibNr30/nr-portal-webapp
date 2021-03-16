@@ -11,12 +11,14 @@ use Carbon\Carbon;
 use Modules\Ums\Datatables\ClientRequestDataTable;
 
 // services...
+use Modules\Ums\Http\Requests\ClientRequestStoreRequest;
 use Modules\Ums\Http\Requests\UserStoreRequest;
 use Modules\Ums\Services\ClientRequestBasicInfoService;
 use Modules\Ums\Services\ClientRequestService;
 use Modules\Ums\Services\UserBasicInfoService;
 
 use function GuzzleHttp\Promise\all;
+use Modules\Ums\Services\UserResidentialInfoService;
 use Modules\Ums\Services\UserService;
 
 class ClientRequestController extends Controller
@@ -37,17 +39,29 @@ class ClientRequestController extends Controller
     protected $userBasicInfoService;
 
     /**
+     * @var $basicInfoService
+     */
+    protected $userResidentialInfoService;
+
+    /**
      * Constructor
      *
      * @param ClientRequestService $clientRequestService
      * @param UserBasicInfoService $userBasicInfoService
      * @param UserService $userService
+     * @param UserResidentialInfoService $userResidentialInfoService
      */
-    public function __construct(ClientRequestService $clientRequestService, UserBasicInfoService $userBasicInfoService, UserService $userService)
+    public function __construct(
+        ClientRequestService $clientRequestService,
+        UserBasicInfoService $userBasicInfoService,
+        UserService $userService,
+        UserResidentialInfoService $userResidentialInfoService
+    )
     {
         $this->userService = $userService;
         $this->clientRequestService = $clientRequestService;
         $this->userBasicInfoService = $userBasicInfoService;
+        $this->userResidentialInfoService = $userResidentialInfoService;
         $this->middleware(['permission:user_controls']);
     }
 
@@ -68,7 +82,7 @@ class ClientRequestController extends Controller
      * @param UserStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserStoreRequest $request)
+    public function store(ClientRequestStoreRequest $request)
     {
         // get data
         $data = $request->all();
@@ -85,10 +99,17 @@ class ClientRequestController extends Controller
         // check if client Request created
         if ($user) {
             $data['user_id'] = $user->id;
+            $data['first_name'] = $data['full_name'];
+            $data['about'] = $data['description'];
             $data['personal_email'] = $user->email;
-            $data['personal_phone'] = $user->phone;
+            $data['phone_no'] = $user->phone;
+            $data['present_street_name'] = $data['street_name'];
+            $data['present_house_number'] = $data['house_number'];
+            $data['present_zip_code'] = $data['zip_code'];
+            $data['present_city'] = $data['city'];
             $basicInfo = $this->userBasicInfoService->create($data);
-            if ($basicInfo) {
+            $residentialInfo = $this->userResidentialInfoService->create($data);
+            if ($basicInfo && $residentialInfo) {
                 // flash notification
                 notifier()->success('Client approved successfully.');
                 // delete request client

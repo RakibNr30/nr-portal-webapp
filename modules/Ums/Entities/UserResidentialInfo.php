@@ -19,9 +19,12 @@ class UserResidentialInfo extends BaseModel
 		'permanent_state',
 		'permanent_address_line_1',
 		'permanent_address_line_2',
-		'google_map_url',
-		'longitude',
-		'latitude',
+        'present_street_name',
+        'permanent_street_name',
+        'present_house_number',
+        'permanent_house_number',
+        'present_zip_code',
+        'permanent_zip_code',
 		'user_id',
     ];
 
@@ -40,10 +43,13 @@ class UserResidentialInfo extends BaseModel
 		'permanent_state' => 'string',
 		'permanent_address_line_1' => 'string',
 		'permanent_address_line_2' => 'string',
-		'google_map_url' => 'string',
-		'longitude' => 'double',
-		'latitude' => 'double',
-		'user_id' => 'integer',
+        'present_street_name' => 'string',
+        'permanent_street_name' => 'string',
+        'present_house_number' => 'string',
+        'permanent_house_number' => 'string',
+        'present_zip_code' => 'string',
+        'permanent_zip_code' => 'string',
+		'user_id' => 'integer'
     ];
 
 

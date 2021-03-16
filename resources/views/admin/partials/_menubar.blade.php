@@ -34,30 +34,34 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     @foreach($nav['children'] as $subNav)
-                                        @if(empty($subNav['children']))
-                                            <li>
-                                                <a href="{{ $subNav['url'] }}">
-                                                    <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
-                                                    {{ $subNav['name'] }}
-                                                </a>
-                                            </li>
-                                        @else
-                                            <li>
-                                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                                    <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
-                                                    <span>{{ $subNav['name'] }}</span>
-                                                </a>
-                                                <ul class="sub-menu" aria-expanded="true">
-                                                    @foreach($subNav['children'] as $superSubNav)
-                                                        <li>
-                                                            <a href="{{ $superSubNav['url'] }}">
-                                                                <i style="font-size: 12px" class="fas {{ $superSubNav['icon'] }}"></i>
-                                                                {{ $superSubNav['name'] }}
-                                                            </a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
+                                        @if ($user->can($subNav['permission']))
+                                            @if(empty($subNav['children']))
+                                                <li>
+                                                    <a href="{{ $subNav['url'] }}">
+                                                        <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
+                                                        {{ $subNav['name'] }}
+                                                    </a>
+                                                </li>
+                                            @else
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
+                                                        <span>{{ $subNav['name'] }}</span>
+                                                    </a>
+                                                    <ul class="sub-menu" aria-expanded="true">
+                                                        @foreach($subNav['children'] as $superSubNav)
+                                                            @if ($user->can($superSubNav['permission']))
+                                                                <li>
+                                                                    <a href="{{ $superSubNav['url'] }}">
+                                                                        <i style="font-size: 12px" class="fas {{ $superSubNav['icon'] }}"></i>
+                                                                        {{ $superSubNav['name'] }}
+                                                                    </a>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </ul>

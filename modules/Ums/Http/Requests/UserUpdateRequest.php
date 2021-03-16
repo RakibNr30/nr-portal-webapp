@@ -29,7 +29,6 @@ class UserUpdateRequest extends FormRequest
             $id = request()->route()->parameters()[request()->route()->parameterNames[0]],
 
             'first_name' => 'required',
-            'username' => 'alpha_dash|required|unique:users,username,' . $id,
             'avatar' => 'sometimes|image|max:512',
             'email' => 'required|email|unique:users,email,' . $id,
             'phone' => 'required|unique:users,phone,' . $id,

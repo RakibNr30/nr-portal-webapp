@@ -77,11 +77,10 @@ class ClientRequestDataTable extends DataTable
         return [
             Column::computed('DT_RowIndex')
                 ->title('Sl'),
-            Column::make('first_name'),
-            Column::make('last_name'),
-            Column::make('username'),
+            Column::make('full_name'),
             Column::make('phone'),
             Column::make('email'),
+            Column::make('company_name'),
             Column::make('created_at')->title('Requested At'),
             Column::computed('action')
                 ->exportable(false)

@@ -34,18 +34,6 @@
                             <h4 class="card-title mb-4">Update Account Info</h4>
                             {!! Form::open(['url' => route('backend.ums.profile-account-info.update', [$user->id]), 'method' => 'put', 'files' => true]) !!}
                                 <div class="form-group">
-                                    <label for="username" class="@error('username') text-danger @enderror">Username</label>
-                                    <input id="username" name="username"
-                                           value="{{ old('username') ?: $user->username }}"
-                                           type="text"
-                                           class="form-control @error('username') is-invalid @enderror"
-                                           placeholder="Enter first name" autofocus required>
-                                    @error('username')
-                                    <span class="invalid-feedback"
-                                          role="alert"><strong>{{ $message }}</strong></span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <label for="avatar" class="@error('avatar') text-danger @enderror">Avatar</label>
                                     <input id="avatar" name="avatar" value="{{ old('avatar') }}" type="file" class="form-control @error('avatar') is-invalid @enderror" placeholder="Select File" autofocus>
                                     @if(isset($user->avatar))

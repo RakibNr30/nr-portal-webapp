@@ -99,7 +99,6 @@ class UmsDatabaseSeeder extends Seeder
 
             // create users
             $user = User::create([
-                "username" => $datum["username"],
                 "phone" => $datum["phone"],
                 "email" => $datum["email"],
                 "password" => bcrypt($datum["password"]),

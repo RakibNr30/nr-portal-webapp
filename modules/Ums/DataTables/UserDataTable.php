@@ -45,7 +45,6 @@ class UserDataTable extends DataTable
         // select queries
         $user->select([
             'users.id',
-            'users.username',
             'users.phone',
             'users.email',
             DB::raw('CONCAT(approver_basic_info.first_name," ",approver_basic_info.last_name) as approver_name'),
@@ -90,7 +89,6 @@ class UserDataTable extends DataTable
         return [
             Column::computed('DT_RowIndex')
                 ->title('Sl'),
-            Column::make('username'),
             Column::make('phone'),
             Column::make('email'),
             Column::make('approver_name')->name('approver_basic_info.first_name')->title('Approved By'), // alias used

@@ -87,4 +87,16 @@ class UserResidentialInfoService
     {
         return $this->userResidentialInfoRepository->model->firstOrCreate($data);
     }
+
+    /**
+     * First or create data
+     *
+     * @param $attribute
+     * @param $value
+     * @return mixed
+     */
+    public function updateOrCreate($attribute, $value)
+    {
+        return $this->userResidentialInfoRepository->model->updateOrCreate($attribute, $value);
+    }
 }

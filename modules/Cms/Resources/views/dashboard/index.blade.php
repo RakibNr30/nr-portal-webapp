@@ -4,7 +4,7 @@
     $user = \Modules\Ums\Entities\User::find(auth()->user()->id);
 @endphp
 @section('title')
-    Dashboard
+    {{ config('core.role.'.$user->getRoleNames()[0]) }} Dashboard
 @stop
 
 @section('content')

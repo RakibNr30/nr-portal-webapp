@@ -24,10 +24,17 @@ class ClientRequestStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required',
-            'username' => 'required|unique:users|alpha_dash',
-			'email' => 'required|unique:users',
-			'phone' => 'required|unique:users'
+            'full_name' => 'required',
+            'avatar' => 'sometimes|image|max:512',
+            'email' => 'required|unique:users',
+            'phone' => 'required|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'roles' => 'required|array|min:1',
+            'street_name' => 'required',
+            'house_number' => 'required',
+            'zip_code' => 'required',
+            'city' => 'required',
+            'description' => 'required',
         ];
     }
 }

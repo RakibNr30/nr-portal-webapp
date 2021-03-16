@@ -15,11 +15,15 @@ class CreateClientRequestsTable extends Migration
     {
         Schema::create('client_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('username')->nullable();
+            $table->string('full_name')->nullable();
+            $table->string('company_name')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
+            $table->string('street_name')->nullable();
+            $table->string('house_number')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('city')->nullable();
+            $table->longText('description')->nullable();
             $table->commonFields();
         });
     }

@@ -44,7 +44,7 @@
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <label for="username"
                                    class="@error('username') text-danger @enderror">Username</label>
                             <input id="username" name="username" value="{{ old('username') }}" type="text"
@@ -54,7 +54,7 @@
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
-                        </div>
+                        </div>--}}
                         <div class="form-group">
                             <label for="email" class="@error('email') text-danger @enderror">Email</label>
                             <input id="email" name="email" value="{{ old('email') }}" type="email"

@@ -9,11 +9,15 @@ class ClientRequest extends BaseModel
     protected $table = 'client_requests';
 
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'username',
-        'phone',
-        'email',
+        'full_name' => 'string',
+        'company_name' => 'string',
+        'phone' => 'string',
+        'email' => 'string',
+        'street_name' => 'string',
+        'house_number' => 'string',
+        'zip_code' => 'string',
+        'city' => 'string',
+        'description' => 'string',
     ];
 
     /**
@@ -22,10 +26,14 @@ class ClientRequest extends BaseModel
      * @var array
      */
     protected $casts = [
-        'first_name',
-        'last_name',
-        'username',
+        'full_name' => 'string',
+        'company_name' => 'string',
         'phone' => 'string',
         'email' => 'string',
+        'street_name' => 'string',
+        'house_number' => 'string',
+        'zip_code' => 'string',
+        'city' => 'string',
+        'description' => 'string',
     ];
 }

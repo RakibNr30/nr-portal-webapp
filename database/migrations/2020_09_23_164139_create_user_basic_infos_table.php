@@ -18,6 +18,7 @@ class CreateUserBasicInfosTable extends Migration
             $table->string('first_name')->nullable();
 			$table->string('last_name')->nullable();
 			$table->string('designation')->nullable();
+			$table->string('company_name')->nullable();
 			$table->longText('about')->nullable();
 			$table->string('phone_no')->nullable();
 			$table->string('mobile_no')->nullable();

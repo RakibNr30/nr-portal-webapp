@@ -101,11 +101,11 @@ class UserService
         return $this->userRepository->model->firstOrCreate($data);
     }
 
-    public function allTeachers()
+    public function companies()
     {
-        return $this->userRepository->model->with(['basicInfo'])
+        return $this->userRepository->model
             ->whereHas("roles", function ($query) {
-                $query->where("name", "Teacher");
+                $query->where("name", "company");
             })->get();
     }
 }

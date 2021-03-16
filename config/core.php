@@ -20,6 +20,66 @@ return [
             "permission" => "my_profile",
             "children" => []
         ],
+        [
+            "name" => "My Project",
+            "id" => "my_project",
+            "icon" => "fa-tasks",
+            "url" => "",
+            "permission" => "my_project",
+            "children" => [
+                [
+                    "name" => "Create",
+                    "id" => "create_project",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/project/create",
+                    "permission" => "create_project",
+                ],
+                [
+                    "name" => "Pending",
+                    "id" => "pending_project",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/project/pending",
+                    "permission" => "pending_project",
+                ],
+                [
+                    "name" => "Approved",
+                    "id" => "approved_project",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/project/approved",
+                    "permission" => "approved_project",
+                ],
+                [
+                    "name" => "Accepted",
+                    "id" => "accepted_project",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/project/accepted",
+                    "permission" => "accepted_project",
+                ]
+            ]
+        ],
+        [
+            "name" => "Client",
+            "id" => "client",
+            "icon" => "fa-certificate",
+            "url" => "",
+            "permission" => "user_controls",
+            "children" => [
+                [
+                    "name" => "Request",
+                    "id" => "client_request",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/client/request",
+                    "permission" => "client_request",
+                ],
+                [
+                    "name" => "Approved",
+                    "id" => "client_approved",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/client/approved",
+                    "permission" => "client_approved",
+                ]
+            ]
+        ],
         /*[
             "name" => "Cms",
             "id" => "cms",
@@ -84,29 +144,6 @@ return [
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/company",
                     "permission" => "company",
-                ],
-                [
-                    "name" => "Client",
-                    "id" => "client",
-                    "icon" => "fa-arrow-right",
-                    "url" => "",
-                    "permission" => "client",
-                    "children" => [
-                        [
-                            "name" => "Request",
-                            "id" => "client_request",
-                            "icon" => "fa-arrow-right",
-                            "url" => "/backend/client/request",
-                            "permission" => "client_request",
-                        ],
-                        [
-                            "name" => "Approved",
-                            "id" => "client_approved",
-                            "icon" => "fa-arrow-right",
-                            "url" => "/backend/client/approved",
-                            "permission" => "client_approved",
-                        ]
-                    ]
                 ]
             ]
         ],
@@ -145,28 +182,28 @@ return [
                     "id" => "site",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/site",
-                    "permission" => "site",
+                    "permission" => "site_settings",
                 ],
                 [
                     "name" => "Contact",
                     "id" => "contact",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/contact",
-                    "permission" => "contact",
+                    "permission" => "contact_settings",
                 ],
                 [
                     "name" => "Seo",
                     "id" => "seo",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/seo",
-                    "permission" => "seo",
+                    "permission" => "seo_settings",
                 ],
                 [
                     "name" => "Socialite",
                     "id" => "socialite",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/socialite",
-                    "permission" => "socialite",
+                    "permission" => "socialite_settings",
                 ]
             ]
         ]
@@ -242,6 +279,10 @@ return [
         ],
         'user_personal_info' => [
             'image' => 'user_personal_info_image'
+        ],
+        'project' => [
+            'image' => 'project_feature_image',
+            'attachment' => 'project_attachment',
         ],
         'setting_site' => [
             'logo' => 'setting_site_logo',

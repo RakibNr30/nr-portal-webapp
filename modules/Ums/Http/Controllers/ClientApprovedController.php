@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 // requests...
 use Carbon\Carbon;
+use Modules\Ums\Http\Requests\ClientRequestUpdateRequest;
 use Modules\Ums\Http\Requests\UserUpdateRequest;
 
 // datatable...
@@ -14,6 +15,7 @@ use Modules\Ums\DataTables\ClientApprovedDataTable;
 // services...
 use Modules\Ums\Services\RoleService;
 use Modules\Ums\Services\UserBasicInfoService;
+use Modules\Ums\Services\UserResidentialInfoService;
 use Modules\Ums\Services\UserService;
 use function GuzzleHttp\Promise\all;
 
@@ -35,17 +37,24 @@ class ClientApprovedController extends Controller
     protected $roleService;
 
     /**
+     * @var $basicInfoService
+     */
+    protected $userResidentialInfoService;
+
+    /**
      * Constructor
      *
      * @param UserService $userService
      * @param UserBasicInfoService $userBasicInfoService
      * @param RoleService $roleService
+     * @param UserResidentialInfoService $userResidentialInfoService
      */
-    public function __construct(UserService $userService, UserBasicInfoService $userBasicInfoService, RoleService $roleService)
+    public function __construct(UserService $userService, UserBasicInfoService $userBasicInfoService, RoleService $roleService,  UserResidentialInfoService $userResidentialInfoService)
     {
         $this->userService = $userService;
         $this->userBasicInfoService = $userBasicInfoService;
         $this->roleService = $roleService;
+        $this->userResidentialInfoService = $userResidentialInfoService;
         $this->middleware(['permission:user_controls']);
     }
 
@@ -118,11 +127,11 @@ class ClientApprovedController extends Controller
     /**
      * Update user
      *
-     * @param UserUpdateRequest $request
+     * @param ClientRequestUpdateRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(ClientRequestUpdateRequest $request, $id)
     {
         // get user
         $user = $this->userService->find($id);
@@ -143,10 +152,20 @@ class ClientApprovedController extends Controller
         if ($user) {
             $data['personal_email'] = $user->email;
             $data['personal_phone'] = $user->phone;
+            $data['user_id'] = $user->id;
+            $data['first_name'] = $data['full_name'];
+            $data['about'] = $data['description'];
+            $data['personal_email'] = $user->email;
+            $data['phone_no'] = $user->phone;
+            $data['present_street_name'] = $data['street_name'];
+            $data['present_house_number'] = $data['house_number'];
+            $data['present_zip_code'] = $data['zip_code'];
+            $data['present_city'] = $data['city'];
             $basicInfo = $this->userBasicInfoService->updateOrCreate(['user_id' => $user->id], $data);
+            $residentialInfo = $this->userResidentialInfoService->updateOrCreate(['user_id' => $user->id], $data);
             // upload files
             $basicInfo->uploadFiles();
-            if ($basicInfo) {
+            if ($basicInfo && $residentialInfo) {
                 // flash notification
                 notifier()->success('Approved client updated successfully.');
             } else {

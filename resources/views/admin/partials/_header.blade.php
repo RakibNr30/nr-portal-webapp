@@ -160,15 +160,15 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <!-- item-->
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url('/backend/profile/account-info') }}">
                             <i class="bx bx-user font-size-16 align-middle mr-1"></i>
                             My Profile
                         </a>
-                        <a class="dropdown-item d-block" href="#">
+                        <a class="dropdown-item d-block" href="{{ url('/backend/profile/account-info') }}">
                             <i class="bx bx-wrench font-size-16 align-middle mr-1"></i>
                             Account Settings
                         </a>
-                        <a class="dropdown-item d-block" href="#">
+                        <a class="dropdown-item d-block" href="{{ url('/backend/profile/change-password') }}">
                             <i class="bx bxs-key font-size-16 align-middle mr-1"></i>
                             Change Password
                         </a>

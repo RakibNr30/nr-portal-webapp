@@ -18,11 +18,6 @@ class BaseModel extends Model
     	return \Carbon\Carbon::parse($value)->format($this->format);
     }
 
-    public function getApprovedAtAttribute($value)
-    {
-        return \Carbon\Carbon::parse($value)->format($this->format);
-    }
-
     public function getStartDateAttribute($value)
     {
     	return \Carbon\Carbon::parse($value)->format($this->format);

@@ -46,7 +46,6 @@ class AdminDataTable extends DataTable
         // select queries
         $user->select([
             'users.id',
-            'users.username',
             'users.phone',
             'users.email',
             DB::raw('CONCAT(user_basic_info.first_name, if(user_basic_info.last_name is not null, CONCAT(" ", user_basic_info.last_name), "")) as name'),
@@ -97,7 +96,6 @@ class AdminDataTable extends DataTable
                 ->title('Sl'),
             Column::make('name')->name('user_basic_info.first_name'), // alias used,
             Column::make('name')->name('user_basic_info.last_name')->hidden(), // alias used,
-            Column::make('username'),
             Column::make('phone'),
             Column::make('email'),
             Column::make('approver_name')->name('approver_basic_info.first_name')->title('Registered By'), // alias used

@@ -46,9 +46,9 @@ class ClientApprovedDataTable extends DataTable
         // select queries
         $user->select([
             'users.id',
-            'users.username',
             'users.phone',
             'users.email',
+            'user_basic_info.company_name',
             DB::raw('CONCAT(user_basic_info.first_name, if(user_basic_info.last_name is not null, CONCAT(" ", user_basic_info.last_name), "")) as name'),
             DB::raw('CONCAT(approver_basic_info.first_name, if(approver_basic_info.last_name is not null, CONCAT(" ", approver_basic_info.last_name), "")) as approver_name'),
             'users.approved_at'
@@ -96,7 +96,7 @@ class ClientApprovedDataTable extends DataTable
                 ->title('Sl'),
             Column::make('name')->name('user_basic_info.first_name'), // alias used,
             Column::make('name')->name('user_basic_info.last_name')->hidden(), // alias used,
-            Column::make('username'),
+            Column::make('company_name')->name('user_basic_info.company_name'),
             Column::make('phone'),
             Column::make('email'),
             Column::make('approver_name')->name('approver_basic_info.first_name')->title('Approved By'), // alias used

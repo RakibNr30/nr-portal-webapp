@@ -24,51 +24,82 @@
                     <div class="card-body">
                         <h4 class="card-title mb-4">View Approved Client</h4>
                         <div class="form-group">
-                            <label for="first_name"
-                                   class="@error('first_name') text-danger @enderror">First Name</label>
-                            <input id="first_name" name="first_name"
-                                   value=" → {{ $user->first_name ?: 'N/A'}}"
+                            <label for="full_name"
+                                   class="@error('full_name') text-danger @enderror">Full Name</label>
+                            <input id="full_name" name="full_name"
+                                   value=" → {{ $user->basicInfo->first_name ?: 'N/A'}}"
                                    type="text" class="form-control-plaintext" readonly>
-                            @error('first_name')
+                            @error('full_name')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="last_name"
-                                   class="@error('last_name') text-danger @enderror">Last Name</label>
-                            <input id="last_name" name="last_name"
-                                   value=" → {{ $user->last_name ?: 'N/A'}}"
+                            <label for="company_name"
+                                   class="@error('company_name') text-danger @enderror">Company Name</label>
+                            <input id="company_name" name="company_name" value=" → {{ $user->basicInfo->company_name ?: 'N/A'}}"
                                    type="text" class="form-control-plaintext" readonly>
-                            @error('last_name')
+                            @error('company_name')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="username"
-                                   class="@error('username') text-danger @enderror">Username</label>
-                            <input id="username" name="username" value=" → {{ $user->username ?: 'N/A'}}"
+                            <label for="phone"
+                                   class="@error('phone') text-danger @enderror">Phone</label>
+                            <input id="phone" name="phone" value=" → {{ $user->phone ?: 'N/A'}}"
                                    type="text" class="form-control-plaintext" readonly>
-                            @error('username')
+                            @error('phone')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="email" class="@error('email') text-danger @enderror">Email</label>
-                            <input id="email" name="email" value=" → {{ $user->email ?: 'N/A'}}" type="text"
-                                   class="form-control-plaintext" readonly>
+                            <label for="email"
+                                   class="@error('email') text-danger @enderror">Email</label>
+                            <input id="email" name="email" value=" → {{ $user->email ?: 'N/A'}}"
+                                   type="text" class="form-control-plaintext" readonly>
                             @error('email')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="phone" class="@error('phone') text-danger @enderror">Phone</label>
-                            <input id="phone" name="phone" value=" → {{ $user->phone ?: 'N/A'}}" type="text"
-                                   class="form-control-plaintext" readonly>
-                            @error('phone')
+                            <label for="street_name"
+                                   class="@error('street_name') text-danger @enderror">Street Name</label>
+                            <input id="street_name" name="street_name" value=" → {{ $user->ResidentialInfo->present_street_name ?: 'N/A'}}"
+                                   type="text" class="form-control-plaintext" readonly>
+                            @error('street_name')
+                            <span class="invalid-feedback"
+                                  role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="house_number"
+                                   class="@error('house_number') text-danger @enderror">House Number</label>
+                            <input id="house_number" name="house_number" value=" → {{ $user->ResidentialInfo->present_house_number ?: 'N/A'}}"
+                                   type="text" class="form-control-plaintext" readonly>
+                            @error('house_number')
+                            <span class="invalid-feedback"
+                                  role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="zip_code"
+                                   class="@error('zip_code') text-danger @enderror">Zip Code</label>
+                            <input id="zip_code" name="zip_code" value=" → {{ $user->ResidentialInfo->present_zip_code ?: 'N/A'}}"
+                                   type="text" class="form-control-plaintext" readonly>
+                            @error('zip_code')
+                            <span class="invalid-feedback"
+                                  role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="city"
+                                   class="@error('city') text-danger @enderror">City</label>
+                            <input id="city" name="city" value=" → {{ $user->ResidentialInfo->present_city ?: 'N/A'}}"
+                                   type="text" class="form-control-plaintext" readonly>
+                            @error('city')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
@@ -84,6 +115,16 @@
                                 </div>
                             @endif
                             @error('avatar')
+                            <span class="invalid-feedback"
+                                  role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description"
+                                   class="@error('description') text-danger @enderror">Description</label>
+                            <textarea id="description" name="description"
+                                      type="text" class="form-control-plaintext" readonly>{{ $user->basicInfo->about ?: 'N/A'}}</textarea>
+                            @error('description')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror

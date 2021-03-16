@@ -28,8 +28,8 @@ class MigrationServiceProvider extends ServiceProvider
         Blueprint::macro('commonFields', function ($softDeletes = true) {
             $this->boolean('sort_order')->nullable()->default(1);
             $this->boolean('lock')->nullable()->default(0);
-            $this->boolean('status')->nullable()->default(1);
-            $this->boolean('active')->nullable()->default(1);
+            $this->boolean('status')->nullable()->default(0);
+            $this->boolean('active')->nullable()->default(0);
             $this->integer('created_by')->unsigned()->nullable();
             $this->integer('updated_by')->unsigned()->nullable();
             $this->integer('deleted_by')->unsigned()->nullable();
