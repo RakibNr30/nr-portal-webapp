@@ -117,6 +117,6 @@ class ClientApprovedDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'ClientList_' . date('YmdHis');
+        return 'ClientApproved_' . date('YmdHis');
     }
 }

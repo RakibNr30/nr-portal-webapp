@@ -121,6 +121,8 @@ class UmsDatabaseSeeder extends Seeder
                 "gender" => $datum["basic_info"]["gender"],
                 "user_id" => $user->id,
             ]);
+
+            $user->residentialInfo()->create([]);
         }
     }
 

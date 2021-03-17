@@ -55,7 +55,7 @@ class Handler extends ExceptionHandler
             if ($status_code == 404) {
                 $status = "Oops! page not found!";
                 $message = "the page you are looking for does not exist. It might have been moved or deleted. Please go back to home";
-                return response()->view('front::'.config('core.theme').'.error.' . 'index', [
+                return response()->view('front::error.index', [
                     'status_code' => $status_code,
                     'status' => $status,
                     'message' => $message
@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
             } else if ($status_code == 500) {
                 $status = "Oops! internal server error!";
                 $message = "something has gone wrong on the web site's server but the server could not be more specific on what the exact problem is";
-                return response()->view('front::'.config('core.theme').'.error.' . 'index', [
+                return response()->view('front::error.index', [
                     'status_code' => $status_code,
                     'status' => $status,
                     'message' => $message
@@ -71,7 +71,7 @@ class Handler extends ExceptionHandler
             } else if ($status_code == 405) {
                 $status = "Oops! Method Not Allowed!";
                 $message = "The GET method is not supported for this route. Supported method is POST";
-                return response()->view('front::'.config('core.theme').'.error.' . 'index', [
+                return response()->view('front::error.index' . 'index', [
                     'status_code' => $status_code,
                     'status' => $status,
                     'message' => $message

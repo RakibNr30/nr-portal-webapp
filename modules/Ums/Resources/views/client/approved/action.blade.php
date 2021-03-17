@@ -2,9 +2,9 @@
     <a href="{{ route('backend.ums.client-approved.show', [$data->id]) }}" type="button" class="btn btn-default">
         <i class="fas fa-eye"></i>
     </a>
-    <a href="{{ route('backend.ums.client-approved.edit', [$data->id]) }}" type="button" class="btn btn-default">
+    {{--<a href="{{ route('backend.ums.client-approved.edit', [$data->id]) }}" type="button" class="btn btn-default">
         <i class="fas fa-pen"></i>
-    </a>
+    </a>--}}
     <a type="button" class="btn btn-default btn-delete" tabindex="0" data-html="true" data-popover-content="#confirm_delete{{ $data->id }}">
         <i class="fas fa-trash"></i>
     </a>

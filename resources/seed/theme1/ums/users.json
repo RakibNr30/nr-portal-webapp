@@ -34,6 +34,23 @@
         }
     },
     {
+        "roles": ["admin"],
+        "username": "admin",
+        "phone": "+880 1XXXX XXXXXX",
+        "email": "admin1@example.com",
+        "password": "password",
+        "basic_info":
+        {
+            "first_name": "Admin One",
+            "last_name": null,
+            "designation": "Owner",
+            "personal_email": "admin1@example.com",
+            "mobile_no": "+880 1XXXX XXXXXX",
+            "blood_group": "B+",
+            "gender": "Male"
+        }
+    },
+    {
         "roles": ["company"],
         "username": "company",
         "phone": "+880 1XXXX XXXXXX",
@@ -51,6 +68,57 @@
         }
     },
     {
+        "roles": ["company"],
+        "username": "company1",
+        "phone": "+880 1XXXX XXXXXX",
+        "email": "company1@example.com",
+        "password": "password",
+        "basic_info":
+        {
+            "first_name": "Company One",
+            "last_name": null,
+            "designation": "Owner",
+            "personal_email": "company1@example.com",
+            "mobile_no": "+880 1XXXX XXXXXX",
+            "blood_group": null,
+            "gender": null
+        }
+    },
+    {
+        "roles": ["company"],
+        "username": "company2",
+        "phone": "+880 1XXXX XXXXXX",
+        "email": "company2@example.com",
+        "password": "password",
+        "basic_info":
+        {
+            "first_name": "Company Two",
+            "last_name": null,
+            "designation": "Owner",
+            "personal_email": "company2@example.com",
+            "mobile_no": "+880 1XXXX XXXXXX",
+            "blood_group": null,
+            "gender": null
+        }
+    },
+    {
+        "roles": ["company"],
+        "username": "company3",
+        "phone": "+880 1XXXX XXXXXX",
+        "email": "company3@example.com",
+        "password": "password",
+        "basic_info":
+        {
+            "first_name": "Company Three",
+            "last_name": null,
+            "designation": "Owner",
+            "personal_email": "company3@example.com",
+            "mobile_no": "+880 1XXXX XXXXXX",
+            "blood_group": null,
+            "gender": null
+        }
+    },
+    {
         "roles": ["client"],
         "username": "client",
         "phone": "+880 1XXXX XXXXXX",
@@ -62,6 +130,23 @@
             "last_name": null,
             "designation": "Owner",
             "personal_email": "client@example.com",
+            "mobile_no": "+880 1XXXX XXXXXX",
+            "blood_group": null,
+            "gender": null
+        }
+    },
+    {
+        "roles": ["client"],
+        "username": "client2",
+        "phone": "+880 1XXXX XXXXXX",
+        "email": "client2@example.com",
+        "password": "password",
+        "basic_info":
+        {
+            "first_name": "Client One",
+            "last_name": null,
+            "designation": "Owner",
+            "personal_email": "client2@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
             "blood_group": null,
             "gender": null
