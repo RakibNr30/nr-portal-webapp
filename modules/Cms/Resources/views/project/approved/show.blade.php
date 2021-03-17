@@ -70,9 +70,10 @@
                                 @endforeach
                             </div>
                         @endif
-
-                        <a href="{{ route('backend.cms.project-approved.index') }}" type="button"
-                           class="btn btn-danger waves-effect waves-light float-right">Cancel</a>
+                        <div class="col-12">
+                            <a href="{{ route('backend.cms.project-approved.index') }}" type="button"
+                               class="btn btn-danger waves-effect waves-light float-right">Cancel</a>
+                        </div>
                     </div>
                 </div>
             </div>

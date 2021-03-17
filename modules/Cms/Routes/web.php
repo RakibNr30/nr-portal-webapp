@@ -34,10 +34,10 @@ Route::resource('testimonial', 'TestimonialController');
 // Project routes
 Route::prefix('project')->name('project-')->group(function () {
     // pending routes...
-    Route::resource('pending', 'PendingProjectController')->except(['create']);
+    Route::resource('pending', 'PendingProjectController')->except(['create', 'edit']);
     Route::put('pending/approve/{id}', 'PendingProjectController@approve')->name('pending.approve');
     // approved routes...
-    Route::resource('approved', 'ApprovedProjectController')->except(['create']);
+    Route::resource('approved', 'ApprovedProjectController')->except(['create', 'edit']);
 });
 
 // create routes...

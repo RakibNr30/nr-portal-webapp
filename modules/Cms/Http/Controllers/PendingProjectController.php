@@ -70,8 +70,18 @@ class PendingProjectController extends Controller
             // redirect back
             return redirect()->back();
         }
+
+        // companies
+        $companies = $this->userService->companies();
+
+        //return $companies;
+
+        // assign companies
+        // return $assignCompanies = $project->company_id;
         // return view
-        return view('cms::project.pending.show', compact('project'));
+        return view('cms::project.pending.show', compact(
+            'project', 'companies'
+        ));
     }
 
     /**

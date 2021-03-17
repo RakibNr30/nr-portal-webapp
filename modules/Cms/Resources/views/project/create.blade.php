@@ -43,7 +43,7 @@
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <label for="image" class="@error('image') text-danger @enderror">Project Feature Image</label>
                             <input id="image" name="image" value="{{ old('image') }}" type="file" class="form-control @error('image') is-invalid @enderror" placeholder="Select File" autofocus>
                             @error('image')
@@ -56,7 +56,7 @@
                             @error('attachment')
                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
-                        </div>
+                        </div>--}}
                         <input type="hidden" name="author_id" value="{{ $user->id }}">
                         <div class="button-items float-right">
                             <a href="{{ route('backend.cms.dashboard.index') }}" type="button"
