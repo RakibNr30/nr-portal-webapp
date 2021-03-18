@@ -64,7 +64,7 @@
                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
                         {!! Form::close() !!}
                     </div>
                 </div>

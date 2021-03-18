@@ -114,6 +114,7 @@ class UmsDatabaseSeeder extends Seeder
             $user->basicInfo()->create([
                 "first_name" => $datum["basic_info"]["first_name"],
                 "last_name" => $datum["basic_info"]["last_name"],
+                "about" => $datum["basic_info"]["about"],
                 "designation" => $datum["basic_info"]["designation"],
                 "personal_email" => $datum["basic_info"]["personal_email"],
                 "mobile_no" => $datum["basic_info"]["mobile_no"],

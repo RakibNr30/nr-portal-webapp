@@ -25,7 +25,7 @@ class SiteController extends Controller
     public function __construct(SiteService $siteService)
     {
         $this->siteService = $siteService;
-        $this->middleware(['permission:app_setting']);
+        $this->middleware(['permission:site_settings']);
     }
 
     /**

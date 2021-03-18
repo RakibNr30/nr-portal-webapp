@@ -33,16 +33,12 @@
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                       {{-- <div class="form-group">
+                       <div class="form-group">
                             <label for="username"
-                                   class="@error('username') text-danger @enderror">Company Username</label>
-                            <input id="username" name="username" value=" → {{ $user->username ?: 'N/A'}}"
-                                   type="text" class="form-control-plaintext" readonly>
-                            @error('username')
-                            <span class="invalid-feedback"
-                                  role="alert"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>--}}
+                                   class="@error('username') text-danger @enderror">Company About</label>
+                            <br>
+                           → {!! $user->basicInfo->about ?: 'N/A' !!}
+                        </div>
                         <div class="form-group">
                             <label for="email" class="@error('email') text-danger @enderror">Company Email</label>
                             <input id="email" name="email" value=" → {{ $user->email ?: 'N/A'}}" type="text"

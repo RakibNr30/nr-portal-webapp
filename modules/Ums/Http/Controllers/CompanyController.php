@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 // requests...
 use Carbon\Carbon;
+use Modules\Ums\Http\Requests\CompanyStoreRequest;
+use Modules\Ums\Http\Requests\CompanyUpdateRequest;
 use Modules\Ums\Http\Requests\UserStoreRequest;
 use Modules\Ums\Http\Requests\UserUpdateRequest;
 
@@ -78,10 +80,10 @@ class CompanyController extends Controller
     /**
      * Store user
      *
-     * @param UserStoreRequest $request
+     * @param CompanyStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserStoreRequest $request)
+    public function store(CompanyStoreRequest $request)
     {
         // get data
         $data = $request->all();
@@ -102,6 +104,7 @@ class CompanyController extends Controller
             $data['user_id'] = $user->id;
             $data['personal_email'] = $user->email;
             $data['personal_phone'] = $user->phone;
+            $data['first_name'] = $data['company_name'];
             $basicInfo = $this->userBasicInfoService->create($data);
             // upload files
             $basicInfo->uploadFiles();
@@ -180,11 +183,11 @@ class CompanyController extends Controller
     /**
      * Update user
      *
-     * @param UserUpdateRequest $request
+     * @param CompanyUpdateRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(CompanyUpdateRequest $request, $id)
     {
         // get user
         $user = $this->userService->find($id);
@@ -205,6 +208,7 @@ class CompanyController extends Controller
         if ($user) {
             $data['personal_email'] = $user->email;
             $data['personal_phone'] = $user->phone;
+            $data['first_name'] = $data['company_name'];
             $basicInfo = $this->userBasicInfoService->updateOrCreate(['user_id' => $user->id], $data);
             // upload files
             $basicInfo->uploadFiles();

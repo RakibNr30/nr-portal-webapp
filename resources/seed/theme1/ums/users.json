@@ -9,6 +9,7 @@
         {
             "first_name": "Super Admin",
             "last_name": null,
+            "about": null,
             "designation": "Owner",
             "personal_email": "superadmin@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
@@ -26,6 +27,7 @@
         {
             "first_name": "Admin",
             "last_name": null,
+            "about": null,
             "designation": "Owner",
             "personal_email": "admin@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
@@ -43,6 +45,7 @@
         {
             "first_name": "Admin One",
             "last_name": null,
+            "about": null,
             "designation": "Owner",
             "personal_email": "admin1@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
@@ -60,6 +63,7 @@
         {
             "first_name": "Company",
             "last_name": null,
+            "about": "If your company has an interesting and lengthy history, you might consider creating a visual timeline, like Nordstrom did on their company profile. The profile reads like a creative story from the very first line -- \"In 1887, John W. Nordstrom, at 16 years old, left Sweden for the United States. He arrived in New York with $5 in his pocket, unable to speak a word of English.\" With a good balance of image and text, the timeline serves as a reminder of Nordstrom's stability and growth.",
             "designation": "Owner",
             "personal_email": "company@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
@@ -77,6 +81,7 @@
         {
             "first_name": "Company One",
             "last_name": null,
+            "about": "If your company has an interesting and lengthy history, you might consider creating a visual timeline, like Nordstrom did on their company profile. The profile reads like a creative story from the very first line -- \"In 1887, John W. Nordstrom, at 16 years old, left Sweden for the United States. He arrived in New York with $5 in his pocket, unable to speak a word of English.\" With a good balance of image and text, the timeline serves as a reminder of Nordstrom's stability and growth.",
             "designation": "Owner",
             "personal_email": "company1@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
@@ -94,6 +99,7 @@
         {
             "first_name": "Company Two",
             "last_name": null,
+            "about": "If your company has an interesting and lengthy history, you might consider creating a visual timeline, like Nordstrom did on their company profile. The profile reads like a creative story from the very first line -- \"In 1887, John W. Nordstrom, at 16 years old, left Sweden for the United States. He arrived in New York with $5 in his pocket, unable to speak a word of English.\" With a good balance of image and text, the timeline serves as a reminder of Nordstrom's stability and growth.",
             "designation": "Owner",
             "personal_email": "company2@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
@@ -111,6 +117,7 @@
         {
             "first_name": "Company Three",
             "last_name": null,
+            "about": "If your company has an interesting and lengthy history, you might consider creating a visual timeline, like Nordstrom did on their company profile. The profile reads like a creative story from the very first line -- \"In 1887, John W. Nordstrom, at 16 years old, left Sweden for the United States. He arrived in New York with $5 in his pocket, unable to speak a word of English.\" With a good balance of image and text, the timeline serves as a reminder of Nordstrom's stability and growth.",
             "designation": "Owner",
             "personal_email": "company3@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
@@ -128,6 +135,7 @@
         {
             "first_name": "Client",
             "last_name": null,
+            "about": null,
             "designation": "Owner",
             "personal_email": "client@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
@@ -145,6 +153,7 @@
         {
             "first_name": "Client One",
             "last_name": null,
+            "about": null,
             "designation": "Owner",
             "personal_email": "client2@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",

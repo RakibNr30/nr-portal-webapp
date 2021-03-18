@@ -19,3 +19,6 @@ input[type=file] {
     top: 6px;
     left: 6px;
 }
+.dropzone {
+    border: 2px dashed #ced4da !important;
+}

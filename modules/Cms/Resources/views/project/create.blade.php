@@ -43,14 +43,14 @@
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        {{--<div class="form-group">
-                            <label for="image" class="@error('image') text-danger @enderror">Project Feature Image</label>
+                        <div class="form-group">
+                            <label for="image" class="@error('image') text-danger @enderror">Project Images</label>
                             <input id="image" name="image" value="{{ old('image') }}" type="file" class="form-control @error('image') is-invalid @enderror" placeholder="Select File" autofocus>
                             @error('image')
                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <label for="attachment" class="@error('attachment') text-danger @enderror">Project Attachment</label>
                             <input id="attachment" name="attachment" value="{{ old('attachment') }}" type="file" class="form-control @error('attachment') is-invalid @enderror" placeholder="Select File" autofocus>
                             @error('attachment')

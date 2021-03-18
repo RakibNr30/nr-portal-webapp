@@ -70,7 +70,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-12">
+                                    {{--<div class="form-group col-md-12">
                                         <label for="about" class="@error('about') text-danger @enderror">About</label>
                                         <textarea id="about" name="about" rows="3"
                                                   class="form-control @error('about') is-invalid @enderror"
@@ -79,8 +79,8 @@
                                         <span class="invalid-feedback"
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
-                                    </div>
-                                    <div class="form-group col-md-6">
+                                    </div>--}}
+                                    <div class="form-group col-md-4">
                                         <label for="personal_email"
                                                class="@error('personal_email') text-danger @enderror">Personal
                                             Email</label>
@@ -94,7 +94,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    {{--<div class="form-group col-md-6">
                                         <label for="professional_email"
                                                class="@error('professional_email') text-danger @enderror">Professional
                                             Email</label>
@@ -107,8 +107,8 @@
                                         <span class="invalid-feedback"
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
-                                    </div>
-                                    <div class="form-group col-md-6">
+                                    </div>--}}
+                                    <div class="form-group col-md-4">
                                         <label for="phone_no" class="@error('phone_no') text-danger @enderror">Phone
                                             No</label>
                                         <input id="phone_no" name="phone_no"
@@ -120,7 +120,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="mobile_no" class="@error('mobile_no') text-danger @enderror">Mobile
                                             No</label>
                                         <input id="mobile_no" name="mobile_no"
@@ -132,7 +132,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    {{--<div class="form-group col-md-6">
                                         <label for="fax_no" class="@error('fax_no') text-danger @enderror">Fax
                                             No</label>
                                         <input id="fax_no" name="fax_no"
@@ -143,8 +143,8 @@
                                         <span class="invalid-feedback"
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
-                                    </div>
-                                    <div class="form-group col-md-6">
+                                    </div>--}}
+                                    {{--<div class="form-group col-md-6">
                                         <label for="website_url" class="@error('website_url') text-danger @enderror">Website Url</label>
                                         <input id="website_url" name="website_url"
                                                value="{{ old('website_url') ?: $userBasicInfo->website_url }}"
@@ -154,8 +154,8 @@
                                         <span class="invalid-feedback"
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
-                                    </div>
-                                    <div class="form-group col-md-4">
+                                    </div>--}}
+                                    <div class="form-group col-md-6">
                                         <label for="dob" class="@error('dob') text-danger @enderror">Date of
                                             Birth</label>
                                         <input id="dob" name="dob" value="{{ old('dob') ?: $userBasicInfo->dob }}"
@@ -166,7 +166,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-6">
                                         <label for="gender"
                                                class="@error('gender') text-danger @enderror">Gender</label>
                                         <select id="gender" name="gender"
@@ -182,7 +182,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    {{--<div class="form-group col-md-4">
                                         <label for="blood_group" class="@error('blood_group') text-danger @enderror">Blood
                                             Group</label>
                                         <select id="blood_group" name="blood_group"
@@ -197,7 +197,7 @@
                                         <span class="invalid-feedback"
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
-                                    </div>
+                                    </div>--}}
                                 </div>
                                 <div class="button-items float-right">
                                     <button type="submit" class="btn btn-primary waves-effect waves-light">Submit

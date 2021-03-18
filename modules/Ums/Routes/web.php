@@ -16,7 +16,7 @@ Route::prefix('client')->name('client-')->group(function () {
     // request routes...
     Route::resource('request', 'ClientRequestController')->except(['create']);
     // list routes...
-    Route::resource('approved', 'ClientApprovedController')->except(['create', 'edit']);
+    Route::resource('approved', 'ClientApprovedController')->except(['create']);
 });
 // User profile routes
 Route::prefix('profile')->name('profile-')->group(function () {
