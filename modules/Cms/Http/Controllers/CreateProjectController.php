@@ -54,17 +54,34 @@ class CreateProjectController extends Controller
         $project->uploadFiles();
         // check if project created
         if ($project) {
+            // GENERATE AN UNIQUE KEY FOR A PROJECT
+            $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $tmp_id = substr(str_shuffle($str_result), 0, 13);
+            $project_id = $tmp_id . $project->id;
+
+            //$find_project_id = Project::where('project_id', $project_id)->first();
+
             $data = [
-                'project_id' => 1000000000 + $project->id
+                'project_id' => $project_id,
             ];
+
+            // Notification for Admin
+            $create_not = Notification::create([
+                'project_id' => $project_id,
+                'type' => 'ProjectCreation',
+                'notification_from' => Auth::id(),
+                'notification_to_type' => 'admin',
+                'notification_from_type' => 'client',
+                'message' => 'Client: ' . UserBasicInfo::where('id', Auth::id())->first()->first_name . ' has requested for a project. Review it.',
+                'status' => 'unseen',
+            ]);
 
             $this->projectService->update($data, $project->id);
 
-            // flash notification
             notifier()->success('Project created successfully.');
+
         } else {
-            // flash notification
-            notifier()->error('Project cannot be created successfully.');
+            notifier()->error('Project cannot be created now.');
         }
         // redirect back
         return redirect()->back();

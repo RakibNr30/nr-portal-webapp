@@ -43,14 +43,27 @@
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="image" class="@error('image') text-danger @enderror">Project Images</label>
+                        <div>
+                            <form action="#" class="dropzone p-0">
+                                <div class="fallback">
+                                    <input name="files" type="file" multiple="multiple">
+                                </div>
+                                <div class="dz-message needsclick">
+                                    <div class="mb-3">
+                                        <i class="display-4 text-muted mdi mdi-upload-network-outline"></i>
+                                    </div>
+                                    <h6>Drop files here or click to upload.</h6>
+                                </div>
+                            </form>
+                        </div>
+                        {{--<div class="form-group">
+                            <label for="image" class="@error('image') text-danger @enderror">Project Feature Image</label>
                             <input id="image" name="image" value="{{ old('image') }}" type="file" class="form-control @error('image') is-invalid @enderror" placeholder="Select File" autofocus>
                             @error('image')
                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        {{--<div class="form-group">
+                        <div class="form-group">
                             <label for="attachment" class="@error('attachment') text-danger @enderror">Project Attachment</label>
                             <input id="attachment" name="attachment" value="{{ old('attachment') }}" type="file" class="form-control @error('attachment') is-invalid @enderror" placeholder="Select File" autofocus>
                             @error('attachment')
@@ -74,10 +87,17 @@
 @stop
 
 @section('style')
-    <link href="{{ asset('common/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('common/plugins/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
 @stop
 
 @section('script')
-    <script src="{{ asset('common/plugins/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('admin/js/pages/form-advanced.init.js') }}"></script>
+    <script src="{{ asset('common/plugins/dropzone/min/dropzone.min.js') }}"></script>
+
+    {{--<script>
+        $(".dz-error-mark").click(function(){
+            $(this).parent('span').remove();
+            $(this).val("");
+            $('#thumbnail').val("");
+        });
+    </script>--}}
 @stop

@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 
 // requests...
 use Carbon\Carbon;
-use Modules\Cms\DataTables\ApprovedProjectDataTable;
 use Modules\Cms\DataTables\PendingProjectDataTable;
 use Modules\Cms\Http\Requests\ProjectApproveRequest;
-use Modules\Cms\Http\Requests\ProjectStoreRequest;
 use Modules\Cms\Http\Requests\ProjectUpdateRequest;
 
 // services...
@@ -50,6 +48,15 @@ class PendingProjectController extends Controller
      */
     public function index(PendingProjectDataTable $datatable)
     {
+        $user = Auth::user();
+
+        if($user->role('admin')){
+            Notification::where('type', 'ProjectCreation')
+                ->where('notification_to_type', 'admin')
+                ->where('status', 'unseen')
+                ->update(['status' => 'seen']);
+        }
+
         return $datatable->render('cms::project.pending.index');
     }
 
