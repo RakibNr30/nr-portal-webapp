@@ -47,6 +47,7 @@
     <script src="{{ asset('common/plugins/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('common/plugins/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js') }}"></script>
     <script src="{{ asset('common/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('common/plugins/bs-custom-file/bs-custom-file.min.js') }}"></script>
     <script src="{{ asset('admin/js/pages/dashboard.init.js') }}"></script>
 
     @yield('script')

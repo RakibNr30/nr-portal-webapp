@@ -23,12 +23,24 @@ class Project extends BaseModel implements HasMedia
         'approved_at',
         'deadline',
         'company_id',
+        'selected_company_id',
+        'client_approve_status',
+        'selected_index',
         'status',
     ];
 
     protected $hidden = [];
 
-    protected $appends = ['image', 'attachment'];
+    protected $appends = [
+        'image',
+        'attachment',
+        'attachment_company_1',
+        'attachment_company_2',
+        'attachment_company_3',
+        'attachment_admin_1',
+        'attachment_admin_2',
+        'attachment_admin_3',
+    ];
 
     protected $casts = [
         'title' => 'string',
@@ -40,7 +52,10 @@ class Project extends BaseModel implements HasMedia
         'approved_at' => 'date',
         'deadline' => 'date',
         'company_id' => 'array',
+        'selected_company_id' => 'array',
         'status' => 'integer',
+        'client_approve_status' => 'integer',
+        'selected_index' => 'integer',
     ];
 
     public function sluggable()
@@ -76,6 +91,78 @@ class Project extends BaseModel implements HasMedia
         return null;
     }
 
+    public function getAttachmentCompany1Attribute()
+    {
+        $media = $this->getMedia(config('core.media_collection.project.attachment_company_1'));
+        if (isset($media[0])) {
+            return json_decode(json_encode([
+                'file_name' => $media[0]->file_name,
+                'file_url' => $media[0]->getUrl()
+            ]));
+        }
+        return null;
+    }
+
+    public function getAttachmentCompany2Attribute()
+    {
+        $media = $this->getMedia(config('core.media_collection.project.attachment_company_2'));
+        if (isset($media[0])) {
+            return json_decode(json_encode([
+                'file_name' => $media[0]->file_name,
+                'file_url' => $media[0]->getUrl()
+            ]));
+        }
+        return null;
+    }
+
+    public function getAttachmentCompany3Attribute()
+    {
+        $media = $this->getMedia(config('core.media_collection.project.attachment_company_3'));
+        if (isset($media[0])) {
+            return json_decode(json_encode([
+                'file_name' => $media[0]->file_name,
+                'file_url' => $media[0]->getUrl()
+            ]));
+        }
+        return null;
+    }
+
+    public function getAttachmentAdmin1Attribute()
+    {
+        $media = $this->getMedia(config('core.media_collection.project.attachment_admin_1'));
+        if (isset($media[0])) {
+            return json_decode(json_encode([
+                'file_name' => $media[0]->file_name,
+                'file_url' => $media[0]->getUrl()
+            ]));
+        }
+        return null;
+    }
+
+    public function getAttachmentAdmin2Attribute()
+    {
+        $media = $this->getMedia(config('core.media_collection.project.attachment_admin_2'));
+        if (isset($media[0])) {
+            return json_decode(json_encode([
+                'file_name' => $media[0]->file_name,
+                'file_url' => $media[0]->getUrl()
+            ]));
+        }
+        return null;
+    }
+
+    public function getAttachmentAdmin3Attribute()
+    {
+        $media = $this->getMedia(config('core.media_collection.project.attachment_admin_3'));
+        if (isset($media[0])) {
+            return json_decode(json_encode([
+                'file_name' => $media[0]->file_name,
+                'file_url' => $media[0]->getUrl()
+            ]));
+        }
+        return null;
+    }
+
     public function uploadFiles()
     {
         // check for image
@@ -98,6 +185,72 @@ class Project extends BaseModel implements HasMedia
             // upload new file to collection
             $this->addMediaFromRequest('attachment')
                 ->toMediaCollection(config('core.media_collection.project.attachment'));
+        }
+
+        // check for attachment
+        if (request()->hasFile('attachment_company_1')) {
+            // remove old file from collection
+            if ($this->hasMedia(config('core.media_collection.project.attachment_company_1'))) {
+                $this->clearMediaCollection(config('core.media_collection.project.attachment_company_1'));
+            }
+            // upload new file to collection
+            $this->addMediaFromRequest('attachment_company_1')
+                ->toMediaCollection(config('core.media_collection.project.attachment_company_1'));
+        }
+
+        // check for attachment
+        if (request()->hasFile('attachment_company_2')) {
+            // remove old file from collection
+            if ($this->hasMedia(config('core.media_collection.project.attachment_company_2'))) {
+                $this->clearMediaCollection(config('core.media_collection.project.attachment_company_2'));
+            }
+            // upload new file to collection
+            $this->addMediaFromRequest('attachment_company_2')
+                ->toMediaCollection(config('core.media_collection.project.attachment_company_2'));
+        }
+
+        // check for attachment
+        if (request()->hasFile('attachment_company_3')) {
+            // remove old file from collection
+            if ($this->hasMedia(config('core.media_collection.project.attachment_company_3'))) {
+                $this->clearMediaCollection(config('core.media_collection.project.attachment_company_3'));
+            }
+            // upload new file to collection
+            $this->addMediaFromRequest('attachment_company_3')
+                ->toMediaCollection(config('core.media_collection.project.attachment_company_3'));
+        }
+
+        // check for attachment
+        if (request()->hasFile('attachment_admin_1')) {
+            // remove old file from collection
+            if ($this->hasMedia(config('core.media_collection.project.attachment_admin_1'))) {
+                $this->clearMediaCollection(config('core.media_collection.project.attachment_admin_1'));
+            }
+            // upload new file to collection
+            $this->addMediaFromRequest('attachment_admin_1')
+                ->toMediaCollection(config('core.media_collection.project.attachment_admin_1'));
+        }
+
+        // check for attachment
+        if (request()->hasFile('attachment_admin_2')) {
+            // remove old file from collection
+            if ($this->hasMedia(config('core.media_collection.project.attachment_admin_2'))) {
+                $this->clearMediaCollection(config('core.media_collection.project.attachment_admin_2'));
+            }
+            // upload new file to collection
+            $this->addMediaFromRequest('attachment_admin_2')
+                ->toMediaCollection(config('core.media_collection.project.attachment_admin_2'));
+        }
+
+        // check for attachment
+        if (request()->hasFile('attachment_admin_3')) {
+            // remove old file from collection
+            if ($this->hasMedia(config('core.media_collection.project.attachment_admin_3'))) {
+                $this->clearMediaCollection(config('core.media_collection.project.attachment_admin_3'));
+            }
+            // upload new file to collection
+            $this->addMediaFromRequest('attachment_admin_3')
+                ->toMediaCollection(config('core.media_collection.project.attachment_admin_3'));
         }
     }
 

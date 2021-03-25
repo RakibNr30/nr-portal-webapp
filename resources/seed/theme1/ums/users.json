@@ -145,9 +145,9 @@
     },
     {
         "roles": ["client"],
-        "username": "client2",
+        "username": "client1",
         "phone": "+880 1XXXX XXXXXX",
-        "email": "client2@example.com",
+        "email": "client1@example.com",
         "password": "password",
         "basic_info":
         {

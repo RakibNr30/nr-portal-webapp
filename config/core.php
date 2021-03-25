@@ -21,7 +21,7 @@ return [
             "children" => []
         ],
         [
-            "name" => "My Project",
+            "name" => "Project",
             "id" => "my_project",
             "icon" => "fa-tasks",
             "url" => "",
@@ -29,6 +29,10 @@ return [
             "children" => [
                 [
                     "name" => "Create",
+                    "name_client" => "Create",
+                    "name_company" => "Create",
+                    "name_admin" => "Create",
+                    "name_super_admin" => "Create",
                     "id" => "create_project",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/project/create",
@@ -36,6 +40,10 @@ return [
                 ],
                 [
                     "name" => "Pending",
+                    "name_client" => "Pending",
+                    "name_company" => "Pending",
+                    "name_admin" => "Pending",
+                    "name_super_admin" => "Pending",
                     "id" => "pending_project",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/project/pending",
@@ -43,6 +51,10 @@ return [
                 ],
                 [
                     "name" => "Approved",
+                    "name_client" => "In Progress",
+                    "name_company" => "Assigned",
+                    "name_admin" => "In Progress",
+                    "name_super_admin" => "In Progress",
                     "id" => "approved_project",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/project/approved",
@@ -50,6 +62,10 @@ return [
                 ],
                 [
                     "name" => "Accepted",
+                    "name_client" => "Accepted",
+                    "name_company" => "In Progress",
+                    "name_admin" => "Accepted",
+                    "name_super_admin" => "Accepted",
                     "id" => "accepted_project",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/project/accepted",
@@ -283,6 +299,13 @@ return [
         'project' => [
             'image' => 'project_feature_image',
             'attachment' => 'project_attachment',
+
+            'attachment_company_1' => 'project_attachment_company_1',
+            'attachment_company_2' => 'project_attachment_company_2',
+            'attachment_company_3' => 'project_attachment_company_3',
+            'attachment_admin_1' => 'project_attachment_admin_1',
+            'attachment_admin_2' => 'project_attachment_admin_2',
+            'attachment_admin_3' => 'project_attachment_admin_3',
         ],
         'setting_site' => [
             'logo' => 'setting_site_logo',

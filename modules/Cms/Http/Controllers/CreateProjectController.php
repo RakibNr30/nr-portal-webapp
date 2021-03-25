@@ -4,12 +4,15 @@ namespace Modules\Cms\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
+use App\Notification;
+use Illuminate\Support\Facades\Auth;
 use Modules\Cms\DataTables\PendingProjectDataTable;
 use Modules\Cms\Http\Requests\ProjectStoreRequest;
 
 // services...
 use Modules\Cms\Services\ProjectCategoryService;
 use Modules\Cms\Services\ProjectService;
+use Modules\Ums\Entities\UserBasicInfo;
 
 class CreateProjectController extends Controller
 {
@@ -51,7 +54,16 @@ class CreateProjectController extends Controller
         // create project
         $project = $this->projectService->create($request->all());
         // upload files
-        $project->uploadFiles();
+        //$project->uploadFiles();
+
+        //dd($request->file('images'));
+
+        if($request->file('images')) {
+            foreach ($request->file('images') as $image) {
+                $project->addMedia($image)->toMediaCollection('client_project_image');
+            }
+        }
+
         // check if project created
         if ($project) {
             // GENERATE AN UNIQUE KEY FOR A PROJECT
@@ -66,7 +78,7 @@ class CreateProjectController extends Controller
             ];
 
             // Notification for Admin
-            $create_not = Notification::create([
+            $create_notification = Notification::create([
                 'project_id' => $project_id,
                 'type' => 'ProjectCreation',
                 'notification_from' => Auth::id(),

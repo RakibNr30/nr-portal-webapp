@@ -5,7 +5,9 @@ namespace Modules\Cms\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 // requests...
+use App\Notification;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Modules\Cms\DataTables\PendingProjectDataTable;
 use Modules\Cms\Http\Requests\ProjectApproveRequest;
 use Modules\Cms\Http\Requests\ProjectUpdateRequest;
@@ -13,6 +15,8 @@ use Modules\Cms\Http\Requests\ProjectUpdateRequest;
 // services...
 use Modules\Cms\Services\ProjectCategoryService;
 use Modules\Cms\Services\ProjectService;
+use Modules\Ums\Entities\User;
+use Modules\Ums\Entities\UserBasicInfo;
 use Modules\Ums\Services\UserService;
 
 class PendingProjectController extends Controller
@@ -48,13 +52,17 @@ class PendingProjectController extends Controller
      */
     public function index(PendingProjectDataTable $datatable)
     {
-        $user = Auth::user();
+        $user = User::find(auth()->user()->id);
 
-        if($user->role('admin')){
+        if($user->hasRole('admin') || $user->hasRole('super_admin')) {
             Notification::where('type', 'ProjectCreation')
                 ->where('notification_to_type', 'admin')
                 ->where('status', 'unseen')
                 ->update(['status' => 'seen']);
+        }
+
+        if ($user->hasRole('company')) {
+            return redirect()->route('backend.cms.dashboard.index');
         }
 
         return $datatable->render('cms::project.pending.index');
@@ -215,6 +223,17 @@ class PendingProjectController extends Controller
         $project->uploadFiles();
         // check if project updated
         if ($project) {
+            // Notification for Admin
+            Notification::create([
+                'project_id' => $project->project_id,
+                'type' => 'ProjectApproval',
+                'notification_from' => auth()->user()->id,
+                'notification_to' => $project->author_id,
+                'notification_to_type' => 'client',
+                'notification_from_type' => 'admin',
+                'message' => 'Project #' . $project->project_id . ' has been approved. Check it.',
+                'status' => 'unseen',
+            ]);
             // flash notification
             notifier()->success('Project approved successfully.');
         } else {

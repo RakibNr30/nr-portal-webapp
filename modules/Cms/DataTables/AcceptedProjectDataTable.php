@@ -9,7 +9,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class PendingProjectDataTable extends DataTable
+class AcceptedProjectDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,7 +23,7 @@ class PendingProjectDataTable extends DataTable
             ->eloquent($query)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                return view('cms::project.pending.action', compact('data'))->render();
+                return view('cms::project.accepted.action', compact('data'))->render();
             });
     }
 
@@ -38,19 +38,28 @@ class PendingProjectDataTable extends DataTable
         // Project model instance
         $project = $model->newQuery();
 
+        // apply joins
+        $project->join('user_basic_infos as approver_basic_info', 'projects.approved_by', 'approver_basic_info.user_id');
+
         // select queries
         $project->select([
             'projects.id',
             'projects.title',
             'projects.project_id',
-            'projects.deadline'
+            'projects.approved_at',
+            'projects.deadline',
+            DB::raw('CONCAT(approver_basic_info.first_name, if(approver_basic_info.last_name is not null, CONCAT(" ", approver_basic_info.last_name), "")) as approver_name'),
         ])
-        ->where('projects.status', 0);
+        ->where('projects.status', 2);
 
         $user = User::find(auth()->user()->id);
 
         if ($user->hasRole('client')) {
             $project->where('projects.author_id', $user->id);
+        }
+
+        if ($user->hasRole('company')) {
+            $project->whereJsonContains('projects.company_id', $user->id);
         }
 
         // return data
@@ -93,7 +102,9 @@ class PendingProjectDataTable extends DataTable
                 ->title('Sl'),
             Column::make('project_id'),
             Column::make('title'),
+            Column::make('approved_at'),
             //Column::make('deadline'),
+            //Column::make('approver_name')->name('approver_basic_info.first_name'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -109,6 +120,6 @@ class PendingProjectDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'PendingProject_' . date('YmdHis');
+        return 'AcceptedProject_' . date('YmdHis');
     }
 }

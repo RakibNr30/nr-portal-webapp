@@ -4,6 +4,7 @@ namespace Modules\Cms\DataTables;
 
 use Illuminate\Support\Facades\DB;
 use Modules\Cms\Entities\Project;
+use Modules\Ums\Entities\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -51,6 +52,16 @@ class ApprovedProjectDataTable extends DataTable
         ])
         ->where('projects.status', 1);
 
+        $user = User::find(auth()->user()->id);
+
+        if ($user->hasRole('client')) {
+            $project->where('projects.author_id', $user->id);
+        }
+
+        if ($user->hasRole('company')) {
+            $project->whereJsonContains('projects.company_id', $user->id);
+        }
+
         // return data
         return $project;
     }
@@ -93,7 +104,7 @@ class ApprovedProjectDataTable extends DataTable
             Column::make('title'),
             Column::make('approved_at'),
             //Column::make('deadline'),
-            Column::make('approver_name')->name('approver_basic_info.first_name'),
+            //Column::make('approver_name')->name('approver_basic_info.first_name'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

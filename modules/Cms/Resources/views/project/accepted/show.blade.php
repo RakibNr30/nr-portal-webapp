@@ -11,7 +11,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0)">Project</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('backend.cms.project-approved.index') }}">Approved</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('backend.cms.project-accepted.index') }}">Accepted</a></li>
                             <li class="breadcrumb-item active">Show</li>
                         </ol>
                     </div>
@@ -63,18 +63,9 @@
                                                     </div>
                                                     <div class="card-body bg-transparent text-primary">
                                                         <div>
-                                                            {{--@if ($errors->any())
-                                                                <div class="alert alert-danger">
-                                                                    <ul>
-                                                                        @foreach ($errors->all() as $error)
-                                                                            <li>{{ $error }}</li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
-                                                            @endif--}}
                                                             @php
-                                                                $attachment_admin = 'attachment_admin_' . ($index + 1);
-                                                                $attachment_company = 'attachment_company_' . ($index + 1);
+                                                                $attachment_admin = 'attachment_admin_' . ($project->selected_index + 1);
+                                                                $attachment_company = 'attachment_company_' . ($project->selected_index + 1);
                                                             @endphp
 
                                                             <div class="row">
@@ -129,28 +120,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-                                                            {!! Form::open(['url' => route('backend.cms.project-approved.filesUpdate', [$project->id]), 'class' => '', 'method' => 'put', 'files' => true]) !!}
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="attachment_company_{{ $index + 1 }}" class="@error('attachment_company_{{ $index + 1 }}') text-danger @enderror">Attachment</label>
-                                                                    <div class="custom-file">
-                                                                        <input type="file" class="custom-file-input form-control @error('attachment_company_{{ $index + 1 }}') is-invalid @enderror"
-                                                                               id="attachment_company_{{ $index + 1 }}"
-                                                                               name="attachment_company_{{ $index + 1 }}"
-                                                                               value="{{ old("attachment_company_{ $index + 1 }") }}" autofocus required>
-                                                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                                                    </div>
-
-                                                                    @error('attachment_company_{{ $index + 1 }}')
-                                                                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            <div class="text-center mt-4 mb-4">
-                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Upload Attachment</button>
-                                                            </div>
-                                                            {!! Form::close() !!}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -195,8 +164,8 @@
                                                 <div class="card-body bg-transparent text-primary">
                                                     <div>
                                                         @php
-                                                            $attachment_admin = 'attachment_admin_' . ($index + 1);
-                                                            $attachment_company = 'attachment_company_' . ($index + 1);
+                                                            $attachment_admin = 'attachment_admin_' . ($project->selected_index + 1);
+                                                            $attachment_company = 'attachment_company_' . ($project->selected_index + 1);
                                                         @endphp
 
                                                         <div class="row">
@@ -251,27 +220,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        {!! Form::open(['url' => route('backend.cms.project-approved.filesUpdate', [$project->id]), 'class' => '', 'method' => 'put', 'files' => true]) !!}
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label for="attachment_admin_{{ $index + 1 }}" class="@error('attachment_admin_{{ $index + 1 }}') text-danger @enderror">Attachment</label>
-                                                                <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input form-control @error('attachment_admin_{{ $index + 1 }}') is-invalid @enderror"
-                                                                           id="attachment_admin_{{ $index + 1 }}"
-                                                                           name="attachment_admin_{{ $index + 1 }}"
-                                                                           value="{{ old("attachment_admin_{ $index + 1 }") }}" autofocus required>
-                                                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                                                </div>
-                                                                @error('attachment_admin_{{ $index + 1 }}')
-                                                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-center mt-4 mb-4">
-                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Upload Attachment</button>
-                                                        </div>
-                                                        {!! Form::close() !!}
                                                     </div>
                                                 </div>
                                             </div>
@@ -315,7 +263,7 @@
                                                 <div class="card-body bg-transparent text-primary">
                                                     <div>
                                                         @php
-                                                            $attachment_admin = 'attachment_admin_' . ($index + 1);
+                                                            $attachment_admin = 'attachment_admin_' . ($project->selected_index + 1);
                                                         @endphp
 
                                                         <div class="row">
@@ -345,14 +293,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        {!! Form::open(['url' => route('backend.cms.project-approved.approveByClient', [$project->id]), 'class' => '', 'method' => 'put']) !!}
-                                                        <input type="hidden" name="selected_company_id[]" value="{{ $company->id }}">
-                                                        <input type="hidden" name="selected_index" value="{{ $index }}">
-                                                        <div class="text-center mt-4 mb-4">
-                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Approve Company</button>
-                                                        </div>
-                                                        {!! Form::close() !!}
                                                     </div>
                                                 </div>
                                             </div>
@@ -381,7 +321,7 @@
                         @endif
                         
                         <div class="col-12">
-                            <a href="{{ route('backend.cms.project-approved.index') }}" type="button"
+                            <a href="{{ route('backend.cms.project-accepted.index') }}" type="button"
                                class="btn btn-danger waves-effect waves-light float-right">Cancel</a>
                         </div>
                     </div>

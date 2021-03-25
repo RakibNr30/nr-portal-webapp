@@ -24,6 +24,9 @@ class CreateProjectsTable extends Migration
             $table->timestamp('approved_at')->nullable();
             $table->timestamp('deadline')->nullable();
             $table->json('company_id')->nullable();
+            $table->json('selected_company_id')->nullable();
+            $table->tinyInteger('client_approve_status')->default(0);
+            $table->tinyInteger('selected_index')->nullable();
             $table->commonFields();
         });
     }

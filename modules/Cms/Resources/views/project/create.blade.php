@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title mb-4">Create Project</h4>
-                        {!! Form::open(['url' => route('backend.cms.project.store'), 'method' => 'project', 'files' => true]) !!}
+                        {!! Form::open(['url' => route('backend.cms.project.store'), 'method' => 'project', 'files' => true, 'class' => '']) !!}
                         <div class="form-group">
                             <label for="title" class="@error('title') text-danger @enderror">Project Title</label>
                             <input id="title" name="title" value="{{ old('title') }}"
@@ -43,18 +43,20 @@
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
-                        <div>
-                            <form action="#" class="dropzone p-0">
-                                <div class="fallback">
-                                    <input name="files" type="file" multiple="multiple">
+                        <div class="drop-area">
+                            <div class="fallback">
+                                <input name="images[]" type="file" multiple>
+                                @error('image')
+                                <span class="invalid-feedback"
+                                      role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                            </div>
+                           {{-- <div class="dz-message needsclick">
+                                <div class="mb-3">
+                                    <i class="display-4 text-muted mdi mdi-upload-network-outline"></i>
                                 </div>
-                                <div class="dz-message needsclick">
-                                    <div class="mb-3">
-                                        <i class="display-4 text-muted mdi mdi-upload-network-outline"></i>
-                                    </div>
-                                    <h6>Drop files here or click to upload.</h6>
-                                </div>
-                            </form>
+                                <h6>Drop images here or click to upload.</h6>
+                            </div>--}}
                         </div>
                         {{--<div class="form-group">
                             <label for="image" class="@error('image') text-danger @enderror">Project Feature Image</label>
@@ -88,6 +90,17 @@
 
 @section('style')
     <link href="{{ asset('common/plugins/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        .dropzone {
+            border: unset !important;
+            min-height: unset !important;
+            padding: unset !important;
+        }
+        .dropzone .drop-area {
+            border: 2px dashed #ced4da;
+            margin-bottom: 20px;
+        }
+    </style>
 @stop
 
 @section('script')

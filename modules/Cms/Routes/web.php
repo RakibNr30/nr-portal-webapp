@@ -38,6 +38,11 @@ Route::prefix('project')->name('project-')->group(function () {
     Route::put('pending/approve/{id}', 'PendingProjectController@approve')->name('pending.approve');
     // approved routes...
     Route::resource('approved', 'ApprovedProjectController')->except(['create', 'edit']);
+    Route::put('approved/files-update/{id}', 'ApprovedProjectController@filesUpdate')->name('approved.filesUpdate');
+    Route::put('approved/approve-by-client/{id}', 'ApprovedProjectController@approveByClient')->name('approved.approveByClient');
+
+    // accepted routes...
+    Route::resource('accepted', 'AcceptedProjectController')->except(['create', 'edit']);
 });
 
 // create routes...
