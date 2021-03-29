@@ -54,13 +54,6 @@ class PendingProjectController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        if($user->hasRole('admin') || $user->hasRole('super_admin')) {
-            Notification::where('type', 'ProjectCreation')
-                ->where('notification_to_type', 'admin')
-                ->where('status', 'unseen')
-                ->update(['status' => 'seen']);
-        }
-
         if ($user->hasRole('company')) {
             return redirect()->route('backend.cms.dashboard.index');
         }
@@ -84,6 +77,20 @@ class PendingProjectController extends Controller
             notifier()->error('Project not found!');
             // redirect back
             return redirect()->back();
+        }
+
+        $user = User::find(auth()->user()->id);
+
+        if($user->hasRole('admin') || $user->hasRole('super_admin')) {
+            Notification::where('notification_to_type', 'admin')
+                ->where('project_id', $project->project_id)
+                ->where('status', 'unseen')
+                ->update(['status' => 'seen']);
+        } else {
+            Notification::where('notification_to', $user->id)
+                ->where('project_id', $project->project_id)
+                ->where('status', 'unseen')
+                ->update(['status' => 'seen']);
         }
 
         // companies

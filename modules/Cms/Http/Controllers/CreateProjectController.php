@@ -96,6 +96,6 @@ class CreateProjectController extends Controller
             notifier()->error('Project cannot be created now.');
         }
         // redirect back
-        return redirect()->back();
+        return redirect()->route('backend.cms.project-pending.index');
     }
 }

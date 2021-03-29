@@ -25,3 +25,7 @@ Route::get('register', function () {
 Route::get('password/reset', function () {
     abort(404);
 });
+
+Route::group(['middleware' => ['auth:web']], function () {
+	Route::get('/notifications', 'NotificationController@all_notifications')->name('all.notifications');
+});

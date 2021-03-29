@@ -50,7 +50,8 @@ class AcceptedProjectDataTable extends DataTable
             'projects.deadline',
             DB::raw('CONCAT(approver_basic_info.first_name, if(approver_basic_info.last_name is not null, CONCAT(" ", approver_basic_info.last_name), "")) as approver_name'),
         ])
-        ->where('projects.status', 2);
+        ->where('projects.status', 2)
+        ->orderBy('created_at', 'desc');
 
         $user = User::find(auth()->user()->id);
 

@@ -52,23 +52,35 @@
                     </button>
                 </div>
 
-                @php
-                $notification = 100;
-                @endphp
+                <?php 
+                    if(Auth::user()->role == 'admin'){
+                        $notifications = App\Notification::where('status', 'unseen')->where('notification_to_type', 'admin')->orderBy('created_at', 'desc')->take(5)->get();
+                        $notifications_count = App\Notification::where('status', 'unseen')->where('notification_to_type', 'admin')->count();
+
+                    } else if(Auth::user()->role == 'client') {
+                        $notifications = App\Notification::where('status', 'unseen')->where('notification_to_type', 'client')->where('notification_to', Auth::id())->orderBy('created_at', 'desc')->take(5)->get();
+                        $notifications_count = App\Notification::where('status', 'unseen')->where('notification_to_type', 'client')->where('notification_to', Auth::id())->count();
+                    } else {
+                        $notifications = App\Notification::where('status', 'unseen')->where('notification_to_type', 'company')->where('notification_to', Auth::id())->orderBy('created_at', 'desc')->take(5)->get();
+                        $notifications_count = App\Notification::where('status', 'unseen')->where('notification_to_type', 'company')->where('notification_to', Auth::id())->count();
+                    }
+                ?>
 
                 <div class="dropdown d-inline-block">
+                    
                     <button type="button" class="btn header-item noti-icon waves-effect"
                             id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         <i class="mdi mdi-bell-outline"></i>
-                        <span class="badge badge-danger badge-pill">
-                            @if($notification > 99)
-                                99+
-                            @else
-                                {{ $notification }}
-                            @endif
-                        </span>
+                        @if($notifications_count > 0)
+                            <span class="badge badge-danger badge-pill">
+                                
+                                {{ $notifications_count }}
+                                
+                            </span>
+                        @endif
                     </button>
+                    
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                          aria-labelledby="page-header-notifications-dropdown">
                         <div class="p-3">
@@ -77,73 +89,54 @@
                                     <h6 class="m-0"> Notifications </h6>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="#!" class="small"> View All</a>
+                                    <a href="{{ url('/notifications') }}" class="small"> View All</a>
                                 </div>
                             </div>
                         </div>
-                        <div data-simplebar style="max-height: 230px;">
-                            <a href="#" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="avatar-xs mr-3">
-                                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                                        <i class="bx bx-cart"></i>
-                                                    </span>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="mt-0 mb-1">Your order is placed</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-1">If several languages coalesce the grammar</p>
-                                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="text-reset notification-item">
-                                <div class="media">
-                                    <img src="{{ asset('admin/images/users/avatar-3.jpg') }}"
-                                         class="mr-3 rounded-circle avatar-xs" alt="user-pic">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 mb-1">James Lemire</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-1">It will seem like simplified English.</p>
-                                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="text-reset notification-item">
-                                <div class="media">
-                                    <div class="avatar-xs mr-3">
-                                                    <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                        <i class="bx bx-badge-check"></i>
-                                                    </span>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="mt-0 mb-1">Your item is shipped</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-1">If several languages coalesce the grammar</p>
-                                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
 
-                            <a href="#" class="text-reset notification-item">
-                                <div class="media">
-                                    <img src="{{ asset('admin/images/users/avatar-4.jpg') }}"
-                                         class="mr-3 rounded-circle avatar-xs" alt="user-pic">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 mb-1">Salena Layfield</h6>
-                                        <div class="font-size-12 text-muted">
-                                            <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
-                                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
+                    @if($notifications_count > 0)
+                        @foreach($notifications as $notification)
+
+                        <?php
+                            $user_avatar = App\User::where('id', $notification->notification_from)->first();
+                        ?>
+                            <div data-simplebar style="max-height: 230px;">
+
+                                <a href="#" class="text-reset notification-item">
+                                    <div class="media">
+                                        <img src="{{ $user_avatar->avatar->file_url ?? config('core.image.default.avatar') }}"
+                                             class="mr-3 rounded-circle avatar-xs" alt="user-pic">
+                                        <div class="media-body">
+                                            <div class="font-size-12 text-muted">
+                                                <p class="mb-1" style="color: #495057; font-weight: 450;">{{ $notification->message }}</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> {{ $notification->created_at->diffForHumans() }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                            </div>
+                        @endforeach
+                    @else
+
+                        <div data-simplebar style="max-height: 230px;">
+
+                                <div class="text-reset notification-item">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <div class="font-size-14 text-muted">
+                                                <p class="mb-1" style="color: #495057; font-weight: 450;">No new notification!</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                                
+                            </div>
+
+                    @endif
+
                         <div class="p-2 border-top">
-                            <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
+                            <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="{{ url('/notifications') }}">
                                 <i class="mdi mdi-arrow-right-circle mr-1"></i> View More..
                             </a>
                         </div>

@@ -45,7 +45,8 @@ class PendingProjectDataTable extends DataTable
             'projects.project_id',
             'projects.deadline'
         ])
-        ->where('projects.status', 0);
+        ->where('projects.status', 0)
+        ->orderBy('created_at', 'desc');
 
         $user = User::find(auth()->user()->id);
 

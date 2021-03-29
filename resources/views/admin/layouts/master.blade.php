@@ -18,6 +18,18 @@
     <link href="{{ asset('admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet" type="text/css" />
 
+    <style type="text/css">
+        .not-message {
+            color: #495057; 
+            font-weight: 450; 
+            font-size: 16px;
+        }
+        
+        .not-message:hover {
+            color: #3b5de7;
+        }
+    </style>
+
     @yield('style')
 
 </head>
