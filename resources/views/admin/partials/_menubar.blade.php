@@ -6,11 +6,12 @@
             @endphp
         <div class="user-wid text-center py-4">
             <div class="user-img">
-                <img src="{{ $global_site->favicon->file_url ?? config('core.image.default.favicon') }}" alt="" class="avatar-md mx-auto rounded-circle" style="height: 50px; width: 50px">
+                <img src="{{ $user->avatar->file_url ?? config('core.image.default.avatar') }}" alt="" class="avatar-md mx-auto rounded-circle" style="height: 50px; width: 50px">
             </div>
             <div class="mt-3">
-                <a href="{{ url('/backend/dashboard') }}" class="text-dark font-weight-medium font-size-14">
-                    {{ $global_site->title ?? 'Web Portal' }}
+                <a href="{{ url('/backend/profile/account-info') }}" class="text-dark font-weight-medium font-size-14">
+                    {{ $user->basicInfo->first_name }}
+                    {{ $user->basicInfo->last_name }}
                 </a>
             </div>
         </div>

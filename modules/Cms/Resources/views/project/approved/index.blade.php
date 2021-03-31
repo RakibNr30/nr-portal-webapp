@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@php
+    $user = \Modules\Ums\Entities\User::find(auth()->user()->id)
+@endphp
 @section('content')
     <div class="page-content">
         <div class="row">
@@ -9,7 +11,9 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Project</a></li>
-                            <li class="breadcrumb-item active">Approved</li>
+                            <li class="breadcrumb-item active">
+                                {{ config('core.project_paginate.approved.' . $user->getRoleNames()[0]) }}
+                            </li>
                         </ol>
                     </div>
                 </div>

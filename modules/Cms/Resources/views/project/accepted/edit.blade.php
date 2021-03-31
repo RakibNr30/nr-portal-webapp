@@ -1,16 +1,20 @@
 @extends('admin.layouts.master')
-
+@php
+    $user = \Modules\Ums\Entities\User::find(auth()->user()->id)
+@endphp
 @section('content')
     <div class="page-content">
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">Client</h4>
+                    <h4 class="page-title mb-0 font-size-18">Project</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">User Control</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Client</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('backend.ums.client-accepted.index') }}">Accepted</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Project</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('backend.cms.project-accepted.index') }}">
+                                    {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0]) }}
+                                </a>
+                            </li>
                             <li class="breadcrumb-item active">Update</li>
                         </ol>
                     </div>

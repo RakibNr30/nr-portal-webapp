@@ -90,6 +90,20 @@ class ApprovedProjectController extends Controller
             return redirect()->back();
         }
 
+        $user = User::find(auth()->user()->id);
+
+        if($user->hasRole('admin') || $user->hasRole('super_admin')) {
+            Notification::where('notification_to_type', 'admin')
+                ->where('project_id', $project->project_id)
+                ->where('status', 'unseen')
+                ->update(['status' => 'seen']);
+        } else {
+            Notification::where('notification_to', $user->id)
+                ->where('project_id', $project->project_id)
+                ->where('status', 'unseen')
+                ->update(['status' => 'seen']);
+        }
+
         $companies = $this->projectService->companies($project->company_id);
 
         // return view
@@ -228,6 +242,18 @@ class ApprovedProjectController extends Controller
                     'notification_to_type' => 'client',
                     'notification_from_type' => 'admin',
                     'message' => 'An admin has uploaded a file on your project #' . $project->project_id,
+                    'status' => 'unseen',
+                ]);
+
+                // Notification for Company
+                Notification::create([
+                    'project_id' => $project->project_id,
+                    'type' => 'ProjectAdminFile',
+                    'notification_from' => $user->id,
+                    'notification_to' => $request->all()['file_company_id'],
+                    'notification_to_type' => 'company',
+                    'notification_from_type' => 'admin',
+                    'message' => 'An admin has uploaded a file on assigned project #' . $project->project_id,
                     'status' => 'unseen',
                 ]);
             }

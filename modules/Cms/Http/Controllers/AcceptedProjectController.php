@@ -5,16 +5,14 @@ namespace Modules\Cms\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 // requests...
+use App\Notification;
 use Modules\Cms\DataTables\AcceptedProjectDataTable;
-use Modules\Cms\DataTables\ApprovedProjectDataTable;
-use Modules\Cms\Http\Requests\ProjectApproveByClientUpdateRequest;
-use Modules\Cms\Http\Requests\ProjectFilesUpdateRequest;
-use Modules\Cms\Http\Requests\ProjectStoreRequest;
 use Modules\Cms\Http\Requests\ProjectUpdateRequest;
 
 // services...
 use Modules\Cms\Services\ProjectCategoryService;
 use Modules\Cms\Services\ProjectService;
+use Modules\Ums\Entities\User;
 
 class AcceptedProjectController extends Controller
 {
@@ -61,6 +59,20 @@ class AcceptedProjectController extends Controller
             notifier()->error('Project not found!');
             // redirect back
             return redirect()->back();
+        }
+
+        $user = User::find(auth()->user()->id);
+
+        if($user->hasRole('admin') || $user->hasRole('super_admin')) {
+            Notification::where('notification_to_type', 'admin')
+                ->where('project_id', $project->project_id)
+                ->where('status', 'unseen')
+                ->update(['status' => 'seen']);
+        } else {
+            Notification::where('notification_to', $user->id)
+                ->where('project_id', $project->project_id)
+                ->where('status', 'unseen')
+                ->update(['status' => 'seen']);
         }
 
         $companies = $this->projectService->companies($project->company_id);

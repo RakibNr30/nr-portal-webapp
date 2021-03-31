@@ -11,7 +11,11 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0)">Project</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('backend.cms.project-accepted.index') }}">Accepted</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('backend.cms.project-accepted.index') }}">
+                                    {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0]) }}
+                                </a>
+                            </li>
                             <li class="breadcrumb-item active">Show</li>
                         </ol>
                     </div>
@@ -36,16 +40,18 @@
                             {!! $project->description !!}
                         </p>
 
-                        <h4 class="card-title">Project Images</h4>
-                        <div class="popup-gallery">
-                            @foreach($project->getMedia('client_project_image') as $image)
-                                <a class="float-left" href="{{ $image->getUrl() }}" title="{{ $image->file_name }}">
-                                    <div class="img-fluid" style="margin-right: 3px">
-                                        <img src="{{ $image->getUrl() }}" alt="" height="130">
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
+                        @if(count($project->getMedia('client_project_image')))
+                            <h4 class="card-title">Project Images</h4>
+                            <div class="popup-gallery">
+                                @foreach($project->getMedia('client_project_image') as $image)
+                                    <a class="float-left" href="{{ $image->getUrl() }}" title="{{ $image->file_name }}">
+                                        <div class="img-fluid" style="margin-right: 3px">
+                                            <img src="{{ $image->getUrl() }}" alt="" height="130">
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
 
                         @if($user->hasRole('company'))
                             @if(count($companies))

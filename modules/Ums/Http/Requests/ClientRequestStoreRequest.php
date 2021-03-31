@@ -35,6 +35,8 @@ class ClientRequestStoreRequest extends FormRequest
             'zip_code' => 'required',
             'city' => 'required',
             'description' => 'required',
+            'project_title' => 'required',
+            'project_description' => 'required',
         ];
     }
 }

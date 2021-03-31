@@ -241,6 +241,21 @@ class PendingProjectController extends Controller
                 'message' => 'Project #' . $project->project_id . ' has been approved. Check it.',
                 'status' => 'unseen',
             ]);
+
+            // Notification for Company
+            foreach ($project->company_id as $company_id) {
+                Notification::create([
+                    'project_id' => $project->project_id,
+                    'type' => 'ProjectApproval',
+                    'notification_from' => auth()->user()->id,
+                    'notification_to' => $company_id,
+                    'notification_to_type' => 'company',
+                    'notification_from_type' => 'admin',
+                    'message' => 'Project #' . $project->project_id . ' has been assigned to you. Check it.',
+                    'status' => 'unseen',
+                ]);
+            }
+
             // flash notification
             notifier()->success('Project approved successfully.');
         } else {

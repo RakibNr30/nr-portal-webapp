@@ -326,5 +326,25 @@ return [
         'admin' => 'Admin',
         'company' => 'Company',
         'client' => 'Client'
+    ],
+    'project_paginate' => [
+        'pending' => [
+            'super_admin' => 'Pending',
+            'admin' => 'Pending',
+            'client' => 'Pending',
+            'company' => 'Pending',
+        ],
+        'approved' => [
+            'super_admin' => 'In Progress',
+            'admin' => 'In Progress',
+            'client' => 'In Progress',
+            'company' => 'Assigned',
+        ],
+        'accepted' => [
+            'super_admin' => 'Accepted',
+            'admin' => 'Accepted',
+            'client' => 'Accepted',
+            'company' => 'In Progress',
+        ]
     ]
 ];

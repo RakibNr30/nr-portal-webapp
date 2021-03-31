@@ -78,7 +78,7 @@ class CreateProjectController extends Controller
             ];
 
             // Notification for Admin
-            $create_notification = Notification::create([
+            Notification::create([
                 'project_id' => $project_id,
                 'type' => 'ProjectCreation',
                 'notification_from' => Auth::id(),

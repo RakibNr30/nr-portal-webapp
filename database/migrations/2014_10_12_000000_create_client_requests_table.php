@@ -24,6 +24,9 @@ class CreateClientRequestsTable extends Migration
             $table->string('zip_code')->nullable();
             $table->string('city')->nullable();
             $table->longText('description')->nullable();
+            $table->string('project_title')->nullable();
+            $table->longText('project_description')->nullable();
+
             $table->commonFields();
         });
     }

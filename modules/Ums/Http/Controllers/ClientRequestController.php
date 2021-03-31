@@ -5,12 +5,16 @@ namespace Modules\Ums\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 // requests...
+use App\Notification;
 use Carbon\Carbon;
 
 // datatable...
+use Illuminate\Support\Facades\Auth;
+use Modules\Cms\Services\ProjectService;
 use Modules\Ums\Datatables\ClientRequestDataTable;
 
 // services...
+use Modules\Ums\Entities\UserBasicInfo;
 use Modules\Ums\Http\Requests\ClientRequestStoreRequest;
 use Modules\Ums\Http\Requests\UserStoreRequest;
 use Modules\Ums\Services\ClientRequestBasicInfoService;
@@ -44,24 +48,32 @@ class ClientRequestController extends Controller
     protected $userResidentialInfoService;
 
     /**
+     * @var $basicInfoService
+     */
+    protected $projectService;
+
+    /**
      * Constructor
      *
      * @param ClientRequestService $clientRequestService
      * @param UserBasicInfoService $userBasicInfoService
      * @param UserService $userService
      * @param UserResidentialInfoService $userResidentialInfoService
+     * @param ProjectService $projectService
      */
     public function __construct(
         ClientRequestService $clientRequestService,
         UserBasicInfoService $userBasicInfoService,
         UserService $userService,
-        UserResidentialInfoService $userResidentialInfoService
+        UserResidentialInfoService $userResidentialInfoService,
+        ProjectService $projectService
     )
     {
         $this->userService = $userService;
         $this->clientRequestService = $clientRequestService;
         $this->userBasicInfoService = $userBasicInfoService;
         $this->userResidentialInfoService = $userResidentialInfoService;
+        $this->projectService = $projectService;
         $this->middleware(['permission:user_controls']);
     }
 
@@ -107,9 +119,38 @@ class ClientRequestController extends Controller
             $data['present_house_number'] = $data['house_number'];
             $data['present_zip_code'] = $data['zip_code'];
             $data['present_city'] = $data['city'];
+
+            $data['title'] = $data['project_title'];
+            $data['description'] = $data['project_description'];
+            $data['author_id'] = $user->id;
+
             $basicInfo = $this->userBasicInfoService->create($data);
             $residentialInfo = $this->userResidentialInfoService->create($data);
-            if ($basicInfo && $residentialInfo) {
+            $project = $this->projectService->create($data);
+            if ($basicInfo && $residentialInfo && $project) {
+                // GENERATE AN UNIQUE KEY FOR A PROJECT
+                $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $tmp_id = substr(str_shuffle($str_result), 0, 13);
+                $project_id = $tmp_id . $project->id;
+
+                $data = [
+                    'project_id' => $project_id,
+                    'client_id' => $data['client_id'],
+                ];
+
+                $this->projectService->update($data, $project->id);
+
+                // Notification for Admin
+                Notification::create([
+                    'project_id' => $project_id,
+                    'type' => 'ProjectCreation',
+                    'notification_from' => $user->id,
+                    'notification_to_type' => 'admin',
+                    'notification_from_type' => 'client',
+                    'message' => 'Client: ' . UserBasicInfo::where('id', $user->id)->first()->first_name . ' has requested for a project. Review it.',
+                    'status' => 'unseen',
+                ]);
+
                 // flash notification
                 notifier()->success('Client approved successfully.');
                 // delete request client

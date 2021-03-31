@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="float-right">
 
-                <div class="dropdown d-inline-block d-lg-none ml-2">
+              {{--  <div class="dropdown d-inline-block d-lg-none ml-2">
                     <button type="button" class="btn header-item noti-icon waves-effect"
                             id="page-header-search-dropdown" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -25,7 +25,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>--}}
 
                 <div class="dropdown d-none d-sm-inline-block">
                     <button type="button" class="btn header-item waves-effect" data-toggle="dropdown"
@@ -96,13 +96,20 @@
 
                     @if($notifications_count > 0)
                         @foreach($notifications as $notification)
-
                         <?php
                             $user_avatar = App\User::where('id', $notification->notification_from)->first();
+                            $url = '/';
+                            if (isset($notification->project_id)) {
+                                $project_id = \Modules\Cms\Entities\Project::where('project_id', $notification->project_id)->first()->id;
+                                if ($notification->type == "ProjectCreation") $url = '/backend/project/pending/' . $project_id;
+                                else if ($notification->type == "ProjectApproval") $url = '/backend/project/approved/' . $project_id;
+                                else if ($notification->type == "ProjectClientApproval") $url = '/backend/project/accepted/' . $project_id;
+                                else if ($notification->type == "ProjectCompanyFile") $url = '/backend/project/approved/' . $project_id;
+                                else if ($notification->type == "ProjectAdminFile") $url = '/backend/project/approved/' . $project_id;
+                            }
                         ?>
                             <div data-simplebar style="max-height: 230px;">
-
-                                <a href="#" class="text-reset notification-item">
+                                <a href="{{ $url }}" class="text-reset notification-item">
                                     <div class="media">
                                         <img src="{{ $user_avatar->avatar->file_url ?? config('core.image.default.avatar') }}"
                                              class="mr-3 rounded-circle avatar-xs" alt="user-pic">
@@ -114,27 +121,21 @@
                                         </div>
                                     </div>
                                 </a>
-                                
                             </div>
                         @endforeach
                     @else
-
                         <div data-simplebar style="max-height: 230px;">
-
-                                <div class="text-reset notification-item">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <div class="font-size-14 text-muted">
-                                                <p class="mb-1" style="color: #495057; font-weight: 450;">No new notification!</p>
-                                            </div>
+                            <div class="text-reset notification-item">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="font-size-14 text-muted">
+                                            <p class="mb-1" style="color: #495057; font-weight: 450;">No new notification!</p>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
-
+                        </div>
                     @endif
-
                         <div class="p-2 border-top">
                             <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="{{ url('/notifications') }}">
                                 <i class="mdi mdi-arrow-right-circle mr-1"></i> View More..
@@ -180,7 +181,7 @@
 
             <div>
                 <div class="navbar-brand-box">
-                    <a href="{{ '/backend/dashboard' }}" class="logo logo-light">
+                    <a href="{{ '/backend/dashboard' }}" class="logo logo-light" style="display: initial">
                         <span class="logo-sm">
                             <img src="{{ $global_site->logo_sm->file_url ?? config('core.image.default.logo_sm') }}" alt="" height="20">
                         </span>
@@ -190,17 +191,17 @@
                     </a>
                 </div>
 
-                <button type="button" class="btn btn-sm px-3 font-size-16 header-item toggle-btn waves-effect"
+              {{--  <button type="button" class="btn btn-sm px-3 font-size-16 header-item toggle-btn waves-effect"
                         id="vertical-menu-btn">
                     <i class="fa fa-fw fa-bars"></i>
-                </button>
+                </button>--}}
 
-                <form class="app-search d-none d-lg-inline-block">
+                {{--<form class="app-search d-none d-lg-inline-block">
                     <div class="position-relative">
                         <input type="text" class="form-control" placeholder="Search...">
                         <span class="bx bx-search-alt"></span>
                     </div>
-                </form>
+                </form>--}}
             </div>
 
         </div>
