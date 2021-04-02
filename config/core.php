@@ -96,50 +96,6 @@ return [
                 ]
             ]
         ],
-        /*[
-            "name" => "Cms",
-            "id" => "cms",
-            "icon" => "fa-cogs",
-            "url" => "",
-            "permission" => "cms",
-            "children" => [
-                [
-                    "name" => "Slider",
-                    "id" => "slider",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/slider",
-                    "permission" => "slider",
-                ],
-                [
-                    "name" => "Page",
-                    "id" => "page",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/page",
-                    "permission" => "page",
-                ],
-                [
-                    "name" => "Content",
-                    "id" => "content",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/content",
-                    "permission" => "content",
-                ],
-                [
-                    "name" => "Faq",
-                    "id" => "faq",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/faq",
-                    "permission" => "faq",
-                ],
-                [
-                    "name" => "Testimonial",
-                    "id" => "testimonial",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/testimonial",
-                    "permission" => "testimonial",
-                ],
-            ]
-        ],*/
         [
             "name" => "User Controls",
             "id" => "user_controls",
@@ -163,29 +119,6 @@ return [
                 ]
             ]
         ],
-        /*[
-            "name" => "Common Settings",
-            "id" => "common_settings",
-            "icon" => "fa-wrench",
-            "url" => "",
-            "permission" => "common_settings",
-            "children" => [
-                [
-                    "name" => "Page Category",
-                    "id" => "page_category",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/page-category",
-                    "permission" => "page_category",
-                ],
-                [
-                    "name" => "Content Category",
-                    "id" => "content_category",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/content-category",
-                    "permission" => "content_category",
-                ],
-            ]
-        ],*/
         [
             "name" => "App Settings",
             "id" => "app_settings",
@@ -221,6 +154,50 @@ return [
                     "url" => "/backend/socialite",
                     "permission" => "socialite_settings",
                 ]
+            ]
+        ],
+        [
+            "name" => "Mail Template",
+            "id" => "mail_settings",
+            "icon" => "fa-envelope-open-text",
+            "url" => "/backend/mail-template",
+            "permission" => "mail_settings",
+            "children" => [
+               /* [
+                    "name" => "Client Approve",
+                    "id" => "client_approval",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/mail-setting/client-approval",
+                    "permission" => "mail_settings",
+                ],
+                [
+                    "name" => "Company Create",
+                    "id" => "company_creation",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/mail-setting/company-creation",
+                    "permission" => "mail_settings",
+                ],
+                [
+                    "name" => "Project Approve",
+                    "id" => "project_approval",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/mail-setting/project-approval",
+                    "permission" => "mail_settings",
+                ],
+                [
+                    "name" => "Company Select",
+                    "id" => "company_selection",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/mail-setting/company-selection",
+                    "permission" => "mail_settings",
+                ],
+                [
+                    "name" => "Company Accept",
+                    "id" => "company_acceptation",
+                    "icon" => "fa-arrow-right",
+                    "url" => "/backend/mail-setting/company-acceptation",
+                    "permission" => "mail_settings",
+                ]*/
             ]
         ]
     ],
@@ -346,5 +323,13 @@ return [
             'client' => 'Accepted',
             'company' => 'In Progress',
         ]
+    ],
+    'mail_category' => [
+        '1' => 'Client Approval',
+        '2' => 'Admin Creation',
+        '3' => 'Company Creation',
+        '4' => 'Project Approval',
+        '5' => 'Company Selection',
+        '6' => 'Company Acceptation',
     ]
 ];

@@ -1,0 +1,32 @@
+[
+  {
+    "subject": "Client Approval",
+    "body": "Client Approval Body",
+    "mail_category_id": 1
+  },
+  {
+    "subject": "Admin Creation",
+    "body": "Admin Creation Body",
+    "mail_category_id": 2
+  },
+  {
+    "subject": "Company Creation",
+    "body": "Company Creation Body",
+    "mail_category_id": 3
+  },
+  {
+    "subject": "Project Approval",
+    "body": "Project Approval Body",
+    "mail_category_id": 4
+  },
+  {
+    "subject": "Company Selection",
+    "body": "Company Selection Body",
+    "mail_category_id": 5
+  },
+  {
+    "subject": "Company Acceptation",
+    "body": "Company Acceptation Body",
+    "mail_category_id": 6
+  }
+]

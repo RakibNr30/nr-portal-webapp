@@ -274,6 +274,11 @@
 @stop
 
 @section('style')
+    <style>
+        .card .card-body h4 {
+            text-align: center;
+        }
+    </style>
 @stop
 
 @section('script')

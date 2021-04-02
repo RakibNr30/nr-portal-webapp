@@ -40,10 +40,11 @@ Route::prefix('project')->name('project-')->group(function () {
     Route::resource('approved', 'ApprovedProjectController')->except(['create', 'edit']);
     Route::put('approved/files-update/{id}', 'ApprovedProjectController@filesUpdate')->name('approved.filesUpdate');
     Route::put('approved/approve-by-client/{id}', 'ApprovedProjectController@approveByClient')->name('approved.approveByClient');
-
     // accepted routes...
     Route::resource('accepted', 'AcceptedProjectController')->except(['create', 'edit']);
 });
 
-// create routes...
+// create project routes...
 Route::resource('project', 'CreateProjectController')->only(['create', 'store']);
+// create routes...
+Route::resource('mail-template', 'MailContentController')->only(['index', 'update']);

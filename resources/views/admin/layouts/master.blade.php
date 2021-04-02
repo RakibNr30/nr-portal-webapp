@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="{{ $global_site->favicon->file_url ?? config('core.image.default.favicon') }}">
     <link href="{{ asset('common/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
     <link href="{{ asset('common/plugins/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('common/plugins/summernote/summernote-bs4.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
@@ -60,6 +61,7 @@
     <script src="{{ asset('common/plugins/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js') }}"></script>
     <script src="{{ asset('common/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('common/plugins/bs-custom-file/bs-custom-file.min.js') }}"></script>
+    <script src="{{ asset('common/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('admin/js/pages/dashboard.init.js') }}"></script>
 
     @yield('script')
@@ -75,6 +77,9 @@
         changeYear: true,
         autoclose: true
     })
+    $('textarea').summernote({
+        height: 200
+    });
 </script>
 
 </body>

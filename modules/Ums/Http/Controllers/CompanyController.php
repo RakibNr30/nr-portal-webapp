@@ -2,6 +2,7 @@
 
 namespace Modules\Ums\Http\Controllers;
 
+use App\Helpers\MailManager;
 use App\Http\Controllers\Controller;
 
 // requests...
@@ -87,6 +88,11 @@ class CompanyController extends Controller
     {
         // get data
         $data = $request->all();
+        $mail_data = [
+            'mail_category_id' => 3,
+            'password' => $data['password'],
+            'email' => $data['email']
+        ];
         $data['password'] = bcrypt($data['password']);
         $data['approved_at'] = Carbon::now();
         $data['approved_by'] = auth()->user()->id;
@@ -101,11 +107,17 @@ class CompanyController extends Controller
         $user->uploadFiles();
         // check if user created
         if ($user) {
+
+            $mail_data['user_id'] = $user->id;
+
             $data['user_id'] = $user->id;
             $data['personal_email'] = $user->email;
             $data['personal_phone'] = $user->phone;
             $data['first_name'] = $data['company_name'];
             $basicInfo = $this->userBasicInfoService->create($data);
+
+            MailManager::send($mail_data['email'], $mail_data);
+
             // upload files
             $basicInfo->uploadFiles();
             if ($basicInfo) {

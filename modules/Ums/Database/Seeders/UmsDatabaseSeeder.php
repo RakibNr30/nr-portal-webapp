@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Modules\Cms\Entities\Publication;
+use Modules\Ums\Entities\ClientRequest;
 use Modules\Ums\Entities\Permission;
 use Modules\Ums\Entities\Role;
 use Modules\Ums\Entities\User;
@@ -36,6 +37,9 @@ class UmsDatabaseSeeder extends Seeder
 
         // seed user profiles
         //$this->seedUserProfiles();
+
+        // seed users
+        $this->seedClientRequests();
 
         //[FACTORY_REGISTER]
 
@@ -153,6 +157,14 @@ class UmsDatabaseSeeder extends Seeder
                 'social_site_id' => 4,
                 'user_id' => $user->id
             ]);
+        }
+    }
+
+    private function seedClientRequests()
+    {
+        $data = json_decode(File::get(resource_path('seed/' . config('core.theme') . '/ums/client-request.json')), true);
+        foreach ($data as $datum) {
+            ClientRequest::create($datum);
         }
     }
 }

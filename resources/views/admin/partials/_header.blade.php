@@ -52,7 +52,7 @@
                     </button>
                 </div>
 
-                <?php 
+                <?php
                     if(Auth::user()->role == 'admin'){
                         $notifications = App\Notification::where('status', 'unseen')->where('notification_to_type', 'admin')->orderBy('created_at', 'desc')->take(5)->get();
                         $notifications_count = App\Notification::where('status', 'unseen')->where('notification_to_type', 'admin')->count();
@@ -67,20 +67,20 @@
                 ?>
 
                 <div class="dropdown d-inline-block">
-                    
+
                     <button type="button" class="btn header-item noti-icon waves-effect"
                             id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                         <i class="mdi mdi-bell-outline"></i>
                         @if($notifications_count > 0)
                             <span class="badge badge-danger badge-pill">
-                                
+
                                 {{ $notifications_count }}
-                                
+
                             </span>
                         @endif
                     </button>
-                    
+
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                          aria-labelledby="page-header-notifications-dropdown">
                         <div class="p-3">

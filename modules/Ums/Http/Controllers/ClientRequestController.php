@@ -2,6 +2,7 @@
 
 namespace Modules\Ums\Http\Controllers;
 
+use App\Helpers\MailManager;
 use App\Http\Controllers\Controller;
 
 // requests...
@@ -98,6 +99,13 @@ class ClientRequestController extends Controller
     {
         // get data
         $data = $request->all();
+
+        $mail_data = [
+            'mail_category_id' => 1,
+            'password' => $data['password'],
+            'email' => $data['email']
+        ];
+
         $data['password'] = bcrypt($data['password']);
         $data['approved_at'] = Carbon::now();
         $data['approved_by'] = auth()->user()->id;
@@ -106,6 +114,7 @@ class ClientRequestController extends Controller
         $data['role'] = $roles[0];
         // create user
         $user = $this->userService->create($data);
+        $mail_data['user_id'] = $user->id;
         // assign roles
         $user->assignRole($roles);
         // check if client Request created
@@ -132,7 +141,7 @@ class ClientRequestController extends Controller
                 $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 $tmp_id = substr(str_shuffle($str_result), 0, 13);
                 $project_id = $tmp_id . $project->id;
-
+                $mail_data['project_id'] = $project->id;
                 $data = [
                     'project_id' => $project_id,
                     'client_id' => $data['client_id'],
@@ -150,6 +159,19 @@ class ClientRequestController extends Controller
                     'message' => 'Client: ' . UserBasicInfo::where('id', $user->id)->first()->first_name . ' has requested for a project. Review it.',
                     'status' => 'unseen',
                 ]);
+
+                // Notification for Client
+                Notification::create([
+                    'type' => 'ClientApproval',
+                    'notification_from' => auth()->user()->id,
+                    'notification_to' => $user->id,
+                    'notification_to_type' => 'client',
+                    'notification_from_type' => 'admin',
+                    'message' => 'An admin has approved your request. Check it.',
+                    'status' => 'unseen',
+                ]);
+
+                MailManager::send($mail_data['email'], $mail_data);
 
                 // flash notification
                 notifier()->success('Client approved successfully.');
