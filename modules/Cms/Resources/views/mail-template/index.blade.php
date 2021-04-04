@@ -42,7 +42,7 @@
                     <div class="card-body">
                         {!! Form::open(['url' => route('backend.cms.mail-template.update', [$mailContent->id]), 'method' => 'put', 'files' => true]) !!}
                         <div class="row">
-                            <input type="hidden" name="content_category_id" value="{{ $mailContent->mail_category_id }}">
+                            <input type="hidden" name="mail_category_id" value="{{ $mailContent->mail_category_id }}">
                             <div class="form-group col-md-12">
                                 <label for="subject" class="@error('subject') text-danger @enderror">Subject</label>
                                 <input id="subject" name="subject" value="{{ old('subject') ?: $mailContent->subject }}"

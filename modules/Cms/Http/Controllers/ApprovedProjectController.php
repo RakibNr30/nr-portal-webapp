@@ -2,6 +2,7 @@
 
 namespace Modules\Cms\Http\Controllers;
 
+use App\Helpers\MailManager;
 use App\Http\Controllers\Controller;
 
 // requests...
@@ -312,6 +313,14 @@ class ApprovedProjectController extends Controller
                 'status' => 'unseen',
             ]);
 
+            $company = User::find($data['company_id'][0]);
+            $company_mail_data = [
+                'mail_category_id' => 6,
+                'user_id' => $company->id,
+                'project_id' => $project->id,
+                'email' => $company->email,
+            ];
+
             // Notification for admin
             Notification::create([
                 'project_id' => $project->project_id,
@@ -322,6 +331,8 @@ class ApprovedProjectController extends Controller
                 'message' => 'Client: ' . UserBasicInfo::where('id', Auth::id())->first()->first_name . ' has started a project #' . $project->project_id,
                 'status' => 'unseen',
             ]);
+
+            MailManager::send($company_mail_data['email'], $company_mail_data);
 
             // flash notification
             notifier()->success('Project approved by client successfully.');

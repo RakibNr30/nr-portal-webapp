@@ -2,6 +2,7 @@
 
 namespace Modules\Cms\Http\Controllers;
 
+use App\Helpers\MailManager;
 use App\Http\Controllers\Controller;
 
 // requests...
@@ -230,7 +231,7 @@ class PendingProjectController extends Controller
         $project->uploadFiles();
         // check if project updated
         if ($project) {
-            // Notification for Admin
+            // Notification for Client
             Notification::create([
                 'project_id' => $project->project_id,
                 'type' => 'ProjectApproval',
@@ -241,6 +242,16 @@ class PendingProjectController extends Controller
                 'message' => 'Project #' . $project->project_id . ' has been approved. Check it.',
                 'status' => 'unseen',
             ]);
+
+            $client = User::find($project->author_id);
+            $client_mail_data = [
+                'mail_category_id' => 4,
+                'user_id' => $client->id,
+                'project_id' => $project->id,
+                'email' => $client->email,
+            ];
+
+            MailManager::send($client_mail_data['email'], $client_mail_data);
 
             // Notification for Company
             foreach ($project->company_id as $company_id) {
@@ -254,6 +265,17 @@ class PendingProjectController extends Controller
                     'message' => 'Project #' . $project->project_id . ' has been assigned to you. Check it.',
                     'status' => 'unseen',
                 ]);
+
+                $company = User::find($company_id);
+                $company_mail_data = [
+                    'mail_category_id' => 5,
+                    'user_id' => $company->id,
+                    'project_id' => $project->id,
+                    'email' => $company->email,
+                ];
+
+                MailManager::send($company_mail_data['email'], $company_mail_data);
+
             }
 
             // flash notification

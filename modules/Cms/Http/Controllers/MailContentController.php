@@ -30,8 +30,13 @@ class MailContentController extends Controller
      */
     public function index()
     {
-        if (\request()->has('mail_category')) {
-            $mailContent = $this->mailContentService->findBy('mail_category_id', \request()->get('mail_category'));
+        if (request()->has('mail_category')) {
+            $category = request()->get('mail_category');
+            if ($category < 1 || $category > 6) {
+                notifier()->error('Mail Category Not Found!');
+                return redirect()->back();
+            }
+            $mailContent = $this->mailContentService->findBy('mail_category_id', $category);
         }
         else {
             $mailContent = $this->mailContentService->first();

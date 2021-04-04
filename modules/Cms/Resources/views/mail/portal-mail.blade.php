@@ -48,21 +48,57 @@
                                                 <li>Project ID #{{ $project->project_id }}</li>
                                             </ul>
                                         @endif
-
                                         @if($data['mail_category_id'] == 2)
                                             <ul>
                                                 <li>Email: {{ $data['email'] }}</li>
                                                 <li>Password: {{ $data['password'] }}</li>
                                             </ul>
                                         @endif
-
                                         @if($data['mail_category_id'] == 3)
                                             <ul>
                                                 <li>Email: {{ $data['email'] }}</li>
                                                 <li>Password: {{ $data['password'] }}</li>
                                             </ul>
                                         @endif
-
+                                        @if($data['mail_category_id'] == 4)
+                                            @php
+                                                $project = \Modules\Cms\Entities\Project::find($data['project_id']);
+                                            @endphp
+                                            <ul>
+                                                <li>Project ID #{{ $project->project_id }}</li>
+                                            </ul>
+                                            <h5>Selected Companies:</h5>
+                                            <ol>
+                                                @foreach($project->company_id as $company_id)
+                                                    @php
+                                                        $company = \Modules\Ums\Entities\User::find($company_id);
+                                                    @endphp
+                                                    <li>
+                                                        {{ $company->basicInfo->first_name }}
+                                                    </li>
+                                                @endforeach
+                                            </ol>
+                                        @endif
+                                        @if($data['mail_category_id'] == 5)
+                                            @php
+                                                $project = \Modules\Cms\Entities\Project::find($data['project_id']);
+                                                $client = \Modules\Ums\Entities\User::find($project->author_id);
+                                            @endphp
+                                            <ul>
+                                                <li>Client Name: {{ $client->basicInfo->first_name }} {{ $client->basicInfo->last_name }}</li>
+                                                <li>Project ID #{{ $project->project_id }}</li>
+                                            </ul>
+                                        @endif
+                                        @if($data['mail_category_id'] == 6)
+                                            @php
+                                                $project = \Modules\Cms\Entities\Project::find($data['project_id']);
+                                                $client = \Modules\Ums\Entities\User::find($project->author_id);
+                                            @endphp
+                                            <ul>
+                                                <li>Client Name: {{ $client->basicInfo->first_name }} {{ $client->basicInfo->last_name }}</li>
+                                                <li>Project ID #{{ $project->project_id }}</li>
+                                            </ul>
+                                        @endif
                                         </p>
                                     </td>
                                 </tr>
