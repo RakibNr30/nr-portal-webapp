@@ -370,6 +370,10 @@
                                                             <button type="submit" class="btn btn-primary waves-effect waves-light">Approve Company</button>
                                                         </div>
                                                         {!! Form::close() !!}
+                                                        <?php
+                                                            $contact = DB::table('user_basic_infos')->where('user_id', $company->basicinfo->user_id)->get();
+                                                        ?>
+                                                        <project-message :contact="{{ collect($contact) }}"></project-message>
                                                     </div>
                                                 </div>
                                             </div>
