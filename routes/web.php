@@ -22,10 +22,18 @@ Auth::routes(['verify' => true]);
 Route::get('register', function () {
     abort(404);
 });
+
 Route::get('password/reset', function () {
     abort(404);
 });
 
 Route::group(['middleware' => ['auth:web']], function () {
 	Route::get('/notifications', 'NotificationController@all_notifications')->name('all.notifications');
+	Route::get('/inbox', 'NotificationController@inbox')->name('inbox');
+	
+	Route::get('/contacts', 'ContactsController@get');
+	Route::get('/conversation/{id}', 'ContactsController@getMessagesFor');
+	Route::post('/conversation/send', 'ContactsController@send');
+	// SEARCH
+	Route::get('/api/find/user', 'ContactsController@search')->name('inbox.contact.search');
 });

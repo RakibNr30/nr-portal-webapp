@@ -9,7 +9,7 @@ use Modules\Cms\Http\Requests\TestimonialStoreRequest;
 use Modules\Cms\Http\Requests\TestimonialUpdateRequest;
 
 // datatable...
-use Modules\Cms\Datatables\TestimonialDatatable;
+use Modules\Cms\DataTables\TestimonialDatatable;
 
 // services...
 use Modules\Cms\Services\TestimonialService;

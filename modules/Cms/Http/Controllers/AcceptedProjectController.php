@@ -20,6 +20,7 @@ class AcceptedProjectController extends Controller
      * @var $projectService
      */
     protected $projectService;
+    protected $user;
 
     /**
      * Constructor
@@ -28,8 +29,16 @@ class AcceptedProjectController extends Controller
      */
     public function __construct(ProjectService $projectService)
     {
+        $this->middleware(function ($request, $next) {
+            $this->user = User::find(auth()->user()->id);
+            if ($this->user->hasRole('admin') || $this->user->hasRole('super_admin'))
+                $this->middleware(['permission:approved_project']);
+            else {
+                $this->middleware(['permission:my_projects']);
+            }
+            return $next($request);
+        });
         $this->projectService = $projectService;
-        $this->middleware(['permission:my_project']);
     }
 
     /**

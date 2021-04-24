@@ -38,15 +38,19 @@ class PendingProjectDataTable extends DataTable
         // Project model instance
         $project = $model->newQuery();
 
+        // apply joins
+        $project->join('user_basic_infos as author_basic_info', 'projects.author_id', 'author_basic_info.user_id');
+
         // select queries
         $project->select([
             'projects.id',
             'projects.title',
             'projects.project_id',
-            'projects.deadline'
+            'projects.deadline',
+            DB::raw('CONCAT(author_basic_info.first_name, if(author_basic_info.last_name is not null, CONCAT(" ", author_basic_info.last_name), "")) as author_name'),
         ])
         ->where('projects.status', 0)
-        ->orderBy('created_at', 'desc');
+        ->orderBy('projects.created_at', 'desc');
 
         $user = User::find(auth()->user()->id);
 
@@ -92,7 +96,7 @@ class PendingProjectDataTable extends DataTable
         return [
             Column::computed('DT_RowIndex')
                 ->title('Sl'),
-            Column::make('project_id'),
+            Column::make('author_name')->name('author_basic_info.first_name')->title('Customer Name'),
             Column::make('title'),
             //Column::make('deadline'),
             Column::computed('action')

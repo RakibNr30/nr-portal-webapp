@@ -20,7 +20,7 @@
             <div class="col-md-12 col-xl-3">
                 <div class="card">
                     <div class="card-body">
-                        @include('admin.partials._profile_menu', ['active' => 3])
+                        @include('admin.partials._profile_menu', ['active' => 4])
                     </div>
                 </div>
             </div>

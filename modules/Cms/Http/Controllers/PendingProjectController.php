@@ -31,6 +31,7 @@ class PendingProjectController extends Controller
      * @var $projectService
      */
     protected $userService;
+    protected $user;
 
     /**
      * Constructor
@@ -40,9 +41,17 @@ class PendingProjectController extends Controller
      */
     public function __construct(ProjectService $projectService, UserService $userService)
     {
+        $this->middleware(function ($request, $next) {
+            $this->user = User::find(auth()->user()->id);
+            if ($this->user->hasRole('admin') || $this->user->hasRole('super_admin'))
+                $this->middleware(['permission:approved_project']);
+            else {
+                $this->middleware(['permission:my_projects']);
+            }
+            return $next($request);
+        });
         $this->projectService = $projectService;
         $this->userService = $userService;
-        $this->middleware(['permission:my_project']);
     }
 
     /**
@@ -101,9 +110,12 @@ class PendingProjectController extends Controller
 
         // assign companies
         // return $assignCompanies = $project->company_id;
+
+        $author = $this->userService->find($project->author_id);
+
         // return view
         return view('cms::project.pending.show', compact(
-            'project', 'companies'
+            'project', 'companies', 'author'
         ));
     }
 

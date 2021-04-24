@@ -9,7 +9,7 @@ use Modules\Ums\Http\Requests\SocialSiteStoreRequest;
 use Modules\Ums\Http\Requests\SocialSiteUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\SocialSiteDatatable;
+use Modules\Ums\DataTables\SocialSiteDatatable;
 
 // services...
 use Modules\Ums\Services\SocialSiteService;

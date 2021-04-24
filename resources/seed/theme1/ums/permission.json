@@ -18,15 +18,6 @@
         ]
     },
     {
-        "name": "my_project",
-        "roles": [
-            "super_admin",
-            "admin",
-            "client",
-            "company"
-        ]
-    },
-    {
         "name": "create_project",
         "roles": [
             "super_admin",
@@ -34,29 +25,32 @@
         ]
     },
     {
+        "name": "my_projects",
+        "roles": [
+            "super_admin",
+            "client",
+            "company"
+        ]
+    },
+    {
         "name": "pending_project",
         "roles": [
             "super_admin",
-            "admin",
-            "client"
+            "admin"
         ]
     },
     {
         "name": "approved_project",
         "roles": [
             "super_admin",
-            "admin",
-            "client",
-            "company"
+            "admin"
         ]
     },
     {
         "name": "accepted_project",
         "roles": [
             "super_admin",
-            "admin",
-            "client",
-            "company"
+            "admin"
         ]
     },
     {

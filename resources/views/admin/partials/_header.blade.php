@@ -103,6 +103,7 @@
                                 $project_id = \Modules\Cms\Entities\Project::where('project_id', $notification->project_id)->first()->id;
                                 if ($notification->type == "ProjectCreation") $url = '/backend/project/pending/' . $project_id;
                                 else if ($notification->type == "ProjectApproval") $url = '/backend/project/approved/' . $project_id;
+                                else if ($notification->type == "ClientApproval") $url = '/backend/project/pending/' . $project_id;
                                 else if ($notification->type == "ProjectClientApproval") $url = '/backend/project/accepted/' . $project_id;
                                 else if ($notification->type == "ProjectCompanyFile") $url = '/backend/project/approved/' . $project_id;
                                 else if ($notification->type == "ProjectAdminFile") $url = '/backend/project/approved/' . $project_id;

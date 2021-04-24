@@ -9,7 +9,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class ApprovedProjectDataTable extends DataTable
+class AllProjectDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,11 +23,11 @@ class ApprovedProjectDataTable extends DataTable
             ->eloquent($query)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                return view('cms::project.approved.action', compact('data'))->render();
+                return view('cms::project.all.action', compact('data'))->render();
             })
-            ->addColumn('file_status', function ($data) {
-                return view('cms::project.approved.file-status', compact('data'))->render();
-            })->rawColumns(['action', 'file_status']);
+            ->addColumn('status', function ($data) {
+                return view('cms::project.all.status', compact('data'))->render();
+            })->rawColumns(['action', 'status']);
     }
 
     /**
@@ -42,7 +42,8 @@ class ApprovedProjectDataTable extends DataTable
         $project = $model->newQuery();
 
         // apply joins
-        $project->join('user_basic_infos as approver_basic_info', 'projects.approved_by', 'approver_basic_info.user_id');
+        $project->join('user_basic_infos as author_basic_info', 'projects.author_id', 'author_basic_info.user_id')
+            ->join('user_residential_infos as author_residential_info', 'projects.author_id', 'author_residential_info.user_id');
 
         // select queries
         $project->select([
@@ -51,10 +52,11 @@ class ApprovedProjectDataTable extends DataTable
             'projects.project_id',
             'projects.approved_at',
             'projects.deadline',
-            DB::raw('CONCAT(approver_basic_info.first_name, if(approver_basic_info.last_name is not null, CONCAT(" ", approver_basic_info.last_name), "")) as approver_name'),
+            'projects.status',
+            'author_residential_info.present_address_line_1 as author_address',
+            DB::raw('CONCAT(author_basic_info.first_name, if(author_basic_info.last_name is not null, CONCAT(" ", author_basic_info.last_name), "")) as author_name'),
         ])
-            ->where('projects.status', 1)
-            ->orderBy('projects.created_at', 'desc');
+        ->orderBy('projects.created_at', 'desc');
 
         $user = User::find(auth()->user()->id);
 
@@ -63,7 +65,8 @@ class ApprovedProjectDataTable extends DataTable
         }
 
         if ($user->hasRole('company')) {
-            $project->whereJsonContains('projects.company_id', $user->id);
+            $project->whereJsonContains('projects.company_id', $user->id)
+            ->where('projects.status', '!=', 0);
         }
 
         // return data
@@ -103,15 +106,15 @@ class ApprovedProjectDataTable extends DataTable
     {
         $user = User::find(auth()->user()->id);
 
-        if ($user->hasRole('super_admin') || $user->hasRole('admin')) {
+        if ($user->hasRole('company')) {
             return [
                 Column::computed('DT_RowIndex')
                     ->title('Sl'),
                 Column::make('project_id'),
                 Column::make('title'),
-                Column::make('approved_at'),
-                //Column::make('deadline'),
-                Column::computed('file_status')
+                Column::make('author_name')->name('author_basic_info.first_name')->title('Customer Name'),
+                Column::make('author_address')->name('author_residential_info.present_address_line_1')->title('Customer Address'),
+                Column::computed('status')
                     ->addClass('text-center'),
                 Column::computed('action')
                     ->exportable(false)
@@ -126,8 +129,8 @@ class ApprovedProjectDataTable extends DataTable
                     ->title('Sl'),
                 Column::make('project_id'),
                 Column::make('title'),
-                Column::make('approved_at'),
-                //Column::make('deadline'),
+                Column::computed('status')
+                    ->addClass('text-center'),
                 Column::computed('action')
                     ->exportable(false)
                     ->printable(false)
@@ -144,6 +147,6 @@ class ApprovedProjectDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'ApprovedProject_' . date('YmdHis');
+        return 'AllProject_' . date('YmdHis');
     }
 }

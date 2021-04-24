@@ -11,7 +11,7 @@ use Modules\Ums\Http\Requests\UserStoreRequest;
 use Modules\Ums\Http\Requests\UserUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\UserDataTable;
+use Modules\Ums\DataTables\UserDataTable;
 
 // services...
 use Modules\Ums\Services\RoleService;

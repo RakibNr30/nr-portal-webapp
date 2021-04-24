@@ -26,16 +26,26 @@ class ApprovedProjectController extends Controller
      * @var $projectService
      */
     protected $projectService;
+    protected $user;
 
     /**
      * Constructor
      *
      * @param ProjectService $projectService
+     * @param Auth $auth
      */
     public function __construct(ProjectService $projectService)
     {
+        $this->middleware(function ($request, $next) {
+            $this->user = User::find(auth()->user()->id);
+            if ($this->user->hasRole('admin') || $this->user->hasRole('super_admin'))
+            $this->middleware(['permission:approved_project']);
+            else {
+                $this->middleware(['permission:my_projects']);
+            }
+            return $next($request);
+        });
         $this->projectService = $projectService;
-        $this->middleware(['permission:my_project']);
     }
 
     /**
@@ -198,12 +208,14 @@ class ApprovedProjectController extends Controller
     /**
      * Update project
      *
-     * @param ProjectUpdateRequest $request
+     * @param ProjectFilesUpdateRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function filesUpdate(ProjectFilesUpdateRequest $request, $id)
     {
+        $currentCompany = $request->all()['file_company_id'];
+
         // get project
         $project = $this->projectService->find($id);
         // check if project doesn't exists
@@ -211,7 +223,7 @@ class ApprovedProjectController extends Controller
             // flash notification
             notifier()->error('Project not found!');
             // redirect back
-            return redirect()->back();
+            return redirect()->back()->with('currentCompany', $currentCompany);
         }
         // update project
         $project = $this->projectService->update($request->all(), $id);
@@ -265,8 +277,9 @@ class ApprovedProjectController extends Controller
             // flash notification
             notifier()->error('Project file cannot be updated successfully.');
         }
+
         // redirect back
-        return redirect()->back();
+        return redirect()->back()->with('currentCompany', $currentCompany);
     }
 
     /**
@@ -279,6 +292,7 @@ class ApprovedProjectController extends Controller
     public function approveByClient(ProjectApproveByClientUpdateRequest $request, $id)
     {
         $data = $request->all();
+        $currentCompany = $data['selected_company_id'];
 
         // get project
         $project = $this->projectService->find($id);
@@ -287,7 +301,7 @@ class ApprovedProjectController extends Controller
             // flash notification
             notifier()->error('Project not found!');
             // redirect back
-            return redirect()->back();
+            return redirect()->back()->with('currentCompany', $currentCompany);
         }
 
         $data['selected_company_id'] = array_map('intval', $data['selected_company_id']);
@@ -336,12 +350,12 @@ class ApprovedProjectController extends Controller
 
             // flash notification
             notifier()->success('Project approved by client successfully.');
-            return redirect()->route('backend.cms.project-approved.index');
+            return redirect()->route('backend.cms.project-accepted.index');
         } else {
             // flash notification
             notifier()->error('Project approved by client not successful.');
         }
         // redirect back
-        return redirect()->back();
+        return redirect()->back()->with('currentCompany', $currentCompany);
     }
 }

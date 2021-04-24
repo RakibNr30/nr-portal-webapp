@@ -12,7 +12,7 @@ use Modules\Ums\Http\Requests\UserStoreRequest;
 use Modules\Ums\Http\Requests\UserUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\AdminDataTable;
+use Modules\Ums\DataTables\AdminDataTable;
 
 // services...
 use Modules\Ums\Services\RoleService;

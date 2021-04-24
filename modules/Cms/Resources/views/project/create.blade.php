@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description" class="@error('description') text-danger @enderror">Project Description</label>
-                            <textarea id="description" name="description" class="form-control summernote" rows="3" placeholder="Enter project description" required>{{ old('description') }}</textarea>
+                            <textarea id="description" name="description" class="form-control summernote" rows="3" placeholder="Enter project description">{{ old('description') }}</textarea>
                             @error('description')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>

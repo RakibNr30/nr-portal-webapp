@@ -7,13 +7,14 @@ use App\Http\Controllers\Controller;
 
 // requests...
 use Carbon\Carbon;
+use Modules\Cms\Services\ProjectService;
 use Modules\Ums\Http\Requests\CompanyStoreRequest;
 use Modules\Ums\Http\Requests\CompanyUpdateRequest;
 use Modules\Ums\Http\Requests\UserStoreRequest;
 use Modules\Ums\Http\Requests\UserUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\CompanyDataTable;
+use Modules\Ums\DataTables\CompanyDataTable;
 
 // services...
 use Modules\Ums\Services\RoleService;
@@ -39,17 +40,29 @@ class CompanyController extends Controller
     protected $roleService;
 
     /**
+     * @var $basicInfoService
+     */
+    protected $projectService;
+
+    /**
      * Constructor
      *
      * @param UserService $userService
      * @param UserBasicInfoService $userBasicInfoService
      * @param RoleService $roleService
+     * @param ProjectService $projectService
      */
-    public function __construct(UserService $userService, UserBasicInfoService $userBasicInfoService, RoleService $roleService)
+    public function __construct(
+        UserService $userService,
+        UserBasicInfoService $userBasicInfoService,
+        RoleService $roleService,
+        ProjectService $projectService
+    )
     {
         $this->userService = $userService;
         $this->userBasicInfoService = $userBasicInfoService;
         $this->roleService = $roleService;
+        $this->projectService = $projectService;
         $this->middleware(['permission:user_controls']);
     }
 
@@ -88,12 +101,17 @@ class CompanyController extends Controller
     {
         // get data
         $data = $request->all();
+
+        $str_result_pass = '0123456789abcdefghijklmanopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
+        $tmp_pass = substr(str_shuffle($str_result_pass), 0, 10);
+        $password = $tmp_pass;
+
         $mail_data = [
             'mail_category_id' => 3,
-            'password' => $data['password'],
+            'password' => $password,
             'email' => $data['email']
         ];
-        $data['password'] = bcrypt($data['password']);
+        $data['password'] = bcrypt($password);
         $data['approved_at'] = Carbon::now();
         $data['approved_by'] = auth()->user()->id;
         $roles = $data['roles'];
@@ -132,7 +150,7 @@ class CompanyController extends Controller
             notifier()->error('Company cannot be created successfully.');
         }
         // redirect back
-        return redirect()->back();
+        return redirect()->route('backend.ums.company.index');
     }
 
     /**
@@ -159,8 +177,11 @@ class CompanyController extends Controller
         if (!in_array('company', $givenRoles)) {
             return redirect()->to('/');
         }
+        $projects = $this->projectService->findByCompany($user->id, 5);
+        $totalProjects = $this->projectService->findByCompanyAll($user->id);
+
         // return view
-        return view('ums::company.show', compact('user', 'givenRoles'));
+        return view('ums::company.show', compact('user', 'givenRoles', 'projects', 'totalProjects'));
     }
 
     /**

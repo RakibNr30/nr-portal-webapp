@@ -24,12 +24,10 @@ class UserResidentialInfoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            /*'present_country' => 'required',
+            'present_country' => 'required',
             'present_city' => 'required',
             'present_state' => 'required',
-            'permanent_country' => 'required',
-            'permanent_city' => 'required',
-            'permanent_state' => 'required'*/
+            'present_address_line_1' => 'required',
         ];
     }
 }

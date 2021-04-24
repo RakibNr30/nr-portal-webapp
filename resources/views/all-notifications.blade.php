@@ -61,10 +61,12 @@
 
                                             <?php
                                                 $user_avatar = App\User::where('id', $notify['notification_from'])->first();
+                                                $url = '/';
                                                 if (isset($notify->project_id)) {
                                                     $project_id = \Modules\Cms\Entities\Project::where('project_id', $notify->project_id)->first()->id;
                                                     if ($notify->type == "ProjectCreation") $url = '/backend/project/pending/' . $project_id;
                                                     else if ($notify->type == "ProjectApproval") $url = '/backend/project/approved/' . $project_id;
+                                                    else if ($notify->type == "ClientApproval") $url = '/backend/project/pending/' . $project_id;
                                                     else if ($notify->type == "ProjectClientApproval") $url = '/backend/project/accepted/' . $project_id;
                                                     else if ($notify->type == "ProjectCompanyFile") $url = '/backend/project/approved/' . $project_id;
                                                     else if ($notify->type == "ProjectAdminFile") $url = '/backend/project/approved/' . $project_id;

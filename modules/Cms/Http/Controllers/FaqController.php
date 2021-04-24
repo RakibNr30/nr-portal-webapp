@@ -9,7 +9,7 @@ use Modules\Cms\Http\Requests\FaqStoreRequest;
 use Modules\Cms\Http\Requests\FaqUpdateRequest;
 
 // datatable...
-use Modules\Cms\Datatables\FaqDatatable;
+use Modules\Cms\DataTables\FaqDatatable;
 
 // services...
 use Modules\Cms\Services\FaqService;

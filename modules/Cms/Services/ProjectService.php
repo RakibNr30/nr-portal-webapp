@@ -133,4 +133,62 @@ class ProjectService
         return $companies;
     }
 
+    /**
+     * Find data
+     *
+     * @param $id
+     * @param int $limit
+     * @return mixed
+     */
+    public function findByAuthor($id, $limit = 0)
+    {
+        return $this->projectRepository->model
+        ->where([
+            ['author_id', $id]
+        ])
+        ->orderBy('created_at', 'DESC')
+        ->paginate($limit);
+    }
+
+    /**
+     * Find data
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function findByAuthorAll($id)
+    {
+        return $this->projectRepository->model
+            ->where([
+                ['author_id', $id]
+            ])->get();
+    }
+
+    /**
+     * Find data
+     *
+     * @param $id
+     * @param int $limit
+     * @return mixed
+     */
+    public function findByCompany($id, $limit = 0)
+    {
+        return $this->projectRepository->model
+            ->whereJsonContains('company_id', $id)
+            ->orderBy('created_at', 'DESC')
+            ->paginate($limit);
+    }
+
+    /**
+     * Find data
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function findByCompanyAll($id)
+    {
+        return $this->projectRepository->model
+            ->whereJsonContains('company_id', $id)
+            ->get();
+    }
 }

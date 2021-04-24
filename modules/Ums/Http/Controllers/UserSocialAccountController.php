@@ -9,7 +9,7 @@ use Modules\Ums\Http\Requests\UserSocialAccountStoreRequest;
 use Modules\Ums\Http\Requests\UserSocialAccountUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\UserSocialAccountDataTable;
+use Modules\Ums\DataTables\UserSocialAccountDataTable;
 
 // services...
 use Modules\Ums\Services\UserService;

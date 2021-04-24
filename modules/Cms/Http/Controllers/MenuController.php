@@ -9,7 +9,7 @@ use Modules\Cms\Http\Requests\MenuStoreRequest;
 use Modules\Cms\Http\Requests\MenuUpdateRequest;
 
 // datatable...
-use Modules\Cms\Datatables\MenuDatatable;
+use Modules\Cms\DataTables\MenuDatatable;
 
 // services...
 use Modules\Cms\Services\MenuService;

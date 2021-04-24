@@ -29,7 +29,7 @@ class CreateProjectController extends Controller
     public function __construct(ProjectService $projectService)
     {
         $this->projectService = $projectService;
-        $this->middleware(['permission:my_project']);
+        $this->middleware(['permission:create_project']);
     }
 
     /**
@@ -67,8 +67,9 @@ class CreateProjectController extends Controller
         // check if project created
         if ($project) {
             // GENERATE AN UNIQUE KEY FOR A PROJECT
-            $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $tmp_id = substr(str_shuffle($str_result), 0, 13);
+            /*$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';*/
+            $str_result = '1234';
+            $tmp_id = substr(str_shuffle($str_result), 0, 4);
             $project_id = $tmp_id . $project->id;
 
             //$find_project_id = Project::where('project_id', $project_id)->first();
@@ -96,6 +97,6 @@ class CreateProjectController extends Controller
             notifier()->error('Project cannot be created now.');
         }
         // redirect back
-        return redirect()->route('backend.cms.project-pending.index');
+        return redirect()->route('backend.cms.my-project.index');
     }
 }

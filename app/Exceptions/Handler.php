@@ -71,7 +71,7 @@ class Handler extends ExceptionHandler
             } else if ($status_code == 405) {
                 $status = "Oops! Method Not Allowed!";
                 $message = "The GET method is not supported for this route. Supported method is POST";
-                return response()->view('front::error.index' . 'index', [
+                return response()->view('front::error.index', [
                     'status_code' => $status_code,
                     'status' => $status,
                     'message' => $message

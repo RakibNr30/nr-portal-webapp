@@ -1,15 +1,20 @@
 @extends('admin.layouts.master')
-
+@php
+    $user = \Modules\Ums\Entities\User::find(auth()->user()->id)
+@endphp
 @section('content')
     <div class="page-content">
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">Client</h4>
+                    <h4 class="page-title mb-0 font-size-18">Project</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">User Control</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('backend.ums.client-approved.index') }}">Clients</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Project</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('backend.cms.project-approved.index') }}">
+                                    {{ config('core.project_paginate.approved.' . $user->getRoleNames()[0]) }}
+                                </a>
+                            </li>
                             <li class="breadcrumb-item active">Update</li>
                         </ol>
                     </div>
@@ -21,7 +26,7 @@
                 @include('admin.partials._alert')
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4">Edit Client</h4>
+                        <h4 class="card-title mb-4">Edit Client From Approved</h4>
                         {!! Form::open(['url' => route('backend.ums.client-approved.update', [$user->id]),  'method' => 'put', 'files' => 'true']) !!}
                         <div class="form-group">
                             <label for="full_name" class="@error('full_name') text-danger @enderror">Full Name</label>
@@ -120,7 +125,7 @@
                             <a href="{{ route('backend.ums.client-approved.index') }}" type="button"
                                class="btn btn-danger waves-effect waves-light">Cancel
                             </a>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Approve
                             </button>
                         </div>
                         {!! Form::close() !!}

@@ -12,7 +12,7 @@ use Carbon\Carbon;
 // datatable...
 use Illuminate\Support\Facades\Auth;
 use Modules\Cms\Services\ProjectService;
-use Modules\Ums\Datatables\ClientRequestDataTable;
+use Modules\Ums\DataTables\ClientRequestDataTable;
 
 // services...
 use Modules\Ums\Entities\UserBasicInfo;
@@ -100,13 +100,17 @@ class ClientRequestController extends Controller
         // get data
         $data = $request->all();
 
+        $str_result_pass = '0123456789abcdefghijklmanopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
+        $tmp_pass = substr(str_shuffle($str_result_pass), 0, 10);
+        $password = $tmp_pass;
+
         $mail_data = [
             'mail_category_id' => 1,
-            'password' => $data['password'],
+            'password' => $password,
             'email' => $data['email']
         ];
 
-        $data['password'] = bcrypt($data['password']);
+        $data['password'] = bcrypt($password);
         $data['approved_at'] = Carbon::now();
         $data['approved_by'] = auth()->user()->id;
         $roles = $data['roles'];
@@ -138,9 +142,12 @@ class ClientRequestController extends Controller
             $project = $this->projectService->create($data);
             if ($basicInfo && $residentialInfo && $project) {
                 // GENERATE AN UNIQUE KEY FOR A PROJECT
-                $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $tmp_id = substr(str_shuffle($str_result), 0, 13);
+
+                /*$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';*/
+                $str_result = '1234';
+                $tmp_id = substr(str_shuffle($str_result), 0, 4);
                 $project_id = $tmp_id . $project->id;
+
                 $mail_data['project_id'] = $project->id;
                 $data = [
                     'project_id' => $project_id,
@@ -162,12 +169,13 @@ class ClientRequestController extends Controller
 
                 // Notification for Client
                 Notification::create([
+                    'project_id' => $project_id,
                     'type' => 'ClientApproval',
                     'notification_from' => auth()->user()->id,
                     'notification_to' => $user->id,
                     'notification_to_type' => 'client',
                     'notification_from_type' => 'admin',
-                    'message' => 'An admin has approved your request. Check it.',
+                    'message' => 'Your request has been approved and Project #'.$project_id.'. created. Check it.',
                     'status' => 'unseen',
                 ]);
 

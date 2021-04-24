@@ -10,7 +10,7 @@ use Modules\Ums\Http\Requests\UserBasicInfoStoreRequest;
 use Modules\Ums\Http\Requests\UserBasicInfoUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\UserBasicInfoDataTable;
+use Modules\Ums\DataTables\UserBasicInfoDataTable;
 
 // services...
 use Modules\Ums\Services\UserBasicInfoService;

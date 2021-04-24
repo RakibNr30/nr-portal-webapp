@@ -9,7 +9,7 @@ use Modules\Cms\Http\Requests\PageStoreRequest;
 use Modules\Cms\Http\Requests\PageUpdateRequest;
 
 // datatable...
-use Modules\Cms\Datatables\PageDatatable;
+use Modules\Cms\DataTables\PageDatatable;
 
 // services...
 use Modules\Cms\Services\PageCategoryService;

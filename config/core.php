@@ -21,85 +21,85 @@ return [
             "children" => []
         ],
         [
-            "name" => "Project",
-            "id" => "my_project",
-            "icon" => "fa-tasks",
-            "url" => "",
-            "permission" => "my_project",
-            "children" => [
-                [
-                    "name" => "Create",
-                    "name_client" => "Create",
-                    "name_company" => "Create",
-                    "name_admin" => "Create",
-                    "name_super_admin" => "Create",
-                    "id" => "create_project",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/project/create",
-                    "permission" => "create_project",
-                ],
-                [
-                    "name" => "Pending",
-                    "name_client" => "Pending",
-                    "name_company" => "Pending",
-                    "name_admin" => "Pending",
-                    "name_super_admin" => "Pending",
-                    "id" => "pending_project",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/project/pending",
-                    "permission" => "pending_project",
-                ],
-                [
-                    "name" => "Approved",
-                    "name_client" => "In Progress",
-                    "name_company" => "Assigned",
-                    "name_admin" => "In Progress",
-                    "name_super_admin" => "In Progress",
-                    "id" => "approved_project",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/project/approved",
-                    "permission" => "approved_project",
-                ],
-                [
-                    "name" => "Accepted",
-                    "name_client" => "Accepted",
-                    "name_company" => "In Progress",
-                    "name_admin" => "Accepted",
-                    "name_super_admin" => "Accepted",
-                    "id" => "accepted_project",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/project/accepted",
-                    "permission" => "accepted_project",
-                ]
-            ]
+            "name" => "Create Project",
+            "name_client" => "Create Project",
+            "name_company" => "Create Project",
+            "name_admin" => "Create Project",
+            "name_super_admin" => "Create Project",
+            "id" => "project",
+            "icon" => "fa-plus-circle",
+            "url" => "/backend/project/create",
+            "permission" => "create_project",
         ],
         [
-            "name" => "Client",
-            "id" => "client",
-            "icon" => "fa-certificate",
-            "url" => "",
-            "permission" => "user_controls",
-            "children" => [
-                [
-                    "name" => "Request",
-                    "id" => "client_request",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/client/request",
-                    "permission" => "client_request",
-                ],
-                [
-                    "name" => "Approved",
-                    "id" => "client_approved",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/client/approved",
-                    "permission" => "client_approved",
-                ]
-            ]
+            "name" => "My Projects",
+            "name_client" => "My Projects",
+            "name_company" => "My Projects",
+            "name_admin" => "",
+            "name_super_admin" => "",
+            "id" => "project",
+            "icon" => "fa-check-circle",
+            "url" => "/backend/my-project",
+            "permission" => "my_projects",
+        ],
+        [
+            "name" => "Pending Projects",
+            "name_client" => "Pending Projects",
+            "name_company" => "Pending Projects",
+            "name_admin" => "Pending Projects",
+            "name_super_admin" => "Pending Projects",
+            "id" => "project",
+            "icon" => "fa-ban",
+            "url" => "/backend/project/pending",
+            "permission" => "pending_project",
+        ],
+        [
+            "name" => "Approved Projects",
+            "name_client" => "In Progress Projects",
+            "name_company" => "Assigned Projects",
+            "name_admin" => "In Progress Projects",
+            "name_super_admin" => "In Progress Projects",
+            "id" => "project",
+            "icon" => "fa-spinner",
+            "url" => "/backend/project/approved",
+            "permission" => "approved_project",
+        ],
+        [
+            "name" => "Accepted Projects",
+            "name_client" => "Accepted Projects",
+            "name_company" => "In Progress Projects",
+            "name_admin" => "Accepted Projects",
+            "name_super_admin" => "Accepted Projects",
+            "id" => "project",
+            "icon" => "fa-check-circle",
+            "url" => "/backend/project/accepted",
+            "permission" => "accepted_project",
+        ],
+        [
+            "name" => "Client Request",
+            "id" => "client_request",
+            "icon" => "fa-user-plus",
+            "url" => "/backend/client/request",
+            "permission" => "client_request",
+        ],
+        [
+            "name" => "Clients",
+            "id" => "clients",
+            "icon" => "fa-user-friends",
+            "url" => "/backend/client/approved",
+            "permission" => "client_approved",
+        ],
+        [
+            "name" => "Companies",
+            "id" => "companies",
+            "icon" => "fa-industry",
+            "url" => "/backend/company",
+            "permission" => "company",
         ],
         [
             "name" => "User Controls",
             "id" => "user_controls",
-            "icon" => "fa-users",
+            "icon" => "fa-users-cog",
             "url" => "",
             "permission" => "user_controls",
             "children" => [
@@ -109,13 +109,6 @@ return [
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/admin",
                     "permission" => "admin",
-                ],
-                [
-                    "name" => "Company",
-                    "id" => "company",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/company",
-                    "permission" => "company",
                 ]
             ]
         ],
@@ -162,43 +155,7 @@ return [
             "icon" => "fa-envelope-open-text",
             "url" => "/backend/mail-template",
             "permission" => "mail_settings",
-            "children" => [
-               /* [
-                    "name" => "Client Approve",
-                    "id" => "client_approval",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/mail-setting/client-approval",
-                    "permission" => "mail_settings",
-                ],
-                [
-                    "name" => "Company Create",
-                    "id" => "company_creation",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/mail-setting/company-creation",
-                    "permission" => "mail_settings",
-                ],
-                [
-                    "name" => "Project Approve",
-                    "id" => "project_approval",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/mail-setting/project-approval",
-                    "permission" => "mail_settings",
-                ],
-                [
-                    "name" => "Company Select",
-                    "id" => "company_selection",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/mail-setting/company-selection",
-                    "permission" => "mail_settings",
-                ],
-                [
-                    "name" => "Company Accept",
-                    "id" => "company_acceptation",
-                    "icon" => "fa-arrow-right",
-                    "url" => "/backend/mail-setting/company-acceptation",
-                    "permission" => "mail_settings",
-                ]*/
-            ]
+            "children" => []
         ]
     ],
     // profile menu
@@ -227,14 +184,14 @@ return [
             "permission" => "residential_info",
             "children" => []
         ],
-        [
+        /*[
             "name" => "Social Account",
             "id" => "social_account",
             "icon" => "fa-user",
             "url" => "/backend/profile/social-account",
             "permission" => "social_account",
             "children" => []
-        ],
+        ],*/
         [
             "name" => "Change Password",
             "id" => "change_password",

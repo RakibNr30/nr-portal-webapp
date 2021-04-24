@@ -166,7 +166,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    {{--<div class="form-group col-md-6">
                                         <label for="gender"
                                                class="@error('gender') text-danger @enderror">Gender</label>
                                         <select id="gender" name="gender"
@@ -181,7 +181,7 @@
                                         <span class="invalid-feedback"
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
-                                    </div>
+                                    </div>--}}
                                     {{--<div class="form-group col-md-4">
                                         <label for="blood_group" class="@error('blood_group') text-danger @enderror">Blood
                                             Group</label>

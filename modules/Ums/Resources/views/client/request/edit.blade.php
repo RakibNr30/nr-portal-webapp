@@ -146,7 +146,7 @@
                             </div>
                         </div>
 
-                        <h5>Account Information</h5>
+                        {{--<h5>Account Information</h5>
                         <hr>
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -173,7 +173,7 @@
                                       role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
-                        </div>
+                        </div>--}}
 
                         <input type="hidden" name="client_id" value="{{ $clientRequest->id }}">
                         <input type="hidden" name="roles[]" value="client">

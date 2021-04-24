@@ -9,7 +9,7 @@ use Modules\Cms\Http\Requests\SliderStoreRequest;
 use Modules\Cms\Http\Requests\SliderUpdateRequest;
 
 // datatable...
-use Modules\Cms\Datatables\SliderDatatable;
+use Modules\Cms\DataTables\SliderDatatable;
 
 // services...
 use Modules\Cms\Services\SliderService;

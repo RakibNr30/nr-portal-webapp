@@ -38,4 +38,9 @@ class NotificationController extends Controller
 
         return view('all-notifications', compact('notifications', 'notifications_count'));
     }
+
+    public function inbox()
+    {
+        return view('inbox');
+    }
 }

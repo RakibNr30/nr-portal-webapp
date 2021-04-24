@@ -9,7 +9,7 @@ use Modules\Ums\Http\Requests\ModuleStoreRequest;
 use Modules\Ums\Http\Requests\ModuleUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\ModuleDatatable;
+use Modules\Ums\DataTables\ModuleDatatable;
 
 // services...
 use Modules\Ums\Services\ModuleService;

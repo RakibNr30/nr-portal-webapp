@@ -9,7 +9,7 @@ use Modules\Cms\Http\Requests\ContentStoreRequest;
 use Modules\Cms\Http\Requests\ContentUpdateRequest;
 
 // datatable...
-use Modules\Cms\Datatables\ContentDatatable;
+use Modules\Cms\DataTables\ContentDatatable;
 
 // services...
 use Modules\Cms\Services\ContentCategoryService;

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 // requests...
 use Carbon\Carbon;
+use Modules\Cms\Services\ProjectService;
 use Modules\Ums\Http\Requests\ClientRequestUpdateRequest;
 use Modules\Ums\Http\Requests\UserUpdateRequest;
 
@@ -42,19 +43,32 @@ class ClientApprovedController extends Controller
     protected $userResidentialInfoService;
 
     /**
+     * @var $basicInfoService
+     */
+    protected $projectService;
+
+    /**
      * Constructor
      *
      * @param UserService $userService
      * @param UserBasicInfoService $userBasicInfoService
      * @param RoleService $roleService
      * @param UserResidentialInfoService $userResidentialInfoService
+     * @param ProjectService $projectService
      */
-    public function __construct(UserService $userService, UserBasicInfoService $userBasicInfoService, RoleService $roleService,  UserResidentialInfoService $userResidentialInfoService)
+    public function __construct(
+        UserService $userService,
+        UserBasicInfoService $userBasicInfoService,
+        RoleService $roleService,
+        UserResidentialInfoService $userResidentialInfoService,
+        ProjectService $projectService
+    )
     {
         $this->userService = $userService;
         $this->userBasicInfoService = $userBasicInfoService;
         $this->roleService = $roleService;
         $this->userResidentialInfoService = $userResidentialInfoService;
+        $this->projectService = $projectService;
         $this->middleware(['permission:user_controls']);
     }
 
@@ -93,8 +107,12 @@ class ClientApprovedController extends Controller
         if (!in_array('client', $givenRoles)) {
             return redirect()->to('/');
         }
+
+        $projects = $this->projectService->findByAuthor($user->id, 5);
+        $totalProjects = $this->projectService->findByAuthorAll($user->id);
+
         // return view
-        return view('ums::client.approved.show', compact('user'));
+        return view('ums::client.approved.show', compact('user', 'projects', 'totalProjects'));
     }
 
     /**
@@ -167,14 +185,14 @@ class ClientApprovedController extends Controller
             $basicInfo->uploadFiles();
             if ($basicInfo && $residentialInfo) {
                 // flash notification
-                notifier()->success('Approved client updated successfully.');
+                notifier()->success('Client updated successfully.');
             } else {
                 // flash notification
-                notifier()->error('Approved client cannot be updated successfully.');
+                notifier()->error('Client cannot be updated successfully.');
             }
         } else {
             // flash notification
-            notifier()->error('Approved client cannot be updated successfully.');
+            notifier()->error('Client cannot be updated successfully.');
         }
         // redirect back
         return redirect()->back();
@@ -193,17 +211,17 @@ class ClientApprovedController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Approved client not found!');
+            notifier()->error('Client not found!');
             // redirect back
             return redirect()->back();
         }
         // delete user
         if ($this->userService->delete($id)) {
             // flash notification
-            notifier()->success('Approved client deleted successfully.');
+            notifier()->success('Client deleted successfully.');
         } else {
             // flash notification
-            notifier()->success('Approved client cannot be deleted successfully.');
+            notifier()->success('Client cannot be deleted successfully.');
         }
         // redirect back
         return redirect()->back();

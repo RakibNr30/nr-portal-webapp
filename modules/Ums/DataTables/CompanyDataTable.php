@@ -98,9 +98,9 @@ class CompanyDataTable extends DataTable
             Column::make('name')->name('user_basic_info.last_name')->hidden(), // alias used,
             Column::make('phone'),
             Column::make('email'),
-            Column::make('approver_name')->name('approver_basic_info.first_name')->title('Approved By'), // alias used
-            Column::make('approver_name')->name('approver_basic_info.last_name')->hidden(), // alias used
-            Column::make('created_at')->title('Registered At'),
+            //Column::make('approver_name')->name('approver_basic_info.first_name')->title('Approved By'), // alias used
+            //Column::make('approver_name')->name('approver_basic_info.last_name')->hidden(), // alias used
+            //Column::make('created_at')->title('Registered At'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

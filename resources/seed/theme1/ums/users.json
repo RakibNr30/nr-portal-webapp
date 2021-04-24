@@ -1,81 +1,27 @@
 [
     {
-        "roles": ["super_admin"],
-        "username": "superadmin",
-        "phone": "+880 1XXXX XXXXXX",
-        "email": "superadmin@example.com",
-        "password": "password",
-        "basic_info":
-        {
-            "first_name": "Super Admin",
-            "last_name": null,
-            "about": null,
-            "designation": "Owner",
-            "personal_email": "superadmin@example.com",
-            "mobile_no": "+880 1XXXX XXXXXX",
-            "blood_group": "B+",
-            "gender": "Male"
-        }
-    },
-    {
         "roles": ["admin"],
         "username": "admin",
         "phone": "+880 1XXXX XXXXXX",
-        "email": "admin@example.com",
+        "email": "J.spikker@live.nl",
         "password": "password",
         "basic_info":
         {
-            "first_name": "Admin",
-            "last_name": null,
+            "first_name": "Jordy",
+            "last_name": "Spikker",
             "about": null,
             "designation": "Owner",
-            "personal_email": "admin@example.com",
-            "mobile_no": "+880 1XXXX XXXXXX",
-            "blood_group": "B+",
-            "gender": "Male"
-        }
-    },
-    {
-        "roles": ["admin"],
-        "username": "admin",
-        "phone": "+880 1XXXX XXXXXX",
-        "email": "admin1@example.com",
-        "password": "password",
-        "basic_info":
-        {
-            "first_name": "Admin One",
-            "last_name": null,
-            "about": null,
-            "designation": "Owner",
-            "personal_email": "admin1@example.com",
-            "mobile_no": "+880 1XXXX XXXXXX",
-            "blood_group": "B+",
-            "gender": "Male"
-        }
-    },
-    {
-        "roles": ["company"],
-        "username": "company",
-        "phone": "+880 1XXXX XXXXXX",
-        "email": "company@example.com",
-        "password": "password",
-        "basic_info":
-        {
-            "first_name": "Company",
-            "last_name": null,
-            "about": "If your company has an interesting and lengthy history, you might consider creating a visual timeline, like Nordstrom did on their company profile. The profile reads like a creative story from the very first line -- \"In 1887, John W. Nordstrom, at 16 years old, left Sweden for the United States. He arrived in New York with $5 in his pocket, unable to speak a word of English.\" With a good balance of image and text, the timeline serves as a reminder of Nordstrom's stability and growth.",
-            "designation": "Owner",
-            "personal_email": "company@example.com",
+            "personal_email": "j.spikker@live.nl",
             "mobile_no": "+880 1XXXX XXXXXX",
             "blood_group": null,
-            "gender": null
+            "gender": "Male"
         }
     },
     {
         "roles": ["company"],
         "username": "company1",
         "phone": "+880 1XXXX XXXXXX",
-        "email": "company1@example.com",
+        "email": "snigdho2011@gmail.com",
         "password": "password",
         "basic_info":
         {
@@ -83,7 +29,7 @@
             "last_name": null,
             "about": "If your company has an interesting and lengthy history, you might consider creating a visual timeline, like Nordstrom did on their company profile. The profile reads like a creative story from the very first line -- \"In 1887, John W. Nordstrom, at 16 years old, left Sweden for the United States. He arrived in New York with $5 in his pocket, unable to speak a word of English.\" With a good balance of image and text, the timeline serves as a reminder of Nordstrom's stability and growth.",
             "designation": "Owner",
-            "personal_email": "company1@example.com",
+            "personal_email": "snigdho2011@gmail.com",
             "mobile_no": "+880 1XXXX XXXXXX",
             "blood_group": null,
             "gender": null
@@ -129,36 +75,18 @@
         "roles": ["client"],
         "username": "client",
         "phone": "+880 1XXXX XXXXXX",
-        "email": "client@example.com",
+        "email": "rakib.cse14th@gmail.com",
         "password": "password",
         "basic_info":
         {
-            "first_name": "Client",
-            "last_name": null,
+            "first_name": "Abdur",
+            "last_name": "Rakib",
             "about": null,
             "designation": "Owner",
-            "personal_email": "client@example.com",
+            "personal_email": "rakib.cse14th@gmail.com",
             "mobile_no": "+880 1XXXX XXXXXX",
-            "blood_group": null,
-            "gender": null
-        }
-    },
-    {
-        "roles": ["client"],
-        "username": "client1",
-        "phone": "+880 1XXXX XXXXXX",
-        "email": "client1@example.com",
-        "password": "password",
-        "basic_info":
-        {
-            "first_name": "Client One",
-            "last_name": null,
-            "about": null,
-            "designation": "Owner",
-            "personal_email": "client2@example.com",
-            "mobile_no": "+880 1XXXX XXXXXX",
-            "blood_group": null,
-            "gender": null
+            "blood_group": "B (+ve)",
+            "gender": "Male"
         }
     }
 ]

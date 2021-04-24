@@ -24,14 +24,38 @@
                             <li>
                                 <a href="{{ $nav['url'] }}" class=" waves-effect">
                                     <i class="fas {{ $nav['icon'] }}"></i>
-                                    <span>{{ $nav['name'] }}</span>
+                                    @if($nav['id'] == 'project')
+                                        @if($user->hasRole('client'))
+                                            {{ $nav['name_client'] }}
+                                        @elseif($user->hasRole('company'))
+                                            {{ $nav['name_company'] }}
+                                        @elseif($user->hasRole('admin'))
+                                            {{ $nav['name_admin'] }}
+                                        @elseif($user->hasRole('super_admin'))
+                                            {{ $nav['name_super_admin'] }}
+                                        @endif
+                                    @else
+                                        {{ $nav['name'] }}
+                                    @endif
                                 </a>
                             </li>
                         @else
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="fas {{ $nav['icon'] }}"></i>
-                                    <span>{{ $nav['name'] }}</span>
+                                    @if($nav['id'] == 'project')
+                                        @if($user->hasRole('client'))
+                                            {{ $nav['name_client'] }}
+                                        @elseif($user->hasRole('company'))
+                                            {{ $nav['name_company'] }}
+                                        @elseif($user->hasRole('admin'))
+                                            {{ $nav['name_admin'] }}
+                                        @elseif($user->hasRole('super_admin'))
+                                            {{ $nav['name_super_admin'] }}
+                                        @endif
+                                    @else
+                                        {{ $nav['name'] }}
+                                    @endif
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     @foreach($nav['children'] as $subNav)
@@ -40,19 +64,7 @@
                                                 <li>
                                                     <a href="{{ $subNav['url'] }}">
                                                         <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
-                                                        @if($nav['id'] == 'my_project')
-                                                            @if($user->hasRole('client'))
-                                                                {{ $subNav['name_client'] }}
-                                                            @elseif($user->hasRole('company'))
-                                                                {{ $subNav['name_company'] }}
-                                                            @elseif($user->hasRole('admin'))
-                                                                    {{ $subNav['name_admin'] }}
-                                                            @elseif($user->hasRole('super_admin'))
-                                                                {{ $subNav['name_super_admin'] }}
-                                                            @endif
-                                                        @else
-                                                            {{ $subNav['name'] }}
-                                                        @endif
+                                                        {{ $subNav['name'] }}
                                                     </a>
                                                 </li>
                                             @else
@@ -60,19 +72,7 @@
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
                                                         <span>
-                                                            @if($nav['id'] == 'my_project')
-                                                                @if($user->hasRole('client'))
-                                                                    {{ $subNav['name_client'] }}
-                                                                @elseif($user->hasRole('company'))
-                                                                    {{ $subNav['name_company'] }}
-                                                                @elseif($user->hasRole('admin'))
-                                                                    {{ $subNav['name_admin'] }}
-                                                                @elseif($user->hasRole('super_admin'))
-                                                                    {{ $subNav['name_super_admin'] }}
-                                                                @endif
-                                                            @else
-                                                                {{ $subNav['name'] }}
-                                                            @endif
+                                                            {{ $subNav['name'] }}
                                                         </span>
                                                     </a>
                                                     <ul class="sub-menu" aria-expanded="true">

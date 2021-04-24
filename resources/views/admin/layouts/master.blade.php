@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="" name="description" />
 
     <link rel="shortcut icon" href="{{ $global_site->favicon->file_url ?? config('core.image.default.favicon') }}">
@@ -18,6 +19,7 @@
     <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" />
 
     <style type="text/css">
         .not-message {
@@ -33,20 +35,38 @@
 
     @yield('style')
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 <body data-layout="detached" data-topbar="colored">
-    <div class="container-fluid">
-        <div id="layout-wrapper">
-            @include('admin.partials._header')
+    <div id="app">
+        @if(Auth::check())
+            @if (url()->current() != url('/inbox'))
+                <div style="display: none !important;"><chat :user="{{ auth()->user() }}"></chat></div>
+            @endif
 
-            @include('admin.partials._menubar')
+            <audio id="noty_audio">                    
+                <source src="{{ asset('audio/notify.mp3') }}">
+                <source src="{{ asset('audio/notify.oog') }}">
+                <source src="{{ asset('audio/notify.wav') }}">
+            </audio> 
+        @endif
+        <init></init>
 
-            <div class="main-content">
+        <div class="container-fluid">
+            <div id="layout-wrapper">
+                @include('admin.partials._header')
 
-                @yield('content')
+                @include('admin.partials._menubar')
 
-                @include('admin.partials._footer')
+                <div class="main-content">
 
+                    @yield('content')
+
+                    @include('admin.partials._footer')
+
+                </div>
             </div>
         </div>
     </div>
@@ -69,18 +89,62 @@
     <script src="{{ asset('admin/js/app.js') }}"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
 
-<script>
-    $('.datepicker').datepicker({
-        todayHighlight: false,
-        format: 'yyyy-mm-dd',
-        changeMonth: true,
-        changeYear: true,
-        autoclose: true
-    })
-    $('textarea').summernote({
-        height: 200
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                todayHighlight: false,
+                format: 'yyyy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                autoclose: true
+            });
+        });
+        
+
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 200
+            });
+        });
+        
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+    <script>        
+        @if(Session::has('noty-success')) new Noty({ 
+                type:'success', 
+                layout:'bottomLeft', 
+                text: '{{ Session::get('noty-success') }}', 
+                timeout: 5000
+            }).show(); 
+        @endif
+
+        @if(Session::has('noty-info')) new Noty({ 
+                type:'info', 
+                layout:'bottomLeft', 
+                text: '{{ Session::get('noty-info') }}', 
+                timeout: 5000
+            }).show(); 
+        @endif
+
+        @if(Session::has('noty-error')) new Noty({ 
+                type:'error', 
+                layout:'bottomLeft', 
+                text: '{{ Session::get('noty-error') }}', 
+                timeout: 5000
+            }).show(); 
+        @endif
+
+        @if(Session::has('noty-warning')) new Noty({ 
+                type:'warning', 
+                layout:'bottomLeft', 
+                text: '{{ Session::get('noty-warning') }}', 
+                timeout: 5000
+            }).show(); 
+        @endif
+    </script>
+
+    <script src="{{ mix('/js/app.js') }}"></script>
 
 </body>
 </html>

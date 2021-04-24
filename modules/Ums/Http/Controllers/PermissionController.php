@@ -9,7 +9,7 @@ use Modules\Ums\Http\Requests\PermissionStoreRequest;
 use Modules\Ums\Http\Requests\PermissionUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\PermissionDatatable;
+use Modules\Ums\DataTables\PermissionDatatable;
 
 // services...
 use Modules\Ums\Services\PermissionService;

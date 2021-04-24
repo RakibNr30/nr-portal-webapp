@@ -65,7 +65,7 @@
                                       role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
+                            {{--<div class="form-group col-md-6">
                                 <label for="password"
                                        class="@error('password') text-danger @enderror">Password *</label>
                                 <input id="password" name="password" value="{{ old('password') }}"
@@ -88,7 +88,7 @@
                                 <span class="invalid-feedback"
                                       role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
-                            </div>
+                            </div>--}}
                             <div class="form-group col-md-12">
                                 <label for="avatar" class="@error('avatar') text-danger @enderror">Company Avatar</label>
                                 <input id="avatar" name="avatar" value="{{ old('avatar') }}" type="file" class="form-control @error('avatar') is-invalid @enderror" placeholder="Select File" autofocus>

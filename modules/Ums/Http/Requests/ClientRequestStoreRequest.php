@@ -28,7 +28,7 @@ class ClientRequestStoreRequest extends FormRequest
             'avatar' => 'sometimes|image|max:512',
             'email' => 'required|unique:users',
             'phone' => 'required|unique:users',
-            'password' => 'required|min:6|confirmed',
+            /*'password' => 'required|min:6|confirmed',*/
             'roles' => 'required|array|min:1',
             'street_name' => 'required',
             'house_number' => 'required',

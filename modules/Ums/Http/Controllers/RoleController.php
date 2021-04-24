@@ -9,7 +9,7 @@ use Modules\Ums\Http\Requests\RoleStoreRequest;
 use Modules\Ums\Http\Requests\RoleUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\RoleDatatable;
+use Modules\Ums\DataTables\RoleDatatable;
 
 // services...
 use Modules\Ums\Services\PermissionService;

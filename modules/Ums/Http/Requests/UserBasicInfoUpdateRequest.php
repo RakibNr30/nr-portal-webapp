@@ -25,7 +25,7 @@ class UserBasicInfoUpdateRequest extends FormRequest
     {
         return [
             'first_name' => 'required',
-            'gender' => 'required'
+            'designation' => 'required'
         ];
     }
 }

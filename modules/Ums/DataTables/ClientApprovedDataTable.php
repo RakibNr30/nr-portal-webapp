@@ -99,9 +99,9 @@ class ClientApprovedDataTable extends DataTable
             Column::make('company_name')->name('user_basic_info.company_name'),
             Column::make('phone'),
             Column::make('email'),
-            Column::make('approver_name')->name('approver_basic_info.first_name')->title('Approved By'), // alias used
-            Column::make('approver_name')->name('approver_basic_info.last_name')->hidden(), // alias used
-            Column::make('approved_at')->title('Approved At'),
+            //Column::make('approver_name')->name('approver_basic_info.first_name')->title('Approved By'), // alias used
+            //Column::make('approver_name')->name('approver_basic_info.last_name')->hidden(), // alias used
+            //Column::make('approved_at')->title('Approved At'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

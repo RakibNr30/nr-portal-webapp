@@ -83,7 +83,7 @@
                                     <a href="{{ route('backend.ums.company.index') }}" type="button"
                                        class="btn btn-danger waves-effect waves-light">Cancel
                                     </a>
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Update
                                     </button>
                                 </div>
                             </div>

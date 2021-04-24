@@ -9,7 +9,7 @@ use Modules\Ums\Http\Requests\UserResidentialInfoStoreRequest;
 use Modules\Ums\Http\Requests\UserResidentialInfoUpdateRequest;
 
 // datatable...
-use Modules\Ums\Datatables\UserResidentialInfoDataTable;
+use Modules\Ums\DataTables\UserResidentialInfoDataTable;
 
 // services...
 use Modules\Ums\Services\UserResidentialInfoService;
