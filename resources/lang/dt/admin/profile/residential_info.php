@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'profile' => 'Profile',
+    'my_profile' => 'My Profile',
+    'residential_info' => 'Residential Info',
+    'update_residential_info' => 'Update Residential Info',
+    'present_address' => 'Present Address',
+    'country' => 'Country',
+    'enter_country' => 'Enter country',
+    'state' => 'State',
+    'enter_state' => 'Enter country',
+    'city' => 'City',
+    'enter_city' => 'Enter country',
+    'zip_code' => 'Zip Code',
+    'enter_zip_code' => 'Enter zip code',
+    'street_name' => 'Street Name',
+    'enter_street_name' => 'Enter street name',
+    'house_number' => 'House Number',
+    'enter_house_number' => 'Enter house number',
+    'address_line_1' => 'Address Line 1',
+    'enter_address_line_1' => 'Enter address line 1',
+    'address_line_2' => 'Address Line 2',
+    'enter_address_line_2' => 'Enter address line 2',
+    'permanent_address' => 'Permanent Address',
+    'save_changes' => 'Save Changes',
+];

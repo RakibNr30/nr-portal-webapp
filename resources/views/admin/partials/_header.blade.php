@@ -2,46 +2,25 @@
     <div class="navbar-header">
         <div class="container-fluid">
             <div class="float-right">
-
-              {{--  <div class="dropdown d-inline-block d-lg-none ml-2">
-                    <button type="button" class="btn header-item noti-icon waves-effect"
-                            id="page-header-search-dropdown" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        <i class="mdi mdi-magnify"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                         aria-labelledby="page-header-search-dropdown">
-
-                        <form class="p-3">
-                            <div class="form-group m-0">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search ..."
-                                           aria-label="Recipient's username">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>--}}
-
                 <div class="dropdown d-none d-sm-inline-block">
                     <button type="button" class="btn header-item waves-effect" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <img class="" src="{{ asset('admin/images/flags/us.jpg') }}" alt="Header Language" height="16">
+                        @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                            <img class="" src="{{ asset('admin/images/flags/us.jpg') }}" alt="Header Language" height="16">
+                        @else
+                            <img class="" src="{{ asset('admin/images/flags/dutch.png') }}" alt="Header Language" height="16">
+                        @endif
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <a href="{{ '?lang=en' }}" class="dropdown-item notify-item">
                             <img src="{{ asset('admin/images/flags/us.jpg') }}" alt="user-image" class="mr-1"
                                  height="12"> <span class="align-middle">English</span>
                         </a>
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <a href="{{ '?lang=dt' }}" class="dropdown-item notify-item">
                             <img src="{{ asset('admin/images/flags/dutch.png') }}" alt="user-image" class="mr-1"
-                                 height="12"> <span class="align-middle">Dutch</span>
+                                 height="12"> <span class="align-middle">{{ __('admin/master.dutch') }}</span>
                         </a>
                     </div>
                 </div>
@@ -86,10 +65,10 @@
                         <div class="p-3">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h6 class="m-0"> Notifications </h6>
+                                    <h6 class="m-0"> {{ __('admin/master.notifications') }} </h6>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="{{ url('/notifications') }}" class="small"> View All</a>
+                                    <a href="{{ url('/notifications') }}" class="small"> {{ __('admin/master.view_all') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +109,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="font-size-14 text-muted">
-                                            <p class="mb-1" style="color: #495057; font-weight: 450;">No new notification!</p>
+                                            <p class="mb-1" style="color: #495057; font-weight: 450;">{{ __('admin/master.no_new_notification') }}!</p>
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +118,7 @@
                     @endif
                         <div class="p-2 border-top">
                             <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="{{ url('/notifications') }}">
-                                <i class="mdi mdi-arrow-right-circle mr-1"></i> View More..
+                                <i class="mdi mdi-arrow-right-circle mr-1"></i> {{ __('admin/master.view_more') }}..
                             </a>
                         </div>
                     </div>
@@ -157,21 +136,22 @@
                         <!-- item-->
                         <a class="dropdown-item" href="{{ url('/backend/profile/account-info') }}">
                             <i class="bx bx-user font-size-16 align-middle mr-1"></i>
-                            My Profile
+                            {{ __('admin/master.my_profile') }}
                         </a>
                         <a class="dropdown-item d-block" href="{{ url('/backend/profile/account-info') }}">
                             <i class="bx bx-wrench font-size-16 align-middle mr-1"></i>
-                            Account Settings
+                            {{ __('admin/master.account_setting') }}
                         </a>
                         <a class="dropdown-item d-block" href="{{ url('/backend/profile/change-password') }}">
                             <i class="bx bxs-key font-size-16 align-middle mr-1"></i>
-                            Change Password
+                            {{ __('admin/master.change_password') }}
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-                            <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout
+                            <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i>
+                            {{ __('admin/master.logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -191,18 +171,10 @@
                         </span>
                     </a>
                 </div>
-
                 <button type="button" class="btn btn-sm px-3 font-size-16 header-item toggle-btn waves-effect"
                         id="vertical-menu-btn">
                     <i class="fa fa-fw fa-bars"></i>
                 </button>
-
-                {{--<form class="app-search d-none d-lg-inline-block">
-                    <div class="position-relative">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="bx bx-search-alt"></span>
-                    </div>
-                </form>--}}
             </div>
 
         </div>

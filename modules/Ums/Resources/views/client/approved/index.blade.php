@@ -5,11 +5,10 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">Client</h4>
+                    <h4 class="page-title mb-0 font-size-18">{{ __('admin/client/index.client') }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">User Controls</a></li>
-                            <li class="breadcrumb-item active">Clients</li>
+                            <li class="breadcrumb-item active">{{ __('admin/client/index.clients') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -21,7 +20,7 @@
                 @include('admin.partials._alert')
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4">Client List</h4>
+                        <h4 class="card-title mb-4">{{ __('admin/client/index.client_list') }}</h4>
                         {!! $dataTable->table(['class' => 'table table-bordered dt-responsive nowrap', 'style' => 'width: 100%;']) !!}
                     </div>
                 </div>

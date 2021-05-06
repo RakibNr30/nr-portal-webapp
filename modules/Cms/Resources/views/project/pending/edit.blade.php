@@ -12,7 +12,11 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0)">Project</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('backend.cms.project-pending.index') }}">
-                                    {{ config('core.project_paginate.pending.' . $user->getRoleNames()[0]) }}
+                                    @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                        {{ config('core.project_paginate.pending.' . $user->getRoleNames()[0]) }}
+                                    @else
+                                        {{ config('core.project_paginate.pending.' . $user->getRoleNames()[0] . '_dt') }}
+                                    @endif
                                 </a>
                             </li>
                             <li class="breadcrumb-item active">Approve</li>

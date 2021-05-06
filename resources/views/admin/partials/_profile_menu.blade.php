@@ -20,7 +20,11 @@
                     <li class="nav-item {{ $profile_menu_key == ($active ?? '') ? 'bg-light' : '' }}">
                         <a href="{{ $profile_menu->url }}" class="nav-link"
                            style="padding: 10px; font-size: 14px; color: #212543;">
-                            {{ $profile_menu->name }}
+                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                {{ $profile_menu->name }}
+                            @else
+                                {{ $profile_menu->name_dt }}
+                            @endif
                         </a>
                     </li>
                 @endforeach

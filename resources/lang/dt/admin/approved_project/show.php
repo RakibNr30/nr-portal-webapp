@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'project' => 'Project',
+    'in_progress' => 'In offerte fase',
+    'assigned' => 'Toegewezen',
+    'show' => 'Bekijk',
+    'project_id' => 'Project Id',
+    'project_images' => 'Afbeeldingen',
+    'project_client' => 'Klant',
+    'project_attachment' => 'Projectbijlage',
+    'your_attachment' => 'Uw bijlage',
+    'attachment_from_admin' => 'Offerte van Chique Wonen',
+    'attachment_from_company' => 'Offerte van bedrijf',
+    'attachment' => 'Hechting',
+    'no_attachment_found' => 'Geen bijlage gevonden',
+    'file_name' => 'Bestandsnaam',
+    'download' => 'Downloaden',
+    'upload_attachment' => 'Upload bijlage',
+    'choose_file' => 'Kies bestand',
+    'browse' => 'Bladeren',
+    'approve_this_company' => 'Keur dit bedrijf goed',
+    'send_a_message' => 'Stuur een bericht',
+    'type_your_message' => 'Schrijf je bericht',
+    'send' => 'Sturen',
+];

@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">Admin</h4>
+                    <h4 class="page-title mb-0 font-size-18">{{ __('admin/admin/show.admin') }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">User Control</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('backend.ums.admin.index') }}">Admin</a></li>
-                            <li class="breadcrumb-item active">View</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">{{ __('admin/admin/show.user_control') }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('backend.ums.admin.index') }}">{{ __('admin/admin/show.admin') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('admin/admin/show.view') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -21,10 +21,10 @@
                 @include('admin.partials._alert')
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4">View Admin</h4>
+                        <h4 class="card-title mb-4">{{ __('admin/admin/show.view_admin') }}</h4>
                         <div class="form-group">
                             <label for="first_name"
-                                   class="@error('first_name') text-danger @enderror">First Name</label>
+                                   class="@error('first_name') text-danger @enderror">{{ __('admin/admin/show.first_name') }}</label>
                             <input id="first_name" name="first_name"
                                    value=" → {{ $user->basicInfo->first_name ?: 'N/A'}}"
                                    type="text" class="form-control-plaintext" readonly>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="last_name"
-                                   class="@error('last_name') text-danger @enderror">Last Name</label>
+                                   class="@error('last_name') text-danger @enderror">{{ __('admin/admin/show.last_name') }}</label>
                             <input id="last_name" name="last_name"
                                    value=" → {{ $user->basicInfo->last_name ?: 'N/A'}}"
                                    type="text" class="form-control-plaintext" readonly>
@@ -55,7 +55,7 @@
                             @enderror
                         </div>--}}
                         <div class="form-group">
-                            <label for="email" class="@error('email') text-danger @enderror">Email</label>
+                            <label for="email" class="@error('email') text-danger @enderror">{{ __('admin/admin/show.email') }}</label>
                             <input id="email" name="email" value=" → {{ $user->email ?: 'N/A'}}" type="text"
                                    class="form-control-plaintext" readonly>
                             @error('email')
@@ -64,7 +64,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="phone" class="@error('phone') text-danger @enderror">Phone</label>
+                            <label for="phone" class="@error('phone') text-danger @enderror">{{ __('admin/admin/show.phone') }}</label>
                             <input id="phone" name="phone" value=" → {{ $user->phone ?: 'N/A'}}" type="text"
                                    class="form-control-plaintext" readonly>
                             @error('phone')
@@ -74,7 +74,7 @@
                         </div>
                         <div class="form-group">
                             <label for="avatar"
-                                   class="@error('avatar') text-danger @enderror">Avatar</label>
+                                   class="@error('avatar') text-danger @enderror">{{ __('admin/admin/show.avatar') }}</label>
                             <input id="avatar" name="avatar" value=" → {{ $user->avatar ? $user->avatar->file_name : 'N/A'}}" type="text"
                                    class="form-control-plaintext" readonly>
                             @if(isset($user->avatar))
@@ -88,7 +88,7 @@
                             @enderror
                         </div>
                         <a href="{{ route('backend.ums.admin.index') }}" type="button"
-                           class="btn btn-danger waves-effect waves-light float-right">Cancel</a>
+                           class="btn btn-danger waves-effect waves-light float-right">{{ __('admin/admin/show.cancel') }}</a>
                     </div>
                 </div>
             </div>

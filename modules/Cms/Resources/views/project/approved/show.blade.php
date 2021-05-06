@@ -8,15 +8,19 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">Project</h4>
+                    <h4 class="page-title mb-0 font-size-18">{{ __('admin/approved_project/show.project') }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Project</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">{{ __('admin/approved_project/show.project') }}</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('backend.cms.project-approved.index') }}">
-                                    {{ config('core.project_paginate.approved.' . $user->getRoleNames()[0]) }}
+                                    @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                        {{ config('core.project_paginate.approved.' . $user->getRoleNames()[0]) }}
+                                    @else
+                                        {{ config('core.project_paginate.approved.' . $user->getRoleNames()[0] . '_dt') }}
+                                    @endif
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active">Show</li>
+                            <li class="breadcrumb-item active">{{ __('admin/approved_project/show.show') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -35,7 +39,7 @@
                 <div class="card border border-primary">
                     <div class="card-header bg-transparent border-primary">
                         <h5 class="my-0 text-primary">
-                            Project Id #{{ $project->project_id ?? 'N/A' }}
+                            {{ __('admin/approved_project/show.project_id') }} #{{ $project->project_id ?? 'N/A' }}
                         </h5>
                         @if($user->hasRole('admin') || $user->hasRole('super_admin'))
                             <div class="{{ $led }}"></div>
@@ -50,7 +54,7 @@
                         </p>
 
                         @if(count($project->getMedia('client_project_image')))
-                            <h4 class="card-title">Project Images</h4>
+                            <h4 class="card-title">{{ __('admin/approved_project/show.project_images') }}</h4>
                             <div class="popup-gallery">
                                 @foreach($project->getMedia('client_project_image') as $image)
                                     <a class="float-left" href="{{ $image->getUrl() }}" title="{{ $image->file_name }}">
@@ -61,11 +65,6 @@
                                 @endforeach
                             </div>
                         @endif
-
-                        {{--<div class="col-12">
-                            <a href="{{ route('backend.cms.project-approved.index') }}" type="button"
-                               class="btn btn-danger waves-effect waves-light float-right">Cancel</a>
-                        </div>--}}
 
                     </div>
                 </div>
@@ -80,14 +79,6 @@
                                     <div class="card border border-primary">
                                         <div class="card-body">
                                             @foreach($companies as $index => $company)
-                                                {{--@if($company->id == $user->id)
-                                                    <h4 class="card-title text-center">
-                                                        --}}{{--<a href="{{ route('backend.ums.company.show', [$company->id]) }}">--}}{{--
-                                                            {{ $company->basicInfo->first_name }}
-                                                        --}}{{--</a>--}}{{--
-                                                    </h4>
-                                                @endif
-                                                <hr>--}}
                                                 <div class="faq-box media">
                                                     @if($company->id == $user->id)
                                                         <div class="col-md-12">
@@ -112,25 +103,25 @@
                                                                             <div class="card border">
                                                                                 <div class="card-header">
                                                                                     <h6 class="my-0 text-black-50 text-center">
-                                                                                        Your Attachment
+                                                                                        {{ __('admin/approved_project/show.your_attachment') }}
                                                                                     </h6>
                                                                                 </div>
                                                                                 <div class="card-body bg-transparent text-center">
                                                                                     @if(isset($project->$attachment_company))
                                                                                         <div>
                                                                                             <strong class="font-size-13">
-                                                                                                File Name: {{ $project->$attachment_company->file_name }}
+                                                                                                {{ __('admin/approved_project/show.file_name') }}: {{ $project->$attachment_company->file_name }}
                                                                                             </strong>
                                                                                         </div>
                                                                                         <div class="mt-1">
                                                                                             <strong>
                                                                                                 <a target="_blank" class="badge badge-danger p-2 font-size-12 mt-1" href="{{ $project->$attachment_company->file_url }}">
-                                                                                                    Download
+                                                                                                    {{ __('admin/approved_project/show.download') }}
                                                                                                 </a>
                                                                                             </strong>
                                                                                         </div>
                                                                                     @else
-                                                                                        <small class="text-danger">No Attachment Found</small>
+                                                                                        <small class="text-danger">{{ __('admin/approved_project/show.no_attachment_found') }}</small>
                                                                                     @endif
                                                                                 </div>
                                                                             </div>
@@ -141,13 +132,13 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                             <input type="hidden" name="file_company_id" value="{{ $project->company_id[$index] }}">
-                                                                            <label for="attachment_company_{{ $index + 1 }}" class="@error('attachment_company_{{ $index + 1 }}') text-danger @enderror">Attachment</label>
+                                                                            <label for="attachment_company_{{ $index + 1 }}" class="@error('attachment_company_{{ $index + 1 }}') text-danger @enderror">{{ __('admin/approved_project/show.attachment') }}</label>
                                                                             <div class="custom-file">
                                                                                 <input type="file" class="custom-file-input form-control @error('attachment_company_{{ $index + 1 }}') is-invalid @enderror"
                                                                                        id="attachment_company_{{ $index + 1 }}"
                                                                                        name="attachment_company_{{ $index + 1 }}"
                                                                                        value="{{ old("attachment_company_{ $index + 1 }") }}" autofocus required>
-                                                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                                <label class="custom-file-label" for="customFile">{{ __('admin/approved_project/show.choose_file') }}</label>
                                                                             </div>
 
                                                                             @error('attachment_company_{{ $index + 1 }}')
@@ -156,7 +147,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="text-center mt-4 mb-4">
-                                                                        <button type="submit" class="btn btn-primary waves-effect waves-light p-1 pl-2 pr-2">Upload Attachment</button>
+                                                                        <button type="submit" class="btn btn-primary waves-effect waves-light p-1 pl-2 pr-2">{{ __('admin/approved_project/show.upload_attachment') }}</button>
                                                                     </div>
                                                                     {!! Form::close() !!}
                                                                 </div>
@@ -212,25 +203,25 @@
                                                                             <div class="card border mb-0">
                                                                                 <div class="card-header">
                                                                                     <h6 class="my-0 text-black-50 text-center">
-                                                                                        Attachment from Company
+                                                                                        {{ __('admin/approved_project/show.attachment_from_company') }}
                                                                                     </h6>
                                                                                 </div>
                                                                                 <div class="card-body bg-transparent text-primary text-center">
                                                                                     @if(isset($project->$attachment_company))
                                                                                         <div>
                                                                                             <strong class="font-size-13">
-                                                                                                File Name: {{ $project->$attachment_company->file_name }}
+                                                                                                {{ __('admin/approved_project/show.file_name') }}: {{ $project->$attachment_company->file_name }}
                                                                                             </strong>
                                                                                         </div>
                                                                                         <div class="mt-1">
                                                                                             <strong>
                                                                                                 <a target="_blank" class="badge badge-danger p-2 font-size-12 mt-1" href="{{ $project->$attachment_company->file_url }}">
-                                                                                                    Download
+                                                                                                    {{ __('admin/approved_project/show.download') }}
                                                                                                 </a>
                                                                                             </strong>
                                                                                         </div>
                                                                                     @else
-                                                                                        <small class="text-danger">No Attachment Found</small>
+                                                                                        <small class="text-danger">{{ __('admin/approved_project/show.no_attachment_found') }}</small>
                                                                                     @endif
                                                                                 </div>
                                                                             </div>
@@ -239,25 +230,25 @@
                                                                             <div class="card border">
                                                                                 <div class="card-header">
                                                                                     <h6 class="my-0 text-black-50 text-center">
-                                                                                        Attachment from Admin
+                                                                                        {{ __('admin/approved_project/show.attachment_from_admin') }}
                                                                                     </h6>
                                                                                 </div>
                                                                                 <div class="card-body bg-transparent text-primary text-center">
                                                                                     @if(isset($project->$attachment_admin))
                                                                                         <div>
                                                                                             <strong class="font-size-13">
-                                                                                                File Name: {{ $project->$attachment_admin->file_name }}
+                                                                                                {{ __('admin/approved_project/show.file_name') }}: {{ $project->$attachment_admin->file_name }}
                                                                                             </strong>
                                                                                         </div>
                                                                                         <div class="mt-1">
                                                                                             <strong>
                                                                                                 <a target="_blank" class="badge badge-danger p-2 font-size-12 mt-1" href="{{ $project->$attachment_admin->file_url }}">
-                                                                                                    Download
+                                                                                                    {{ __('admin/approved_project/show.download') }}
                                                                                                 </a>
                                                                                             </strong>
                                                                                         </div>
                                                                                     @else
-                                                                                        <small class="text-danger">No Attachment Found</small>
+                                                                                        <small class="text-danger">{{ __('admin/approved_project/show.no_attachment_found') }}</small>
                                                                                     @endif
                                                                                 </div>
                                                                             </div>
@@ -274,7 +265,7 @@
                                                                                        id="attachment_admin_{{ $index + 1 }}"
                                                                                        name="attachment_admin_{{ $index + 1 }}"
                                                                                        value="{{ old("attachment_admin_{ $index + 1 }") }}" autofocus required>
-                                                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                                <label class="custom-file-label" for="customFile">{{ __('admin/approved_project/show.choose_file') }}</label>
                                                                             </div>
                                                                             @error('attachment_admin_{{ $index + 1 }}')
                                                                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -282,7 +273,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="text-center mt-4 mb-4">
-                                                                        <button type="submit" class="btn btn-primary waves-effect waves-light p-1 pl-2 pr-2">Upload Attachment</button>
+                                                                        <button type="submit" class="btn btn-primary waves-effect waves-light p-1 pl-2 pr-2">{{ __('admin/approved_project/show.upload_attachment') }}</button>
                                                                     </div>
                                                                     {!! Form::close() !!}
                                                                 </div>
@@ -337,25 +328,25 @@
                                                                             <div class="card border mb-0">
                                                                                 <div class="card-header">
                                                                                     <h6 class="my-0 text-black-50 text-center">
-                                                                                        Project Attachment
+                                                                                        {{ __('admin/approved_project/show.project_attachment') }}
                                                                                     </h6>
                                                                                 </div>
                                                                                 <div class="card-body bg-transparent text-info text-center">
                                                                                     @if(isset($project->$attachment_admin))
                                                                                         <div>
                                                                                             <strong class="font-size-13">
-                                                                                                File Name: {{ $project->$attachment_admin->file_name }}
+                                                                                                {{ __('admin/approved_project/show.choose_file') }}: {{ $project->$attachment_admin->file_name }}
                                                                                             </strong>
                                                                                         </div>
                                                                                         <div class="mt-1">
                                                                                             <strong>
                                                                                                 <a target="_blank" class="badge badge-danger p-2 font-size-12 mt-1" href="{{ $project->$attachment_admin->file_url }}">
-                                                                                                    Download
+                                                                                                    {{ __('admin/approved_project/show.download') }}
                                                                                                 </a>
                                                                                             </strong>
                                                                                         </div>
                                                                                     @else
-                                                                                        <small class="text-danger">No Attachment Found</small>
+                                                                                        <small class="text-danger">{{ __('admin/approved_project/show.no_attachment_found') }}</small>
                                                                                     @endif
                                                                                 </div>
                                                                             </div>
@@ -371,7 +362,7 @@
                                                                         <input type="hidden" name="selected_company_id[]" value="{{ $company->id }}">
                                                                         <input type="hidden" name="selected_index" value="{{ $index }}">
                                                                         <div class="text-center mt-2">
-                                                                            <button type="submit" class="btn btn-primary waves-effect waves-light p-1 pl-2 pr-2" onclick="return confirm('Are you sure to accept this offer?')">Approve This Company</button>
+                                                                            <button type="submit" class="btn btn-primary waves-effect waves-light p-1 pl-2 pr-2" onclick="return confirm('Are you sure to accept this offer?')">{{ __('admin/approved_project/show.approve_this_company') }}</button>
                                                                         </div>
                                                                         {!! Form::close() !!}
                                                                         @endif

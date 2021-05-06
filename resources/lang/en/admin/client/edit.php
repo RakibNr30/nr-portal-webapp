@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'client' => 'Client',
+    'update' => 'Update',
+    'update_client' => 'Update Client',
+    'full_name' => 'Full Name',
+    'enter_full_name' => 'Enter full name',
+    'company_name' => 'Company Name',
+    'enter_company_name' => 'Enter company name',
+    'email' => 'E-mail',
+    'enter_email' => 'Enter e-mail',
+    'phone' => 'Phone',
+    'enter_phone' => 'Enter phone',
+    'street_name' => 'Street Name',
+    'enter_street_name' => 'Enter street name',
+    'house_number' => 'House Number',
+    'enter_house_number' => 'Enter house number',
+    'zip_code' => 'Zip Code',
+    'enter_zip_code' => 'Enter zip code',
+    'city' => 'City',
+    'enter_city' => 'Enter city',
+    'description' => 'Description',
+    'enter_description' => 'Enter description',
+    'cancel' => 'Cancel',
+    'save_changes' => 'Save Changes',
+];

@@ -7,11 +7,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">Project</h4>
+                    <h4 class="page-title mb-0 font-size-18">{{ __('admin/create_project/index.project') }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Project</a></li>
-                            <li class="breadcrumb-item active">Create</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">{{ __('admin/create_project/index.project') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('admin/create_project/index.create') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -22,22 +22,22 @@
                 @include('admin.partials._alert')
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4">Create Project</h4>
+                        <h4 class="card-title mb-4">{{ __('admin/create_project/index.create_project') }}</h4>
                         {!! Form::open(['url' => route('backend.cms.project.store'), 'method' => 'project', 'files' => true, 'class' => '']) !!}
                         <div class="form-group">
-                            <label for="title" class="@error('title') text-danger @enderror">Project Title</label>
+                            <label for="title" class="@error('title') text-danger @enderror">{{ __('admin/create_project/index.project_title') }}</label>
                             <input id="title" name="title" value="{{ old('title') }}"
                                    type="text"
                                    class="form-control @error('title') is-invalid @enderror"
-                                   placeholder="Enter project title" autofocus required>
+                                   placeholder="{{ __('admin/create_project/index.enter_project_title') }}" autofocus required>
                             @error('title')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="description" class="@error('description') text-danger @enderror">Project Description</label>
-                            <textarea id="description" name="description" class="form-control summernote" rows="3" placeholder="Enter project description">{{ old('description') }}</textarea>
+                            <label for="description" class="@error('description') text-danger @enderror">{{ __('admin/create_project/index.project_description') }}</label>
+                            <textarea id="description" name="description" class="form-control summernote" rows="3" placeholder="{{ __('admin/create_project/index.enter_project_description') }}">{{ old('description') }}</textarea>
                             @error('description')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>
@@ -75,9 +75,9 @@
                         <input type="hidden" name="author_id" value="{{ $user->id }}">
                         <div class="button-items float-right">
                             <a href="{{ route('backend.cms.dashboard.index') }}" type="button"
-                               class="btn btn-danger waves-effect waves-light">Cancel
+                               class="btn btn-danger waves-effect waves-light">{{ __('admin/create_project/index.cancel') }}
                             </a>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Submit
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">{{ __('admin/create_project/index.submit') }}
                             </button>
                         </div>
                         {!! Form::close() !!}

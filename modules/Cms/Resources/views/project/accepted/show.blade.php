@@ -8,16 +8,20 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">Project</h4>
+                    <h4 class="page-title mb-0 font-size-18">{{ __('admin/accepted_project/show.project') }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Project</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">{{ __('admin/accepted_project/show.project') }}</a></li>
                             <li class="breadcrumb-item">
                                 <a href="{{ route('backend.cms.project-accepted.index') }}">
-                                    {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0]) }}
+                                    @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                        {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0]) }}
+                                    @else
+                                        {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0] . '_dt') }}
+                                    @endif
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active">Show</li>
+                            <li class="breadcrumb-item active">{{ __('admin/accepted_project/show.show') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +32,7 @@
                 <div class="card border border-primary">
                     <div class="card-header bg-transparent border-primary">
                         <h5 class="my-0 text-primary">
-                            Project Id #{{ $project->project_id ?? 'N/A' }}
+                            {{ __('admin/accepted_project/show.project_id') }} #{{ $project->project_id ?? 'N/A' }}
                         </h5>
                     </div>
                     <div class="card-body">
@@ -40,7 +44,7 @@
                         </p>
 
                         @if(count($project->getMedia('client_project_image')))
-                            <h4 class="card-title">Project Images</h4>
+                            <h4 class="card-title">{{ __('admin/accepted_project/show.project_images') }}</h4>
                             <div class="popup-gallery">
                                 @foreach($project->getMedia('client_project_image') as $image)
                                     <a class="float-left" href="{{ $image->getUrl() }}" title="{{ $image->file_name }}">
@@ -51,279 +55,6 @@
                                 @endforeach
                             </div>
                         @endif
-
-                        {{--@if($user->hasRole('company'))
-                            @if(count($companies))
-                                <div class="row mt-4">
-                                    @foreach($companies as $index => $company)
-                                        @if($company->id == auth()->user()->id)
-                                            <div class="col-md-12">
-                                                <div class="card border border-primary">
-                                                    <div class="card-header bg-primary border-primary">
-                                                        <h5 class="my-0 text-white text-center">
-                                                        <span style="cursor: pointer" data-toggle="modal" data-target="#exampleModalScrollable{{ $index }}">
-                                                            {{ $company->basicInfo->first_name }}
-                                                        </span>
-                                                        </h5>
-                                                    </div>
-                                                    <div class="card-body bg-transparent text-primary">
-                                                        <div>
-                                                            @php
-                                                                $attachment_admin = 'attachment_admin_' . ($project->selected_index + 1);
-                                                                $attachment_company = 'attachment_company_' . ($project->selected_index + 1);
-                                                            @endphp
-
-                                                            <div class="row">
-                                                                <div class="col-md-6 mb-4">
-                                                                    <div class="card border border-secondary">
-                                                                        <div class="card-header bg-secondary border-secondary">
-                                                                            <h6 class="my-0 text-white text-center">
-                                                                                Your Attachment
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="card-body bg-transparent text-secondary text-center">
-                                                                            @if(isset($project->$attachment_company))
-                                                                                <div>
-                                                                                    <strong>
-                                                                                        Attachment Name: {{ $project->$attachment_company->file_name }}
-                                                                                    </strong>
-                                                                                </div>
-                                                                                <div class="mt-1">
-                                                                                    <strong>
-                                                                                        <a target="_blank" class="btn btn-secondary" href="{{ $project->$attachment_company->file_url }}">
-                                                                                            Download Attachment
-                                                                                        </a>
-                                                                                    </strong>
-                                                                                </div>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6 mb-4">
-                                                                    <div class="card border border-info">
-                                                                        <div class="card-header bg-info border-info">
-                                                                            <h6 class="my-0 text-white text-center">
-                                                                                Attachment From Admin
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="card-body bg-transparent text-info text-center">
-                                                                            @if(isset($project->$attachment_admin))
-                                                                                <div>
-                                                                                    <strong>
-                                                                                        Attachment Name: {{ $project->$attachment_admin->file_name }}
-                                                                                    </strong>
-                                                                                </div>
-                                                                                <div class="mt-1">
-                                                                                    <strong>
-                                                                                        <a target="_blank" class="btn btn-info" href="{{ $project->$attachment_admin->file_url }}">
-                                                                                            Download Attachment
-                                                                                        </a>
-                                                                                    </strong>
-                                                                                </div>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal fade" id="exampleModalScrollable{{ $index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-scrollable">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title mt-0" id="exampleModalScrollableTitle">{{ $company->basicInfo->first_name }}</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            {{ $company->basicInfo->about }}
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            @endif
-                        @endif
-
-                        @if($user->hasRole('admin') || $user->hasRole('super_admin'))
-                            @if(count($companies))
-                                <div class="row mt-4">
-                                    @foreach($companies as $index => $company)
-                                        <div class="col-md-12">
-                                            <div class="card border border-primary">
-                                                <div class="card-header bg-primary border-primary">
-                                                    <h5 class="my-0 text-white text-center">
-                                                    <span style="cursor: pointer" data-toggle="modal" data-target="#exampleModalScrollable{{ $index }}">
-                                                        {{ $company->basicInfo->first_name }}
-                                                    </span>
-                                                    </h5>
-                                                </div>
-                                                <div class="card-body bg-transparent text-primary">
-                                                    <div>
-                                                        @php
-                                                            $attachment_admin = 'attachment_admin_' . ($project->selected_index + 1);
-                                                            $attachment_company = 'attachment_company_' . ($project->selected_index + 1);
-                                                        @endphp
-
-                                                        <div class="row">
-                                                            <div class="col-md-6 mb-4">
-                                                                <div class="card border border-secondary">
-                                                                    <div class="card-header bg-secondary border-secondary">
-                                                                        <h6 class="my-0 text-white text-center">
-                                                                            Attachment From Company
-                                                                        </h6>
-                                                                    </div>
-                                                                    <div class="card-body bg-transparent text-secondary text-center">
-                                                                        @if(isset($project->$attachment_company))
-                                                                            <div>
-                                                                                <strong>
-                                                                                    Attachment Name: {{ $project->$attachment_company->file_name }}
-                                                                                </strong>
-                                                                            </div>
-                                                                            <div class="mt-1">
-                                                                                <strong>
-                                                                                    <a target="_blank" class="btn btn-secondary" href="{{ $project->$attachment_company->file_url }}">
-                                                                                        Download Attachment
-                                                                                    </a>
-                                                                                </strong>
-                                                                            </div>
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6 mb-4">
-                                                                <div class="card border border-info">
-                                                                    <div class="card-header bg-info border-info">
-                                                                        <h6 class="my-0 text-white text-center">
-                                                                            Your Attachment
-                                                                        </h6>
-                                                                    </div>
-                                                                    <div class="card-body bg-transparent text-info text-center">
-                                                                        @if(isset($project->$attachment_admin))
-                                                                            <div>
-                                                                                <strong>
-                                                                                    Attachment Name: {{ $project->$attachment_admin->file_name }}
-                                                                                </strong>
-                                                                            </div>
-                                                                            <div class="mt-1">
-                                                                                <strong>
-                                                                                    <a target="_blank" class="btn btn-info" href="{{ $project->$attachment_admin->file_url }}">
-                                                                                        Download Attachment
-                                                                                    </a>
-                                                                                </strong>
-                                                                            </div>
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal fade" id="exampleModalScrollable{{ $index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title mt-0" id="exampleModalScrollableTitle">{{ $company->basicInfo->first_name }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        {{ $company->basicInfo->about }}
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-                        @endif
-
-                        @if($user->hasRole('client'))
-                            @if(count($companies))
-                                <div class="row mt-4">
-                                    @foreach($companies as $index => $company)
-                                        <div class="col-md-12">
-                                            <div class="card border border-primary">
-                                                <div class="card-header bg-primary border-primary">
-                                                    <h5 class="my-0 text-white text-center">
-                                                    <span style="cursor: pointer" data-toggle="modal" data-target="#exampleModalScrollable{{ $index }}">
-                                                        {{ $company->basicInfo->first_name }}
-                                                    </span>
-                                                    </h5>
-                                                </div>
-                                                <div class="card-body bg-transparent text-primary">
-                                                    <div>
-                                                        @php
-                                                            $attachment_admin = 'attachment_admin_' . ($project->selected_index + 1);
-                                                        @endphp
-
-                                                        <div class="row">
-                                                            <div class="col-12 mb-4">
-                                                                <div class="card border border-info">
-                                                                    <div class="card-header bg-info border-info">
-                                                                        <h6 class="my-0 text-white text-center">
-                                                                            Attachment From Admin
-                                                                        </h6>
-                                                                    </div>
-                                                                    <div class="card-body bg-transparent text-info text-center">
-                                                                        @if(isset($project->$attachment_admin))
-                                                                            <div>
-                                                                                <strong>
-                                                                                    Attachment Name: {{ $project->$attachment_admin->file_name }}
-                                                                                </strong>
-                                                                            </div>
-                                                                            <div class="mt-1">
-                                                                                <strong>
-                                                                                    <a target="_blank" class="btn btn-info" href="{{ $project->$attachment_admin->file_url }}">
-                                                                                        Download Attachment
-                                                                                    </a>
-                                                                                </strong>
-                                                                            </div>
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal fade" id="exampleModalScrollable{{ $index }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title mt-0" id="exampleModalScrollableTitle">{{ $company->basicInfo->first_name }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        {{ $company->basicInfo->about }}
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-                        @endif--}}
                     </div>
                 </div>
 
@@ -337,14 +68,6 @@
                                     <div class="card border border-primary">
                                         <div class="card-body">
                                             @foreach($companies as $index => $company)
-                                                {{--@if($company->id == $user->id)
-                                                    <h4 class="card-title text-center">
-                                                        --}}{{--<a href="{{ route('backend.ums.company.show', [$company->id]) }}">--}}{{--
-                                                            {{ $company->basicInfo->first_name }}
-                                                        --}}{{--</a>--}}{{--
-                                                    </h4>
-                                                @endif
-                                                <hr>--}}
                                                 <div class="faq-box media">
                                                     @if($company->id == $user->id)
                                                         <div class="col-md-12">
@@ -369,25 +92,25 @@
                                                                             <div class="card border mb-0">
                                                                                 <div class="card-header">
                                                                                     <h6 class="my-0 text-black-50 text-center">
-                                                                                        Your Attachment
+                                                                                        {{ __('admin/accepted_project/show.your_attachment') }}
                                                                                     </h6>
                                                                                 </div>
                                                                                 <div class="card-body bg-transparent text-center">
                                                                                     @if(isset($project->$attachment_company))
                                                                                         <div>
                                                                                             <strong class="font-size-13">
-                                                                                                File Name: {{ $project->$attachment_company->file_name }}
+                                                                                                {{ __('admin/accepted_project/show.file_name') }}: {{ $project->$attachment_company->file_name }}
                                                                                             </strong>
                                                                                         </div>
                                                                                         <div class="mt-1">
                                                                                             <strong>
                                                                                                 <a target="_blank" class="badge badge-danger p-2 font-size-12 mt-1" href="{{ $project->$attachment_company->file_url }}">
-                                                                                                    Download
+                                                                                                    {{ __('admin/accepted_project/show.project') }}
                                                                                                 </a>
                                                                                             </strong>
                                                                                         </div>
                                                                                     @else
-                                                                                        <small class="text-danger">No Attachment Found</small>
+                                                                                        <small class="text-danger">{{ __('admin/accepted_project/show.no_attachment_found') }}</small>
                                                                                     @endif
                                                                                 </div>
                                                                             </div>
@@ -433,25 +156,25 @@
                                                                     <div class="card border mb-0">
                                                                         <div class="card-header">
                                                                             <h6 class="my-0 text-black-50 text-center">
-                                                                                Attachment from Company
+                                                                                {{ __('admin/accepted_project/show.attachment_from_company') }}
                                                                             </h6>
                                                                         </div>
                                                                         <div class="card-body bg-transparent text-primary text-center">
                                                                             @if(isset($project->$attachment_company))
                                                                                 <div>
                                                                                     <strong class="font-size-13">
-                                                                                        File Name: {{ $project->$attachment_company->file_name }}
+                                                                                        {{ __('admin/accepted_project/show.file_name') }}: {{ $project->$attachment_company->file_name }}
                                                                                     </strong>
                                                                                 </div>
                                                                                 <div class="mt-1">
                                                                                     <strong>
                                                                                         <a target="_blank" class="badge badge-danger p-2 font-size-12 mt-1" href="{{ $project->$attachment_company->file_url }}">
-                                                                                            Download
+                                                                                            {{ __('admin/accepted_project/show.download') }}
                                                                                         </a>
                                                                                     </strong>
                                                                                 </div>
                                                                             @else
-                                                                                <small class="text-danger">No Attachment Found</small>
+                                                                                <small class="text-danger">{{ __('admin/accepted_project/show.no_attachment_found') }}</small>
                                                                             @endif
                                                                         </div>
                                                                     </div>
@@ -460,25 +183,25 @@
                                                                     <div class="card border mb-0">
                                                                         <div class="card-header">
                                                                             <h6 class="my-0 text-black-50 text-center">
-                                                                                Attachment from Admin
+                                                                                {{ __('admin/accepted_project/show.attachment_from_admin') }}
                                                                             </h6>
                                                                         </div>
                                                                         <div class="card-body bg-transparent text-primary text-center">
                                                                             @if(isset($project->$attachment_admin))
                                                                                 <div>
                                                                                     <strong class="font-size-13">
-                                                                                        File Name: {{ $project->$attachment_admin->file_name }}
+                                                                                        {{ __('admin/accepted_project/show.file_name') }}: {{ $project->$attachment_admin->file_name }}
                                                                                     </strong>
                                                                                 </div>
                                                                                 <div class="mt-1">
                                                                                     <strong>
                                                                                         <a target="_blank" class="badge badge-danger p-2 font-size-12 mt-1" href="{{ $project->$attachment_admin->file_url }}">
-                                                                                            Download
+                                                                                            {{ __('admin/accepted_project/show.download') }}
                                                                                         </a>
                                                                                     </strong>
                                                                                 </div>
                                                                             @else
-                                                                                <small class="text-danger">No Attachment Found</small>
+                                                                                <small class="text-danger">{{ __('admin/accepted_project/show.no_attachment_found') }}</small>
                                                                             @endif
                                                                         </div>
                                                                     </div>
@@ -521,25 +244,25 @@
                                                                     <div class="card border mb-0">
                                                                         <div class="card-header">
                                                                             <h6 class="my-0 text-black-50 text-center">
-                                                                                Project Attachment
+                                                                                {{ __('admin/accepted_project/show.project_attachment') }}
                                                                             </h6>
                                                                         </div>
                                                                         <div class="card-body bg-transparent text-info text-center">
                                                                             @if(isset($project->$attachment_admin))
                                                                                 <div>
                                                                                     <strong class="font-size-13">
-                                                                                        File Name: {{ $project->$attachment_admin->file_name }}
+                                                                                        {{ __('admin/accepted_project/show.file_name') }}: {{ $project->$attachment_admin->file_name }}
                                                                                     </strong>
                                                                                 </div>
                                                                                 <div class="mt-1">
                                                                                     <strong>
                                                                                         <a target="_blank" class="badge badge-danger p-2 font-size-12 mt-1" href="{{ $project->$attachment_admin->file_url }}">
-                                                                                            Download
+                                                                                            {{ __('admin/accepted_project/show.download') }}
                                                                                         </a>
                                                                                     </strong>
                                                                                 </div>
                                                                             @else
-                                                                                <small class="text-danger">No Attachment Found</small>
+                                                                                <small class="text-danger">{{ __('admin/accepted_project/show.no_attachment_found') }}</small>
                                                                             @endif
                                                                         </div>
                                                                     </div>
@@ -552,7 +275,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @endforeach
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

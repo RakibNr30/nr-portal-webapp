@@ -10,12 +10,17 @@
                     <h4 class="page-title mb-0 font-size-18">Project</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Project</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('backend.cms.project-pending.index') }}">
-                                    {{ config('core.project_paginate.pending.' . $user->getRoleNames()[0]) }}
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">{{ __('admin/pending_project/show.project') }}</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('backend.cms.project-pending.index') }}">
+                                    @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                        {{ config('core.project_paginate.pending.' . $user->getRoleNames()[0]) }}
+                                    @else
+                                        {{ config('core.project_paginate.pending.' . $user->getRoleNames()[0] . '_dt') }}
+                                    @endif
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active">Show</li>
+                            <li class="breadcrumb-item active">{{ __('admin/pending_project/show.show') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -34,7 +39,7 @@
                                     </div>
                                 @endif
                                 <h5 class="my-0 text-primary">
-                                    Project Id #{{ $project->project_id ?? 'N/A' }}
+                                    {{ __('admin/pending_project/show.project_id') }} #{{ $project->project_id ?? 'N/A' }}
                                 </h5>
                             </div>
                             <div class="card-body">
@@ -46,7 +51,7 @@
                                 </p>
 
                                 @if(count($project->getMedia('client_project_image')))
-                                    <h4 class="card-title">Project Images</h4>
+                                    <h4 class="card-title">{{ __('admin/pending_project/show.project_images') }}</h4>
                                     <div class="popup-gallery">
                                         @foreach($project->getMedia('client_project_image') as $image)
                                             <a class="float-left" href="{{ $image->getUrl() }}" title="{{ $image->file_name }}">
@@ -61,7 +66,7 @@
                                 @if($user->hasRole('admin') || $user->hasRole('super_admin'))
                                     {!! Form::open(['url' => route('backend.cms.project-pending.approve', [$project->id]),  'method' => 'put', 'files' => 'true']) !!}
                                     <div class="form-group">
-                                        <label for="company_id" class="@error('company_id') text-danger @enderror mt-3">Assign Company</label>
+                                        <label for="company_id" class="@error('company_id') text-danger @enderror mt-3">{{ __('admin/pending_project/show.assign_companies') }}</label>
                                         <select id="company_id" name="company_id[]"
                                                 class="form-control select2 @error('company_id') is-invalid @enderror" data-placeholder="Select Companies" multiple required>
                                             @foreach($companies as $company)
@@ -78,7 +83,7 @@
                                             <a href="{{ route('backend.cms.project-pending.index') }}" type="button"
                                                class="btn btn-danger waves-effect waves-light">Cancel
                                             </a>
-                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Approve
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light">{{ __('admin/pending_project/show.approve') }}
                                             </button>
                                         </div>
                                     </div>
@@ -92,7 +97,7 @@
                             <div class="card-body">
                                 <div class="profile-widgets">
                                     <div class="text-center">
-                                        <span class="badge badge-success mb-3">Project Client</span>
+                                        <span class="badge badge-success mb-3">{{ __('admin/pending_project/show.project_client') }}</span>
                                         <br>
                                         <div class="">
                                             <img src="{{ $author->avatar->file_url ?? config('core.image.default.avatar') }}" alt="" class="avatar-lg mx-auto img-thumbnail rounded-circle">
@@ -106,7 +111,7 @@
                                                 {{ $author->basicInfo->designation }}
                                             </p>
                                             <a href="{{ route('backend.ums.client-approved.show', [$author->id]) }}" class="badge badge-danger p-1 mt-2">
-                                                View Profile
+                                                {{ __('admin/pending_project/show.view_profile') }}
                                             </a>
                                         </div>
                                     </div>
@@ -116,7 +121,7 @@
                         <div class="card border border-primary">
                             <div class="card-header bg-primary">
                                 <h6 class="text-center text-white mb-0">
-                                    Contact Info
+                                    {{ __('admin/pending_project/show.contact_info') }}
                                 </h6>
                             </div>
                             <div class="card-body">
@@ -125,7 +130,7 @@
                                         <div class="mt-3">
                                             @if($author->basicInfo->personal_email)
                                                 <div class="mt-2">
-                                                    <p class="font-size-12 text-muted mb-1">Email Address</p>
+                                                    <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.email_address') }}</p>
                                                     <h6 class="">
                                                         <a href="mailto: {{ $author->basicInfo->personal_email }}" style="color: unset">
                                                             {{ $author->basicInfo->personal_email }}
@@ -136,7 +141,7 @@
 
                                             @if($author->basicInfo->phone_no)
                                                 <div class="mt-3">
-                                                    <p class="font-size-12 text-muted mb-1">Phone number</p>
+                                                    <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.phone_number') }}</p>
                                                     <h6 class="">
                                                         <a href="tel: {{ $author->basicInfo->phone_no }}" style="color: unset">
                                                             {{ $author->basicInfo->phone_no }}
@@ -146,7 +151,7 @@
                                             @endif
                                             @if($author->residentialInfo->present_address_line_1)
                                                 <div class="mt-3">
-                                                    <p class="font-size-12 text-muted mb-1">Address</p>
+                                                    <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.address') }}</p>
                                                     <h6 class="">
                                                         {{ $author->residentialInfo->present_address_line_1 }}
                                                     </h6>
@@ -154,7 +159,7 @@
                                             @endif
                                             @if($author->residentialInfo->present_city)
                                                 <div class="mt-3">
-                                                    <p class="font-size-12 text-muted mb-1">City/District</p>
+                                                    <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.city_district') }}</p>
                                                     <h6 class="">
                                                         {{ $author->residentialInfo->present_city }}
                                                     </h6>
@@ -162,7 +167,7 @@
                                             @endif
                                             @if($author->residentialInfo->present_state)
                                                 <div class="mt-3">
-                                                    <p class="font-size-12 text-muted mb-1">State/Division</p>
+                                                    <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.state_division') }}</p>
                                                     <h6 class="">
                                                         {{ $author->residentialInfo->present_state }}
                                                     </h6>
@@ -170,7 +175,7 @@
                                             @endif
                                             @if($author->residentialInfo->present_country)
                                                 <div class="mt-3">
-                                                    <p class="font-size-12 text-muted mb-1">Country</p>
+                                                    <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.country') }}</p>
                                                     <h6 class="">
                                                         {{ $author->residentialInfo->present_country }}
                                                     </h6>

@@ -5,12 +5,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="page-title mb-0 font-size-18">Company</h4>
+                    <h4 class="page-title mb-0 font-size-18">{{ __('admin/company/show.company') }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">User Control</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('backend.ums.company.index') }}">Company</a></li>
-                            <li class="breadcrumb-item active">View</li>
+                            <li class="breadcrumb-item"><a href="{{ route('backend.ums.company.index') }}">{{ __('admin/company/show.company') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('admin/company/show.show') }}</li>
                         </ol>
                     </div>
                 </div>
@@ -41,11 +40,11 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title mb-3">Basic Information</h5>
+                                <h5 class="card-title mb-3">{{ __('admin/company/show.basic_information') }}</h5>
 
                                 @if($user->basicInfo->personal_email)
                                     <div class="mt-2">
-                                        <p class="font-size-12 text-muted mb-1">Email Address</p>
+                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/company/show.email_address') }}</p>
                                         <h6 class="">
                                             <a href="mailto: {{ $user->basicInfo->personal_email }}" style="color: unset">
                                                 {{ $user->basicInfo->personal_email }}
@@ -56,7 +55,7 @@
 
                                 @if($user->basicInfo->phone_no)
                                     <div class="mt-3">
-                                        <p class="font-size-12 text-muted mb-1">Phone number</p>
+                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/company/show.phone_number') }}</p>
                                         <h6 class="">
                                             <a href="tel: {{ $user->basicInfo->phone_no }}" style="color: unset">
                                                 {{ $user->basicInfo->phone_no }}
@@ -65,33 +64,33 @@
                                     </div>
                                 @endif
 
-                                @if($user->residentialInfo->present_address_line_1)
+                                @if(isset($user->residentialInfo->present_address_line_1))
                                     <div class="mt-3">
-                                        <p class="font-size-12 text-muted mb-1">Address</p>
+                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/company/show.address') }}</p>
                                         <h6 class="">
                                             {{ $user->residentialInfo->present_address_line_1 }}
                                         </h6>
                                     </div>
                                 @endif
-                                @if($user->residentialInfo->present_city)
+                                @if(isset($user->residentialInfo->present_city))
                                     <div class="mt-3">
-                                        <p class="font-size-12 text-muted mb-1">City/District</p>
+                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/company/show.city_district') }}</p>
                                         <h6 class="">
                                             {{ $user->residentialInfo->present_city }}
                                         </h6>
                                     </div>
                                 @endif
-                                @if($user->residentialInfo->present_state)
+                                @if(isset($user->residentialInfo->present_state))
                                     <div class="mt-3">
-                                        <p class="font-size-12 text-muted mb-1">State/Division</p>
+                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/company/show.state_division') }}</p>
                                         <h6 class="">
                                             {{ $user->residentialInfo->present_state }}
                                         </h6>
                                     </div>
                                 @endif
-                                @if($user->residentialInfo->present_country)
+                                @if(isset($user->residentialInfo->present_country))
                                     <div class="mt-3">
-                                        <p class="font-size-12 text-muted mb-1">Country</p>
+                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/company/show.country') }}</p>
                                         <h6 class="">
                                             {{ $user->residentialInfo->present_country }}
                                         </h6>
@@ -105,7 +104,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <h5 class="card-title mt-3 ml-3 mr-3">About Company</h5>
+                                    <h5 class="card-title mt-3 ml-3 mr-3">{{ __('admin/company/show.about_company') }}</h5>
                                     <hr>
                                     <div class="card-body pt-0 pb-0">
                                         <p>
@@ -119,7 +118,7 @@
                                             <div class="card-body">
                                                 <div class="row align-items-center">
                                                     <div class="col-8">
-                                                        <p class="mb-2">In Progress Projects</p>
+                                                        <p class="mb-2">{{ __('admin/company/show.in_progress_projects') }}</p>
                                                         <h4 class="mb-0">
                                                             {{ $totalProjects->where('status', 2)->count() }}
                                                         </h4>
@@ -141,7 +140,7 @@
                                             <div class="card-body">
                                                 <div class="row align-items-center">
                                                     <div class="col-8">
-                                                        <p class="mb-2">Assigned Projects</p>
+                                                        <p class="mb-2">{{ __('admin/company/show.assigned_projects') }}</p>
                                                         <h4 class="mb-0">
                                                             {{ $totalProjects->where('status', 1)->count() }}
                                                         </h4>
@@ -160,7 +159,7 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title mb-4">All Projects ({{ $totalProjects->count() }})</h4>
+                                        <h4 class="card-title mb-4">{{ __('admin/company/show.all_projects') }} ({{ $totalProjects->count() }})</h4>
                                         @if(count($projects))
                                             <div class="table-responsive">
                                                 <table class="table table-centered mb-0">
@@ -221,7 +220,7 @@
                                                 <table class="table table-centered mb-0">
                                                     <thead>
                                                     <tr>
-                                                        <th class="text-center">No Project Found</th>
+                                                        <th class="text-center">{{ __('admin/company/show.no_project_found') }}</th>
                                                     </tr>
                                                     </thead>
                                                 </table>

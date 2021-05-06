@@ -26,16 +26,36 @@
                                     <i class="fas {{ $nav['icon'] }}"></i>
                                     @if($nav['id'] == 'project')
                                         @if($user->hasRole('client'))
-                                            {{ $nav['name_client'] }}
+                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                {{ $nav['name_client'] }}
+                                            @else
+                                                {{ $nav['name_client_dt'] }}
+                                            @endif
                                         @elseif($user->hasRole('company'))
-                                            {{ $nav['name_company'] }}
+                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                {{ $nav['name_company'] }}
+                                            @else
+                                                {{ $nav['name_company_dt'] }}
+                                            @endif
                                         @elseif($user->hasRole('admin'))
-                                            {{ $nav['name_admin'] }}
+                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                {{ $nav['name_admin'] }}
+                                            @else
+                                                {{ $nav['name_admin_dt'] }}
+                                            @endif
                                         @elseif($user->hasRole('super_admin'))
-                                            {{ $nav['name_super_admin'] }}
+                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                {{ $nav['name_super_admin'] }}
+                                            @else
+                                                {{ $nav['name_super_admin_dt'] }}
+                                            @endif
                                         @endif
                                     @else
-                                        {{ $nav['name'] }}
+                                        @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                            {{ $nav['name'] }}
+                                        @else
+                                            {{ $nav['name_dt'] }}
+                                        @endif
                                     @endif
                                 </a>
                             </li>
@@ -45,16 +65,36 @@
                                     <i class="fas {{ $nav['icon'] }}"></i>
                                     @if($nav['id'] == 'project')
                                         @if($user->hasRole('client'))
-                                            {{ $nav['name_client'] }}
+                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                {{ $nav['name_client'] }}
+                                            @else
+                                                {{ $nav['name_client_dt'] }}
+                                            @endif
                                         @elseif($user->hasRole('company'))
-                                            {{ $nav['name_company'] }}
+                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                {{ $nav['name_company'] }}
+                                            @else
+                                                {{ $nav['name_company_dt'] }}
+                                            @endif
                                         @elseif($user->hasRole('admin'))
-                                            {{ $nav['name_admin'] }}
+                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                {{ $nav['name_admin'] }}
+                                            @else
+                                                {{ $nav['name_admin_dt'] }}
+                                            @endif
                                         @elseif($user->hasRole('super_admin'))
-                                            {{ $nav['name_super_admin'] }}
+                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                {{ $nav['name_super_admin'] }}
+                                            @else
+                                                {{ $nav['name_super_admin_dt'] }}
+                                            @endif
                                         @endif
                                     @else
-                                        {{ $nav['name'] }}
+                                        @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                            {{ $nav['name'] }}
+                                        @else
+                                            {{ $nav['name_dt'] }}
+                                        @endif
                                     @endif
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
@@ -64,7 +104,11 @@
                                                 <li>
                                                     <a href="{{ $subNav['url'] }}">
                                                         <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
-                                                        {{ $subNav['name'] }}
+                                                        @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                            {{ $subNav['name'] }}
+                                                        @else
+                                                            {{ $subNav['name_dt'] }}
+                                                        @endif
                                                     </a>
                                                 </li>
                                             @else
@@ -72,7 +116,11 @@
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                                         <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
                                                         <span>
-                                                            {{ $subNav['name'] }}
+                                                            @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                                {{ $subNav['name'] }}
+                                                            @else
+                                                                {{ $subNav['name_dt'] }}
+                                                            @endif
                                                         </span>
                                                     </a>
                                                     <ul class="sub-menu" aria-expanded="true">
@@ -81,7 +129,11 @@
                                                                 <li>
                                                                     <a href="{{ $superSubNav['url'] }}">
                                                                         <i style="font-size: 12px" class="fas {{ $superSubNav['icon'] }}"></i>
-                                                                        {{ $superSubNav['name'] }}
+                                                                        @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                                                            {{ $superSubNav['name'] }}
+                                                                        @else
+                                                                            {{ $superSubNav['name_dt'] }}
+                                                                        @endif
                                                                     </a>
                                                                 </li>
                                                             @endif
