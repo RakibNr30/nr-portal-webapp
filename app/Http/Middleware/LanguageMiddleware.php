@@ -24,8 +24,8 @@ class LanguageMiddleware
                 $locale = session()->get('locale');
                 App::setLocale($locale);
             } else {
-                session()->put('locale', 'en');
-                App::setLocale('en');
+                session()->put('locale', 'dt');
+                App::setLocale('dt');
             }
         }
         return $next($request);

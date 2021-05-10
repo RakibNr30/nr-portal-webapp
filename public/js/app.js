@@ -1969,10 +1969,18 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.selectedContact && message.from == this.selectedContact.id) {
         this.saveNewMessage(message);
+        var x;
+
+        if (sender_name.last_name) {
+          x = sender_name.last_name;
+        } else {
+          x = '';
+        }
+
         new Noty({
           type: 'success',
           layout: 'bottomLeft',
-          text: "Incoming message from ".concat(sender_name.first_name + ' ' + sender_name.last_name, " !"),
+          text: "Incoming message from ".concat(sender_name.first_name + ' ' + x, " !"),
           timeout: 5000
         }).show();
         var vid = document.getElementById("noty_audio");
@@ -1982,10 +1990,18 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.updateUnreadCount(message.from_contact, false);
+      var x1;
+
+      if (sender_name.last_name) {
+        x1 = sender_name.last_name;
+      } else {
+        x1 = '';
+      }
+
       new Noty({
         type: 'success',
         layout: 'bottomLeft',
-        text: "Incoming message from ".concat(sender_name.first_name + ' ' + sender_name.last_name, " !"),
+        text: "Incoming message from ".concat(sender_name.first_name + ' ' + x1, " !"),
         timeout: 5000
       }).show();
       var vid_sec = document.getElementById("noty_audio");
@@ -48849,7 +48865,9 @@ var render = function() {
         _vm._v(
           _vm._s(
             _vm.contact
-              ? _vm.contact.first_name + "  " + _vm.contact.last_name
+              ? _vm.contact.first_name +
+                  " " +
+                  (_vm.contact.last_name ? _vm.contact.last_name : "")
               : "Select a Contact"
           )
         )
@@ -61392,11 +61410,9 @@ if (token) {
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: 'local',
-  wsHost: window.location.hostname,
-  wsPort: 6001,
-  forceTLS: false,
-  disableStats: true
+  key: "f09ae7b133936f1d065f",
+  cluster: "ap2",
+  forceTLS: true
 });
 
 /***/ }),

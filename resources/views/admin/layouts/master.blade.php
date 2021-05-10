@@ -144,6 +144,12 @@
         @endif
     </script>
 
+    <script>
+        function HitUrl() {
+            window.location.href = '/inbox';
+        }
+    </script>
+
     <script src="{{ mix('/js/app.js') }}"></script>
 
 </body>

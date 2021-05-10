@@ -42,7 +42,7 @@
                                       role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="logo" class="@error('logo') text-danger @enderror">{{ __('admin/site/index.logo') }}</label>
                                 <input id="logo" name="logo" value="{{ old('logo') }}" type="file"
                                        class="form-control @error('logo') is-invalid @enderror"
@@ -57,7 +57,7 @@
                                       role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-4">
+                            {{--<div class="form-group col-md-4">
                                 <label for="logo_sm" class="@error('logo_sm') text-danger @enderror">{{ __('admin/site/index.logo_small') }}</label>
                                 <input id="logo_sm" name="logo_sm" value="{{ old('logo_sm') }}" type="file"
                                        class="form-control @error('logo_sm') is-invalid @enderror"
@@ -71,8 +71,8 @@
                                 <span class="invalid-feedback"
                                       role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
-                            </div>
-                            <div class="form-group col-md-4">
+                            </div>--}}
+                            <div class="form-group col-md-6">
                                 <label for="favicon"
                                        class="@error('favicon') text-danger @enderror">{{ __('admin/site/index.favicon') }}</label>
                                 <input id="favicon" name="favicon" value="{{ old('favicon') }}" type="file"

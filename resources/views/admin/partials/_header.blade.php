@@ -1,4 +1,4 @@
-<header id="page-topbar">
+<header id="page-topbar" style="background: #252627">
     <div class="navbar-header">
         <div class="container-fluid">
             <div class="float-right">
@@ -31,6 +31,26 @@
                     </button>
                 </div>
 
+                @php
+                    $user = \Modules\Ums\Entities\User::find(auth()->user()->id);
+                    $unreadMsg = \App\Message::where('read', 0)->where('to', auth()->user()->id)->count();
+                @endphp
+
+                @if(!($user->hasRole('admin')))
+                   @if(\Request::path() != 'inbox')
+                        <div class="dropdown d-inline-block">
+                            <button onclick="HitUrl()" class="btn header-item noti-icon waves-effect"
+                                    id="page-header-notifications-dropdown">
+                                <i class="mdi mdi-message-processing-outline"></i>
+                                @if($unreadMsg)
+                                    <span class="badge badge-danger badge-pill">
+                                        {{ $unreadMsg }}
+                                    </span>
+                                @endif
+                            </button>
+                        </div>
+                   @endif
+                @endif
                 <?php
                     if(Auth::user()->role == 'admin'){
                         $notifications = App\Notification::where('status', 'unseen')->where('notification_to_type', 'admin')->orderBy('created_at', 'desc')->take(5)->get();
@@ -46,7 +66,6 @@
                 ?>
 
                 <div class="dropdown d-inline-block">
-
                     <button type="button" class="btn header-item noti-icon waves-effect"
                             id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -68,7 +87,7 @@
                                     <h6 class="m-0"> {{ __('admin/master.notifications') }} </h6>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="{{ url('/notifications') }}" class="small"> {{ __('admin/master.view_all') }}</a>
+                                    <a href="{{ url('/backend/notifications') }}" class="small"> {{ __('admin/master.view_all') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +136,7 @@
                         </div>
                     @endif
                         <div class="p-2 border-top">
-                            <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="{{ url('/notifications') }}">
+                            <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="{{ url('/backend/notifications') }}">
                                 <i class="mdi mdi-arrow-right-circle mr-1"></i> {{ __('admin/master.view_more') }}..
                             </a>
                         </div>
@@ -164,10 +183,10 @@
                 <div class="navbar-brand-box">
                     <a href="{{ '/backend/dashboard' }}" class="logo logo-light" style="display: initial">
                         <span class="logo-sm">
-                            <img src="{{ $global_site->logo_sm->file_url ?? config('core.image.default.logo_sm') }}" alt="" height="20">
+                            <img src="{{ $global_site->logo->file_url ?? config('core.image.default.logo') }}" alt="LOGO" height="24">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ $global_site->logo->file_url ?? config('core.image.default.logo') }}" alt="" height="19">
+                            <img src="{{ $global_site->logo->file_url ?? config('core.image.default.logo') }}" alt="LOGO" height="48">
                         </span>
                     </a>
                 </div>

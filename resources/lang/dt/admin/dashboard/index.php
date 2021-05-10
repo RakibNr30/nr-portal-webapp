@@ -9,7 +9,7 @@ return [
     'clients' => 'Klanten',
     'companies' => 'Bedrijven',
     'pending_projects' => 'Nieuwe offerte aanvragen',
-    'in_progress_projects' => 'Lopen offerte aanvragen',
+    'in_progress_projects' => 'Lopende offerte aanvragen',
     'assigned_projects' => 'Toegewezen offerte aanvragen',
     'accepted_projects' => 'Geaccepteerde offertes',
 ];

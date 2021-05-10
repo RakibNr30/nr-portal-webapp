@@ -9,5 +9,6 @@ return [
     'my_profile' => 'Mijn profiel',
     'account_setting' => 'Instelilngen',
     'change_password' => 'Wachtwoord wijzigen',
+    'welcome_to' => 'Welkom bij',
     'logout' => 'Uitloggen',
 ];

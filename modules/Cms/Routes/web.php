@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // Dashboard routes...
 Route::resource('dashboard', 'DashboardController')->only(['index']);
 // Slider routes...

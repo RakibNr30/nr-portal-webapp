@@ -33,11 +33,11 @@
                     <div class="col-lg-8">
                         <div class="card border border-primary">
                             <div class="card-header bg-transparent">
-                                @if($user->hasRole('client'))
+                                {{--@if($user->hasRole('client'))
                                     <div class="alert alert-danger text-center" role="alert">
                                         Hello! Please wait for approval.
                                     </div>
-                                @endif
+                                @endif--}}
                                 <h5 class="my-0 text-primary">
                                     {{ __('admin/pending_project/show.project_id') }} #{{ $project->project_id ?? 'N/A' }}
                                 </h5>

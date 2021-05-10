@@ -9,5 +9,6 @@ return [
     'my_profile' => 'My Profile',
     'account_setting' => 'Account Setting',
     'change_password' => 'Change Password',
+    'welcome_to' => 'Welcome To',
     'logout' => 'Logout',
 ];

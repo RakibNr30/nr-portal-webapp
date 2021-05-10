@@ -31,7 +31,7 @@
     top: 5px;
     width: 20px;
     height: 20px;
-    background-color: #F00;
+    background-color: rgba(255, 0, 0, 0.52);
     border-radius: 50%;
     box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
     -webkit-animation: blinkRed 0.5s infinite;
@@ -42,29 +42,29 @@
 }
 
 @-webkit-keyframes blinkRed {
-    from { background-color: #F00; }
+    from { background-color: rgba(255, 0, 0, 0.52);; }
     50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-    to { background-color: #F00; }
+    to { background-color: rgba(255, 0, 0, 0.52);; }
 }
 @-moz-keyframes blinkRed {
-    from { background-color: #F00; }
+    from { background-color: rgba(255, 0, 0, 0.52);; }
     50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-    to { background-color: #F00; }
+    to { background-color: rgba(255, 0, 0, 0.52);; }
 }
 @-ms-keyframes blinkRed {
-    from { background-color: #F00; }
+    from { background-color: rgba(255, 0, 0, 0.52);; }
     50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-    to { background-color: #F00; }
+    to { background-color: rgba(255, 0, 0, 0.52);; }
 }
 @-o-keyframes blinkRed {
-    from { background-color: #F00; }
+    from { background-color: rgba(255, 0, 0, 0.52);; }
     50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-    to { background-color: #F00; }
+    to { background-color: rgba(255, 0, 0, 0.52);; }
 }
 @keyframes blinkRed {
-    from { background-color: #F00; }
+    from { background-color: rgba(255, 0, 0, 0.52);; }
     50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-    to { background-color: #F00; }
+    to { background-color: rgba(255, 0, 0, 0.52);; }
 }
 
 .led-yellow {
@@ -162,3 +162,6 @@ input[type=file] {
         margin-left: unset;
     }
 }*/
+body[data-layout=detached] #layout-wrapper::before {
+    background: #8E8B71;
+}

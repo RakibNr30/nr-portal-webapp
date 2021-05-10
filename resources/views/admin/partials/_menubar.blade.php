@@ -22,39 +22,39 @@
                     @if ($user->can($nav['permission']))
                         @if(empty($nav['children']))
                             <li>
-                                <a href="{{ $nav['url'] }}" class=" waves-effect">
-                                    <i class="fas {{ $nav['icon'] }}"></i>
+                                <a href="{!! $nav['url'] !!}" class=" waves-effect">
+                                    <i class="fas {!! $nav['icon'] !!}"></i>
                                     @if($nav['id'] == 'project')
                                         @if($user->hasRole('client'))
                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                {{ $nav['name_client'] }}
+                                                {!! $nav['name_client'] !!}
                                             @else
-                                                {{ $nav['name_client_dt'] }}
+                                                {!! $nav['name_client_dt'] !!}
                                             @endif
                                         @elseif($user->hasRole('company'))
                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                {{ $nav['name_company'] }}
+                                                {!! $nav['name_company'] !!}
                                             @else
-                                                {{ $nav['name_company_dt'] }}
+                                                {!! $nav['name_company_dt'] !!}
                                             @endif
                                         @elseif($user->hasRole('admin'))
                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                {{ $nav['name_admin'] }}
+                                                {!! $nav['name_admin'] !!}
                                             @else
-                                                {{ $nav['name_admin_dt'] }}
+                                                {!! $nav['name_admin_dt'] !!}
                                             @endif
                                         @elseif($user->hasRole('super_admin'))
                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                {{ $nav['name_super_admin'] }}
+                                                {!! $nav['name_super_admin'] !!}
                                             @else
-                                                {{ $nav['name_super_admin_dt'] }}
+                                                {!! $nav['name_super_admin_dt'] !!}
                                             @endif
                                         @endif
                                     @else
                                         @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                            {{ $nav['name'] }}
+                                            {!! $nav['name'] !!}
                                         @else
-                                            {{ $nav['name_dt'] }}
+                                            {!! $nav['name_dt'] !!}
                                         @endif
                                     @endif
                                 </a>
@@ -62,38 +62,38 @@
                         @else
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="fas {{ $nav['icon'] }}"></i>
+                                    <i class="fas {!! $nav['icon'] !!}"></i>
                                     @if($nav['id'] == 'project')
                                         @if($user->hasRole('client'))
                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                {{ $nav['name_client'] }}
+                                                {!! $nav['name_client'] !!}
                                             @else
-                                                {{ $nav['name_client_dt'] }}
+                                                {!! $nav['name_client_dt'] !!}
                                             @endif
                                         @elseif($user->hasRole('company'))
                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                {{ $nav['name_company'] }}
+                                                {!! $nav['name_company'] !!}
                                             @else
-                                                {{ $nav['name_company_dt'] }}
+                                                {!! $nav['name_company_dt'] !!}
                                             @endif
                                         @elseif($user->hasRole('admin'))
                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                {{ $nav['name_admin'] }}
+                                                {!! $nav['name_admin'] !!}
                                             @else
-                                                {{ $nav['name_admin_dt'] }}
+                                                {!! $nav['name_admin_dt'] !!}
                                             @endif
                                         @elseif($user->hasRole('super_admin'))
                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                {{ $nav['name_super_admin'] }}
+                                                {!! $nav['name_super_admin'] !!}
                                             @else
-                                                {{ $nav['name_super_admin_dt'] }}
+                                                {!! $nav['name_super_admin_dt'] !!}
                                             @endif
                                         @endif
                                     @else
                                         @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                            {{ $nav['name'] }}
+                                            {!! $nav['name'] !!}
                                         @else
-                                            {{ $nav['name_dt'] }}
+                                            {!! $nav['name_dt'] !!}
                                         @endif
                                     @endif
                                 </a>
@@ -102,24 +102,24 @@
                                         @if ($user->can($subNav['permission']))
                                             @if(empty($subNav['children']))
                                                 <li>
-                                                    <a href="{{ $subNav['url'] }}">
-                                                        <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
+                                                    <a href="{!! $subNav['url'] !!}">
+                                                        <i style="font-size: 12px" class="fas {!! $subNav['icon'] !!}"></i>
                                                         @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                            {{ $subNav['name'] }}
+                                                            {!! $subNav['name'] !!}
                                                         @else
-                                                            {{ $subNav['name_dt'] }}
+                                                            {!! $subNav['name_dt'] !!}
                                                         @endif
                                                     </a>
                                                 </li>
                                             @else
                                                 <li>
                                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                                        <i style="font-size: 12px" class="fas {{ $subNav['icon'] }}"></i>
+                                                        <i style="font-size: 12px" class="fas {!! $subNav['icon'] !!}"></i>
                                                         <span>
                                                             @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                                {{ $subNav['name'] }}
+                                                                {!! $subNav['name'] !!}
                                                             @else
-                                                                {{ $subNav['name_dt'] }}
+                                                                {!! $subNav['name_dt'] !!}
                                                             @endif
                                                         </span>
                                                     </a>
@@ -127,12 +127,12 @@
                                                         @foreach($subNav['children'] as $superSubNav)
                                                             @if ($user->can($superSubNav['permission']))
                                                                 <li>
-                                                                    <a href="{{ $superSubNav['url'] }}">
-                                                                        <i style="font-size: 12px" class="fas {{ $superSubNav['icon'] }}"></i>
+                                                                    <a href="{!! $superSubNav['url'] !!}">
+                                                                        <i style="font-size: 12px" class="fas {!! $superSubNav['icon'] !!}"></i>
                                                                         @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
-                                                                            {{ $superSubNav['name'] }}
+                                                                            {!! $superSubNav['name'] !!}
                                                                         @else
-                                                                            {{ $superSubNav['name_dt'] }}
+                                                                            {!! $superSubNav['name_dt'] !!}
                                                                         @endif
                                                                     </a>
                                                                 </li>

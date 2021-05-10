@@ -3,6 +3,7 @@
 namespace Modules\Cms\DataTables;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Modules\Cms\Entities\Project;
 use Modules\Ums\Entities\User;
 use Yajra\DataTables\Html\Button;
@@ -69,6 +70,18 @@ class PendingProjectDataTable extends DataTable
      */
     public function html()
     {
+        if(\Illuminate\Support\Facades\App::getLocale() == 'en') {
+            $export = "Export";
+            $print = "Print";
+            $reload = "Reload";
+            $langUrl = "";
+        } else {
+            $export = "Exporteren";
+            $print = "Afdrukken";
+            $reload = "Herlaad";
+            $langUrl = asset('admin/json/dt-dutch.json');
+        }
+
         return $this->builder()
             ->setTableId('data_table')
             ->columns($this->getColumns())
@@ -77,10 +90,13 @@ class PendingProjectDataTable extends DataTable
             ->orderBy(1)
             ->buttons(
                 //Button::make('create'),
-                Button::make('export'),
-                Button::make('print'),
-                Button::make('reload')
+                Button::make('export')->text($export),
+                Button::make('print')->text($print),
+                Button::make('reload')->text($reload)
             )
+            ->language([
+                'url' => $langUrl
+            ])
             ->parameters([
                 'pageLength' => 10
             ]);
@@ -93,13 +109,24 @@ class PendingProjectDataTable extends DataTable
      */
     protected function getColumns()
     {
+        if(\Illuminate\Support\Facades\App::getLocale() == 'en') {
+            $customerName = "Customer Name";
+            $title = "Title";
+            $action = "Action";
+            $serial = "Serial";
+        } else {
+            $customerName = "Klantnaam";
+            $title = "Titel";
+            $action = "Actie";
+            $serial = "Serieel";
+        }
         return [
             Column::computed('DT_RowIndex')
-                ->title('Sl'),
-            Column::make('author_name')->name('author_basic_info.first_name')->title('Customer Name'),
-            Column::make('title'),
+                ->title($serial),
+            Column::make('author_name')->name('author_basic_info.first_name')->title($customerName),
+            Column::make('title')->title($title),
             //Column::make('deadline'),
-            Column::computed('action')
+            Column::computed('action')->title($action)
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

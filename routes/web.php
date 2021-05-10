@@ -17,18 +17,14 @@ use Illuminate\Support\Facades\Route;
     return view('admin.layouts.master');
 });*/
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true, 'register' => false, 'reset' => false]);
 
-Route::get('register', function () {
+/*Route::get('password/reset', function () {
     abort(404);
-});
-
-Route::get('password/reset', function () {
-    abort(404);
-});
+});*/
 
 Route::group(['middleware' => ['auth:web']], function () {
-	Route::get('/notifications', 'NotificationController@all_notifications')->name('all.notifications');
+	Route::get('/backend/notifications', 'NotificationController@all_notifications')->name('all.notifications');
 	Route::get('/inbox', 'NotificationController@inbox')->name('inbox');
 	
 	Route::get('/contacts', 'ContactsController@get');

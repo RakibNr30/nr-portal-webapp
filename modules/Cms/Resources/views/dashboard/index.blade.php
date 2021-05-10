@@ -15,7 +15,7 @@
                     <h4 class="page-title mb-0 font-size-18">{{ config('core.role.'.$user->getRoleNames()[0]) }} {{ __('admin/dashboard/index.dashboard') }}</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item active">Welcome to {{ $global_site->title ?? 'Web Portal' }}</li>
+                            <li class="breadcrumb-item active">{{ __('admin/master.welcome_to') }} {{ $global_site->title ?? 'Web Portal' }}</li>
                         </ol>
                     </div>
                 </div>

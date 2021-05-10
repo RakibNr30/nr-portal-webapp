@@ -77,6 +77,18 @@ class ApprovedProjectDataTable extends DataTable
      */
     public function html()
     {
+        if(\Illuminate\Support\Facades\App::getLocale() == 'en') {
+            $export = "Export";
+            $print = "Print";
+            $reload = "Reload";
+            $langUrl = "";
+        } else {
+            $export = "Exporteren";
+            $print = "Afdrukken";
+            $reload = "Herlaad";
+            $langUrl = asset('admin/json/dt-dutch.json');
+        }
+
         return $this->builder()
             ->setTableId('data_table')
             ->columns($this->getColumns())
@@ -85,10 +97,13 @@ class ApprovedProjectDataTable extends DataTable
             ->orderBy(1)
             ->buttons(
             //Button::make('create'),
-                Button::make('export'),
-                Button::make('print'),
-                Button::make('reload')
+                Button::make('export')->text($export),
+                Button::make('print')->text($print),
+                Button::make('reload')->text($reload)
             )
+            ->language([
+                'url' => $langUrl
+            ])
             ->parameters([
                 'pageLength' => 10
             ]);
@@ -101,19 +116,35 @@ class ApprovedProjectDataTable extends DataTable
      */
     protected function getColumns()
     {
+        if(\Illuminate\Support\Facades\App::getLocale() == 'en') {
+            $title = "Title";
+            $projectId = "Project Id";
+            $action = "Action";
+            $serial = "ID";
+            $approvedAt = "Approved At";
+            $fileStatus = "File Status";
+        } else {
+            $title = "Titel";
+            $projectId = "Project Id";
+            $action = "Actie";
+            $serial = "ID";
+            $approvedAt = "Goedgekeurd op";
+            $fileStatus = "Bestandsstatus";
+        }
+
         $user = User::find(auth()->user()->id);
 
         if ($user->hasRole('super_admin') || $user->hasRole('admin')) {
             return [
                 Column::computed('DT_RowIndex')
-                    ->title('Sl'),
-                Column::make('project_id'),
-                Column::make('title'),
-                Column::make('approved_at'),
+                    ->title($serial),
+                Column::make('project_id')->title($projectId),
+                Column::make('title')->title($title),
+                Column::make('approved_at')->title($approvedAt),
                 //Column::make('deadline'),
-                Column::computed('file_status')
+                Column::computed('file_status')->title($fileStatus)
                     ->addClass('text-center'),
-                Column::computed('action')
+                Column::computed('action')->title($action)
                     ->exportable(false)
                     ->printable(false)
                     ->width(60)
@@ -123,12 +154,12 @@ class ApprovedProjectDataTable extends DataTable
         else {
             return [
                 Column::computed('DT_RowIndex')
-                    ->title('Sl'),
-                Column::make('project_id'),
-                Column::make('title'),
-                Column::make('approved_at'),
+                    ->title($serial),
+                Column::make('project_id')->title($projectId),
+                Column::make('title')->title($title),
+                Column::make('approved_at')->title($approvedAt),
                 //Column::make('deadline'),
-                Column::computed('action')
+                Column::computed('action')->title($action)
                     ->exportable(false)
                     ->printable(false)
                     ->width(60)

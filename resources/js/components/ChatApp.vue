@@ -61,10 +61,16 @@
                 if (this.selectedContact && message.from == this.selectedContact.id) {
 
                     this.saveNewMessage(message);
-                    new Noty({ 
-                        type:'success', 
-                        layout:'bottomLeft', 
-                        text: `Incoming message from ${sender_name.first_name + ' ' + sender_name.last_name} !`, 
+                    var x;
+                    if (sender_name.last_name) {
+                        x = sender_name.last_name;
+                    } else {
+                        x = '';
+                    }
+                    new Noty({
+                        type:'success',
+                        layout:'bottomLeft',
+                        text: `Incoming message from ${sender_name.first_name + ' ' + x} !`,
                         timeout: 5000
                     }).show()
 
@@ -76,13 +82,18 @@
                 }
 
                 this.updateUnreadCount(message.from_contact, false);
-                
+                var x1;
+                if (sender_name.last_name) {
+                    x1 = sender_name.last_name;
+                } else {
+                    x1 = '';
+                }
                 new Noty({ 
                     type:'success', 
                     layout:'bottomLeft', 
-                    text: `Incoming message from ${sender_name.first_name + ' ' + sender_name.last_name} !`, 
+                    text: `Incoming message from ${sender_name.first_name + ' ' + x1} !`,
                     timeout: 5000
-                }).show()
+                }).show();
 
                 var vid_sec = document.getElementById("noty_audio");
                 vid_sec.muted = false;

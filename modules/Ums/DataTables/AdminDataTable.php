@@ -67,6 +67,18 @@ class AdminDataTable extends DataTable
      */
     public function html()
     {
+        if(\Illuminate\Support\Facades\App::getLocale() == 'en') {
+            $export = "Export";
+            $print = "Print";
+            $reload = "Reload";
+            $langUrl = "";
+        } else {
+            $export = "Exporteren";
+            $print = "Afdrukken";
+            $reload = "Herlaad";
+            $langUrl = asset('admin/json/dt-dutch.json');
+        }
+
         return $this->builder()
             ->setTableId('data_table')
             ->columns($this->getColumns())
@@ -74,11 +86,14 @@ class AdminDataTable extends DataTable
             ->dom('Bflrtip')
             ->orderBy(1)
             ->buttons(
-                Button::make('create'),
-                Button::make('export'),
-                Button::make('print'),
-                Button::make('reload')
+            //Button::make('create'),
+                Button::make('export')->text($export),
+                Button::make('print')->text($print),
+                Button::make('reload')->text($reload)
             )
+            ->language([
+                'url' => $langUrl
+            ])
             ->parameters([
                 'pageLength' => 10
             ]);
@@ -91,17 +106,36 @@ class AdminDataTable extends DataTable
      */
     protected function getColumns()
     {
+        if(\Illuminate\Support\Facades\App::getLocale() == 'en') {
+            $name = "Name";
+            $phone = "Phone";
+            $email = "E-mail";
+            $registeredBy = "Registered By";
+            $registeredAt = "Registered At";
+            $email = "E-mail";
+            $action = "Action";
+            $serial = "ID";
+        } else {
+            $name = "Naam";
+            $phone = "Telefoon";
+            $email = "E-mail";
+            $registeredBy = "Geregistreerd door";
+            $registeredAt = "Geregistreerd bij";
+            $action = "Actie";
+            $serial = "ID";
+        }
+
         return [
             Column::computed('DT_RowIndex')
-                ->title('Sl'),
-            Column::make('name')->name('user_basic_info.first_name'), // alias used,
-            Column::make('name')->name('user_basic_info.last_name')->hidden(), // alias used,
-            Column::make('phone'),
-            Column::make('email'),
-            Column::make('approver_name')->name('approver_basic_info.first_name')->title('Registered By'), // alias used
-            Column::make('approver_name')->name('approver_basic_info.last_name')->hidden(), // alias used
-            Column::make('created_at')->title('Registered At'),
-            Column::computed('action')
+                ->title($serial),
+            Column::make('name')->name('user_basic_info.first_name')->title($name), // alias used,
+            Column::make('name')->name('user_basic_info.last_name')->hidden()->title($name), // alias used,
+            Column::make('phone')->title($phone),
+            Column::make('email')->title($email),
+            Column::make('approver_name')->name('approver_basic_info.first_name')->title($registeredBy), // alias used
+            Column::make('approver_name')->name('approver_basic_info.last_name')->hidden()->title($registeredBy), // alias used
+            Column::make('created_at')->title($registeredAt),
+            Column::computed('action')->title($action)
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

@@ -12,15 +12,25 @@
     <link href="{{ 'admin/css/icons.min.css' }}" rel="stylesheet" type="text/css" />
     <link href="{{ 'admin/css/app.min.css' }}" id="app-style" rel="stylesheet" type="text/css" />
 
+    <style>
+        .bg-login-overlay {
+            background: #8E8B71;
+        }
+        .btn-primary {
+            background: #8E8B71;
+            border-color: #8E8B71;
+        }
+    </style>
+
     @yield('style')
 
 </head>
 
 <body>
-<div class="home-btn d-none d-sm-block">
+{{--<div class="home-btn d-none d-sm-block">
     <a href="{{ url('/backend/dashboard') }}" class="text-dark"><i class="fas fa-home h2"></i></a>
-</div>
-<div class="account-pages my-5 pt-sm-5">
+</div>--}}
+<div class="account-page py-4" style="background: #252627">
     <div class="container">
         <div class="row justify-content-center">
 

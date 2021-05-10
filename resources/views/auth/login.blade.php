@@ -6,6 +6,11 @@
 
 @section('content')
     <div class="col-md-8 col-lg-6 col-xl-5">
+        <div class="row">
+            <div class="col-12 mb-1">
+                <img style="width: 100%" src="{{ $global_site->logo->file_url ?? config('core.image.default.logo') }}" alt="logo">
+            </div>
+        </div>
         <div class="card overflow-hidden">
             <div class="bg-login text-center">
                 <div class="bg-login-overlay"></div>
@@ -13,7 +18,7 @@
                     <h5 class="text-white font-size-20">Welcome Back !</h5>
                     <p class="text-white-50 mb-0">Sign in to continue to {{ $global_site->title ?? 'Web Portal' }}</p>
                     <a href="{{ url('/backend/dashboard') }}" class="logo logo-admin mt-4">
-                        <img src="{{ $global_site->logo_sm->favicon ?? config('core.image.default.favicon') }}" alt="" height="30">
+                        <img src="{{ $global_site->logo->file_url ?? config('core.image.default.favicon') }}" alt="" height="30">
                     </a>
                 </div>
             </div>
@@ -49,9 +54,9 @@
                         <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Log In</button>
                     </div>
 
-                    <div class="mt-4 text-center">
-                        <a href="{{ '' }}" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
-                    </div>
+                    {{--<div class="mt-4 text-center">
+                        <a href="{{ route('password.request') }}" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
+                    </div>--}}
                     {!! Form::close() !!}
                 </div>
             </div>
