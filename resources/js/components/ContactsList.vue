@@ -3,7 +3,7 @@
         <ul>
             <li style="cursor:default;">
                 <div id="searchBox" class="mobile-form">
-                    <p>Search User</p>
+                    <p>Zoek gebruiker</p>
                     <form action="javascript:void(0);" class="search-form" id="searchform">
                         
                         <span id="noEasy">
@@ -11,7 +11,7 @@
                             <span class="sb-icon-search" style="cursor:default;"></span>
                         </span>
 
-                        <input id="sbox" @keyup="searchit" v-model="search" onblur="if (this.placeholder == '') {this.placeholder = 'Type to search';}" onfocus="if (this.placeholder == 'Type to search') {this.placeholder = '';}" placeholder="Type to search" type="search" x-webkit-speech="">
+                        <input id="sbox" @keyup="searchit" v-model="search" onblur="if (this.placeholder == '') {this.placeholder = 'Type om te zoeken';}" onfocus="if (this.placeholder == 'Type om te zoeken') {this.placeholder = '';}" placeholder="Type om te zoeken" type="search" x-webkit-speech="">
                     </form>
                 </div>
             </li>
@@ -19,8 +19,8 @@
             <span v-if="dataContacts == 'no'">
                 <li style="border-bottom:0px; cursor:default;">
                     <i class="fa fa-user-times" style="margin-left: 130px;font-size: 35px;margin-top: 7px;"></i>
-                    <p style="margin-top: 50px;margin-left: -170px;text-align: center;"><b style="font-weight:550px; color:#666;">No Matching Result !</b>
-                    Make sure you typed the user firstname, lastname correctly.</p>
+                    <p style="margin-top: 50px;margin-left: -170px;text-align: center;"><b style="font-weight:550px; color:#666;">Geen overeenkomend resultaat !</b>
+                    Zorg ervoor dat u de voornaam en achternaam van de gebruiker correct hebt getypt.</p>
                 </li>
             </span>
 

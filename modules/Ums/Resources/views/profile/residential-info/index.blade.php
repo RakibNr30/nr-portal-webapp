@@ -144,9 +144,8 @@
                                     </div>
                                 </div>
 
-                                <h5 style="margin-top: 10px">{{ __('admin/profile/residential_info.permanent_address') }}</h5>
+                                {{--<h5 style="margin-top: 10px">{{ __('admin/profile/residential_info.permanent_address') }}</h5>
                                 <hr>
-
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="permanent_country"
@@ -249,7 +248,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="button-items float-right">
                                     <button type="submit" class="btn btn-primary waves-effect waves-light">

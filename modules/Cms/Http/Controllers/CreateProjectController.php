@@ -85,18 +85,18 @@ class CreateProjectController extends Controller
                 'notification_from' => Auth::id(),
                 'notification_to_type' => 'admin',
                 'notification_from_type' => 'client',
-                'message' => 'Client: ' . UserBasicInfo::where('id', Auth::id())->first()->first_name . ' has requested for a project. Review it.',
+                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has requested for a project. Review it.',
                 'status' => 'unseen',
             ]);
 
             $this->projectService->update($data, $project->id);
 
-            notifier()->success('Project created successfully.');
+            notifier()->success(__('admin/notifier.project_created_successfully'));
 
         } else {
-            notifier()->error('Project cannot be created now.');
+            notifier()->error(__('admin/notifier.project_cannot_be_created_now'));
         }
         // redirect back
-        return redirect()->route('backend.cms.my-project.index');
+        return redirect()->route('backend.cms.project-pending.show', [$project->id]);
     }
 }

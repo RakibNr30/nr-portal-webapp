@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
     return view('admin.layouts.master');
 });*/
 
-Auth::routes(['verify' => true, 'register' => false, 'reset' => false]);
+Auth::routes(['verify' => true, 'register' => false]);
 
 /*Route::get('password/reset', function () {
     abort(404);

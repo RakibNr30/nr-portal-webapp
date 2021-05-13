@@ -2,12 +2,11 @@
 
 namespace Modules\Ums\Http\Controllers\Profile;
 
+use App\Helpers\MailManager;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
-use Modules\Ums\Http\Requests\UserStoreRequest;
-use Modules\Ums\Http\Requests\UserUpdateRequest;
 use Modules\Ums\Services\UserService;
 
 class ChangePasswordController extends Controller
@@ -56,24 +55,31 @@ class ChangePasswordController extends Controller
 
         // get data
         $data = $request->all();
+        $mail_data = [
+            'mail_category_id' => 8,
+            'user_id' => auth()->user()->id,
+            'password' => $data['password'],
+        ];
         $data['password'] = bcrypt($data['password']);
 
         $user_pass = $this->userService->find($id)->password;
 
         if (!Hash::check($data['old_password'], $user_pass)) {
             // flash notification
-            notifier()->error('Old password do not match.');
+            notifier()->error(__('admin/notifier.old_password_do_not_match'));
             return redirect()->back();
         }
         // create user
         $user = $this->userService->update($data, $id);
         // check if user created
         if ($user) {
+            $mail_data['email'] = $user->email;
+            MailManager::send($mail_data['email'], $mail_data);
             // flash notification
-            notifier()->success('Password Changed successfully.');
+            notifier()->success(__('admin/notifier.password_changed_successfully'));
         } else {
             // flash notification
-            notifier()->error('Password cannot be changed.');
+            notifier()->error(__('admin/notifier.password_cannot_be_changed'));
         }
         // redirect back
         return redirect()->back();

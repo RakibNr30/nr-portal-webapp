@@ -165,10 +165,10 @@
                                                 <table class="table table-centered mb-0">
                                                     <thead>
                                                     <tr>
-                                                        <th scope="col">Serial</th>
-                                                        <th scope="col">Project</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Action</th>
+                                                        <th scope="col">{{ __('admin/company/show.id') }}</th>
+                                                        <th scope="col">{{ __('admin/company/show.project') }}</th>
+                                                        <th scope="col">{{ __('admin/company/show.status') }}</th>
+                                                        <th scope="col">{{ __('admin/company/show.action') }}</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -188,12 +188,12 @@
                                                             <td>
                                                                 @if($project->status == 1)
                                                                     <span class="badge badge-soft-info font-size-12">
-                                                                        {{ 'Assigned' }}
+                                                                        {{ __('admin/company/show.assigned') }}
                                                                     </span>
                                                                 @endif
                                                                 @if($project->status == 2)
                                                                     <span class="badge badge-soft-success font-size-12">
-                                                                        {{ 'In Progress' }}
+                                                                        {{ __('admin/company/show.in_progress') }}
                                                                     </span>
                                                                 @endif
                                                             </td>

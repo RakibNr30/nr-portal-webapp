@@ -15,4 +15,11 @@ return [
     'about_company' => 'About Company',
     'all_projects' => 'All Projects',
     'no_project_found' => 'No Project Found',
+    'id' => 'ID',
+    'project' => 'Project',
+    'status' => 'Status',
+    'action' => 'Action',
+    'view' => 'View',
+    'assigned' => 'Assigned',
+    'in_progress' => 'In Progress',
 ];

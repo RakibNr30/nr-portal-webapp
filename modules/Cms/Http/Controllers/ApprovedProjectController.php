@@ -74,10 +74,10 @@ class ApprovedProjectController extends Controller
         // check if project created
         if ($project) {
             // flash notification
-            notifier()->success('Project created successfully.');
+            notifier()->success(__('admin/notifier.project_created_successfully'));
         } else {
             // flash notification
-            notifier()->error('Project cannot be created successfully.');
+            notifier()->error(__('admin/notifier.project_cannot_be_created_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -96,7 +96,7 @@ class ApprovedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -134,7 +134,7 @@ class ApprovedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -156,7 +156,7 @@ class ApprovedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -167,10 +167,10 @@ class ApprovedProjectController extends Controller
         // check if project updated
         if ($project) {
             // flash notification
-            notifier()->success('Project updated successfully.');
+            notifier()->success(__('admin/notifier.project_updated_successfully'));
         } else {
             // flash notification
-            notifier()->error('Project cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.project_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -189,17 +189,17 @@ class ApprovedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
         }
         // delete project
         if ($this->projectService->delete($id)) {
             // flash notification
-            notifier()->success('Project deleted successfully.');
+            notifier()->success(__('admin/notifier.project_deleted_successfully'));
         } else {
             // flash notification
-            notifier()->success('Project cannot be deleted successfully.');
+            notifier()->success(__('admin/notifier.project_cannot_be_deleted_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -221,7 +221,7 @@ class ApprovedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back()->with('currentCompany', $currentCompany);
         }
@@ -241,7 +241,7 @@ class ApprovedProjectController extends Controller
                     'notification_from' => $user->id,
                     'notification_to_type' => 'admin',
                     'notification_from_type' => 'company',
-                    'message' => 'Company: ' . UserBasicInfo::where('id', Auth::id())->first()->first_name . ' has uploaded a file on project #' . $project->project_id,
+                    'message' => 'Company: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has uploaded a file on project #' . $project->project_id,
                     'status' => 'unseen',
                 ]);
             }
@@ -272,10 +272,10 @@ class ApprovedProjectController extends Controller
             }
 
             // flash notification
-            notifier()->success('Project file updated successfully.');
+            notifier()->success(__('admin/notifier.project_file_uploaded_successfully'));
         } else {
             // flash notification
-            notifier()->error('Project file cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.project_file_cannot_be_uploaded_successfully'));
         }
 
         // redirect back
@@ -285,7 +285,7 @@ class ApprovedProjectController extends Controller
     /**
      * Update project
      *
-     * @param ProjectUpdateRequest $request
+     * @param ProjectApproveByClientUpdateRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -299,7 +299,7 @@ class ApprovedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back()->with('currentCompany', $currentCompany);
         }
@@ -323,7 +323,7 @@ class ApprovedProjectController extends Controller
                 'notification_to' => $data['company_id'][0],
                 'notification_to_type' => 'company',
                 'notification_from_type' => 'client',
-                'message' => 'Client: ' . UserBasicInfo::where('id', Auth::id())->first()->first_name . ' has started a assigned project #' . $project->project_id,
+                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has started a assigned project #' . $project->project_id,
                 'status' => 'unseen',
             ]);
 
@@ -342,18 +342,18 @@ class ApprovedProjectController extends Controller
                 'notification_from' => $user->id,
                 'notification_to_type' => 'admin',
                 'notification_from_type' => 'client',
-                'message' => 'Client: ' . UserBasicInfo::where('id', Auth::id())->first()->first_name . ' has started a project #' . $project->project_id,
+                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has started a project #' . $project->project_id,
                 'status' => 'unseen',
             ]);
 
             MailManager::send($company_mail_data['email'], $company_mail_data);
 
             // flash notification
-            notifier()->success('Project approved by client successfully.');
+            notifier()->success(__('admin/notifier.project_approved_by_client_successfully'));
             return redirect()->route('backend.cms.project-accepted.index');
         } else {
             // flash notification
-            notifier()->error('Project approved by client not successful.');
+            notifier()->error(__('admin/notifier.project_approved_by_client_not_successful'));
         }
         // redirect back
         return redirect()->back()->with('currentCompany', $currentCompany);

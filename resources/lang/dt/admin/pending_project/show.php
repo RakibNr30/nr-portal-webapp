@@ -18,4 +18,6 @@ return [
     'city_district' => 'Plaats',
     'state_division' => 'Provincie',
     'country' => 'Land',
+    'select_companies' => 'Selecteer bedrijven',
+    'approval_message' => 'Hallo! Wacht op goedkeuring.',
 ];

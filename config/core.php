@@ -331,5 +331,7 @@ return [
         '4' => 'Project Approval',
         '5' => 'Company Selection',
         '6' => 'Company Acceptation',
+        '7' => 'Client Creation',
+        '8' => 'Change Password',
     ]
 ];

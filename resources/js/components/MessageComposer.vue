@@ -1,7 +1,7 @@
 <template>
     <div class="composer">
-        <textarea v-model="message" @keydown.enter="send" placeholder="Type your message..."></textarea>
-        <button v-model="message" @click="send" style="bottom: 50px;" class="btn btn-secondary waves-effect mt-4"><i class="mdi mdi-reply"></i> Send</button>
+        <textarea v-model="message" @keydown.enter="send" placeholder="Schrijf je bericht..."></textarea>
+        <button v-model="message" @click="send" style="bottom: 50px;" class="btn btn-secondary waves-effect mt-4"><i class="mdi mdi-reply"></i> Sturen</button>
     </div>
 </template>
 

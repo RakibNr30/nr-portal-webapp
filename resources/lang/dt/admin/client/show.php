@@ -16,4 +16,12 @@ return [
     'country' => 'Land',
     'all_projects' => 'Alle projecten',
     'no_project_found' => 'Geen projecten gevonden',
+    'id' => 'ID',
+    'project' => 'Project',
+    'status' => 'Toestand',
+    'action' => 'Actie',
+    'view' => 'visie',
+    'pending' => 'In afwachting',
+    'in_progress' => 'Bezig',
+    'accepted' => 'Geaccepteerd',
 ];

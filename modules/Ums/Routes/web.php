@@ -11,7 +11,8 @@
 Route::resource('company', 'CompanyController');
 // Admin routes...
 Route::resource('admin', 'AdminController');
-// Client routes
+// Client routes...
+Route::resource('client', 'ClientCreateController')->only(['create', 'store']);
 Route::prefix('client')->name('client-')->group(function () {
     // request routes...
     Route::resource('request', 'ClientRequestController')->except(['create']);

@@ -57,7 +57,7 @@ class SiteController extends Controller
         // check if site doesn't exists
         if (empty($site)) {
             // flash notification
-            notifier()->error('Site not found!');
+            notifier()->error(__('admin/notifier.site_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -66,10 +66,10 @@ class SiteController extends Controller
         // check if site updated
         if ($site) {
             // flash notification
-            notifier()->success('Site updated successfully.');
+            notifier()->success(__('admin/notifier.site_updated_successfully'));
         } else {
             // flash notification
-            notifier()->error('Site cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.site_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();

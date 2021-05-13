@@ -113,12 +113,12 @@ class PendingProjectDataTable extends DataTable
             $customerName = "Customer Name";
             $title = "Title";
             $action = "Action";
-            $serial = "Serial";
+            $serial = "ID";
         } else {
             $customerName = "Klantnaam";
             $title = "Titel";
             $action = "Actie";
-            $serial = "Serieel";
+            $serial = "ID";
         }
         return [
             Column::computed('DT_RowIndex')

@@ -163,7 +163,7 @@ class ClientRequestController extends Controller
                     'notification_from' => $user->id,
                     'notification_to_type' => 'admin',
                     'notification_from_type' => 'client',
-                    'message' => 'Client: ' . UserBasicInfo::where('id', $user->id)->first()->first_name . ' has requested for a project. Review it.',
+                    'message' => 'Client: ' . UserBasicInfo::where('user_id', $user->id)->first()->first_name . ' has requested for a project. Review it.',
                     'status' => 'unseen',
                 ]);
 
@@ -182,18 +182,18 @@ class ClientRequestController extends Controller
                 MailManager::send($mail_data['email'], $mail_data);
 
                 // flash notification
-                notifier()->success('Client approved successfully.');
+                notifier()->success(__('admin/notifier.client_approved_successfully'));
                 // delete request client
                 $this->clientRequestService->delete($data['client_id']);
                 // redirect to
                 return redirect()->to('/backend/client/request');
             } else {
                 // flash notification
-                notifier()->error('Client cannot be approved successfully.');
+                notifier()->error(__('admin/notifier.client_cannot_be_approved_successfully'));
             }
         } else {
             // flash notification
-            notifier()->error('Client cannot be approved successfully.');
+            notifier()->error(__('admin/notifier.client_cannot_be_approved_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -213,7 +213,7 @@ class ClientRequestController extends Controller
         // check if clientRequest doesn't exists
         if (empty($clientRequest)) {
             // flash notification
-            notifier()->error('Client Request not found!');
+            notifier()->error(__('admin/notifier.client_request_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -234,7 +234,7 @@ class ClientRequestController extends Controller
         // check if clientRequest doesn't exists
         if (empty($clientRequest)) {
             // flash notification
-            notifier()->error('Client Request not found!');
+            notifier()->error(__('admin/notifier.client_request_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -255,17 +255,17 @@ class ClientRequestController extends Controller
         // check if clientRequest doesn't exists
         if (empty($clientRequest)) {
             // flash notification
-            notifier()->error('Client Request not found!');
+            notifier()->error(__('admin/notifier.client_request_not_found'));
             // redirect back
             return redirect()->back();
         }
         // delete clientRequest
         if ($this->clientRequestService->delete($id)) {
             // flash notification
-            notifier()->success('Client Request deleted successfully.');
+            notifier()->success(__('admin/notifier.client_request_deleted_successfully'));
         } else {
             // flash notification
-            notifier()->success('Client Request cannot be deleted successfully.');
+            notifier()->success(__('admin/notifier.client_request_cannot_be_deleted_successfully'));
         }
         // redirect back
         return redirect()->back();

@@ -85,8 +85,10 @@
 
 @section('script')
     <script>
-        $('#mail_category').on('change', function () {
-            this.form.submit();
-        });
+        $(document).ready(function () {
+            $('#mail_category').on('change', function () {
+                this.form.submit();
+            });
+        })
     </script>
 @stop

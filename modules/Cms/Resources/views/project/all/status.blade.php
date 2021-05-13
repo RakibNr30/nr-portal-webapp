@@ -4,24 +4,24 @@ $user = \Modules\Ums\Entities\User::find(auth()->user()->id);
 
 @if($data->status == 0)
     <span class="badge badge-soft-warning font-size-12">
-        {{ 'Pending' }}
+        {{ __('admin/my_project/index.pending') }}
     </span>
 @endif
 @if($data->status == 1)
     <span class="badge badge-soft-info font-size-12">
         @if($user->hasRole('company'))
-            {{ 'Assigned' }}
+            {{ __('admin/my_project/index.assigned') }}
         @else
-            {{ 'In Progress' }}
+            {{ __('admin/my_project/index.in_progress') }}
         @endif
     </span>
 @endif
 @if($data->status == 2)
     <span class="badge badge-soft-success font-size-12">
         @if($user->hasRole('company'))
-            {{ 'In Progress' }}
+            {{ __('admin/my_project/index.in_progress') }}
         @else
-            {{ 'Accepted' }}
+            {{ __('admin/my_project/index.accepted') }}
         @endif
     </span>
 @endif

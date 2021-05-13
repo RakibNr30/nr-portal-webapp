@@ -61,10 +61,10 @@ class ResidentialInfoController extends Controller
         // check if userResidentialInfo created
         if ($userResidentialInfo) {
             // flash notification
-            notifier()->success('Your Residential Info updated successfully.');
+            notifier()->success(__('admin/notifier.your_residential_info_updated_successfully'));
         } else {
             // flash notification
-            notifier()->error('Your Residential Info cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.your_residential_info_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();

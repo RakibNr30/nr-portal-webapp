@@ -16,4 +16,12 @@ return [
     'country' => 'Country',
     'all_projects' => 'All Projects',
     'no_project_found' => 'No Project Found',
+    'id' => 'ID',
+    'project' => 'Project',
+    'status' => 'Status',
+    'action' => 'Action',
+    'view' => 'View',
+    'pending' => 'Pending',
+    'in_progress' => 'In Progress',
+    'accepted' => 'Accepted',
 ];

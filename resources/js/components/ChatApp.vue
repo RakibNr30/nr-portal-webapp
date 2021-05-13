@@ -70,7 +70,7 @@
                     new Noty({
                         type:'success',
                         layout:'bottomLeft',
-                        text: `Incoming message from ${sender_name.first_name + ' ' + x} !`,
+                        text: `Inkomend bericht van ${sender_name.first_name + ' ' + x} !`,
                         timeout: 5000
                     }).show()
 
@@ -91,7 +91,7 @@
                 new Noty({ 
                     type:'success', 
                     layout:'bottomLeft', 
-                    text: `Incoming message from ${sender_name.first_name + ' ' + x1} !`,
+                    text: `Inkomend bericht van ${sender_name.first_name + ' ' + x1} !`,
                     timeout: 5000
                 }).show();
 

@@ -32,8 +32,8 @@ class MailContentController extends Controller
     {
         if (request()->has('mail_category')) {
             $category = request()->get('mail_category');
-            if ($category < 1 || $category > 6) {
-                notifier()->error('Mail Category Not Found!');
+            if ($category < 1 || $category > 8) {
+                notifier()->error(__('admin/notifier.mail_category_not_found'));
                 return redirect()->back();
             }
             $mailContent = $this->mailContentService->findBy('mail_category_id', $category);
@@ -58,10 +58,10 @@ class MailContentController extends Controller
         // check if mailContent created
         if ($mailContent) {
             // flash notification
-            notifier()->success('Mail Template updated successfully.');
+            notifier()->success(__('admin/notifier.mail_template_updated_successfully'));
         } else {
             // flash notification
-            notifier()->error('Mail Template cannot be Updated.');
+            notifier()->error(__('admin/notifier.mail_template_cannot_be_updated'));
         }
         // redirect back
         return redirect()->back();

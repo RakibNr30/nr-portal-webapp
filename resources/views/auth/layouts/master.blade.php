@@ -8,9 +8,9 @@
     <meta content="" name="description" />
 
     <link rel="shortcut icon" href="{{ $global_site->favicon->file_url ?? config('core.image.default.favicon') }}">
-    <link href="{{ 'admin/css/bootstrap.min.css' }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <link href="{{ 'admin/css/icons.min.css' }}" rel="stylesheet" type="text/css" />
-    <link href="{{ 'admin/css/app.min.css' }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
     <style>
         .bg-login-overlay {

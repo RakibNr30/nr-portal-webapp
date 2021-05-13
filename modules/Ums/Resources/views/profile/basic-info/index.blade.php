@@ -113,7 +113,7 @@
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    {{--<div class="form-group col-md-6">
                                         <label for="dob" class="@error('dob') text-danger @enderror">
                                             {{ __('admin/profile/basic_info.date_of_birth') }}
                                         </label>
@@ -124,7 +124,7 @@
                                         <span class="invalid-feedback"
                                               role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
-                                    </div>
+                                    </div>--}}
                                 </div>
                                 <div class="button-items float-right">
                                     <button type="submit" class="btn btn-primary waves-effect waves-light">

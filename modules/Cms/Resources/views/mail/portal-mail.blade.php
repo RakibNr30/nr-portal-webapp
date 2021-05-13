@@ -99,6 +99,18 @@
                                                 <li>Project ID #{{ $project->project_id }}</li>
                                             </ul>
                                         @endif
+                                        @if($data['mail_category_id'] == 7)
+                                            <ul>
+                                                <li>Email: {{ $data['email'] }}</li>
+                                                <li>Password: {{ $data['password'] }}</li>
+                                            </ul>
+                                        @endif
+                                        @if($data['mail_category_id'] == 8)
+                                            <ul>
+                                                <li>Email: {{ $data['email'] }}</li>
+                                                <li>New Password: {{ $data['password'] }}</li>
+                                            </ul>
+                                        @endif
                                         </p>
                                     </td>
                                 </tr>

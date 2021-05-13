@@ -65,7 +65,7 @@ class AcceptedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -103,7 +103,7 @@ class AcceptedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -125,7 +125,7 @@ class AcceptedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -136,10 +136,10 @@ class AcceptedProjectController extends Controller
         // check if project updated
         if ($project) {
             // flash notification
-            notifier()->success('Project updated successfully.');
+            notifier()->success(__('admin/notifier.project_updated_successfully'));
         } else {
             // flash notification
-            notifier()->error('Project cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.project_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -158,17 +158,17 @@ class AcceptedProjectController extends Controller
         // check if project doesn't exists
         if (empty($project)) {
             // flash notification
-            notifier()->error('Project not found!');
+            notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
         }
         // delete project
         if ($this->projectService->delete($id)) {
             // flash notification
-            notifier()->success('Project deleted successfully.');
+            notifier()->success(__('admin/notifier.project_deleted_successfully'));
         } else {
             // flash notification
-            notifier()->success('Project cannot be deleted successfully.');
+            notifier()->success(__('admin/notifier.project_cannot_be_deleted_successfully'));
         }
         // redirect back
         return redirect()->back();

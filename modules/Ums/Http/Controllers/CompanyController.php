@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 // requests...
 use Carbon\Carbon;
 use Modules\Cms\Services\ProjectService;
+use Modules\Ums\Entities\UserResidentialInfo;
 use Modules\Ums\Http\Requests\CompanyStoreRequest;
 use Modules\Ums\Http\Requests\CompanyUpdateRequest;
 use Modules\Ums\Http\Requests\UserStoreRequest;
@@ -19,6 +20,7 @@ use Modules\Ums\DataTables\CompanyDataTable;
 // services...
 use Modules\Ums\Services\RoleService;
 use Modules\Ums\Services\UserBasicInfoService;
+use Modules\Ums\Services\UserResidentialInfoService;
 use Modules\Ums\Services\UserService;
 use function GuzzleHttp\Promise\all;
 
@@ -35,6 +37,11 @@ class CompanyController extends Controller
     protected $userBasicInfoService;
 
     /**
+     * @var $basicInfoService
+     */
+    protected $userResidentialInfoService;
+
+    /**
      * @var $roleService
      */
     protected $roleService;
@@ -49,18 +56,21 @@ class CompanyController extends Controller
      *
      * @param UserService $userService
      * @param UserBasicInfoService $userBasicInfoService
+     * @param UserResidentialInfoService $userResidentialInfoService
      * @param RoleService $roleService
      * @param ProjectService $projectService
      */
     public function __construct(
         UserService $userService,
         UserBasicInfoService $userBasicInfoService,
+        UserResidentialInfoService $userResidentialInfoService,
         RoleService $roleService,
         ProjectService $projectService
     )
     {
         $this->userService = $userService;
         $this->userBasicInfoService = $userBasicInfoService;
+        $this->userResidentialInfoService = $userResidentialInfoService;
         $this->roleService = $roleService;
         $this->projectService = $projectService;
         $this->middleware(['permission:user_controls']);
@@ -133,6 +143,7 @@ class CompanyController extends Controller
             $data['personal_phone'] = $user->phone;
             $data['first_name'] = $data['company_name'];
             $basicInfo = $this->userBasicInfoService->create($data);
+            $residentialInfo = $this->userResidentialInfoService->create($data);
 
             MailManager::send($mail_data['email'], $mail_data);
 
@@ -140,14 +151,14 @@ class CompanyController extends Controller
             $basicInfo->uploadFiles();
             if ($basicInfo) {
                 // flash notification
-                notifier()->success('Company created successfully.');
+                notifier()->success(__('admin/notifier.company_created_successfully'));
             } else {
                 // flash notification
-                notifier()->error('Company cannot be created successfully.');
+                notifier()->error(__('admin/notifier.company_cannot_be_created_successfully'));
             }
         } else {
             // flash notification
-            notifier()->error('Company cannot be created successfully.');
+            notifier()->error(__('admin/notifier.company_cannot_be_created_successfully'));
         }
         // redirect back
         return redirect()->route('backend.ums.company.index');
@@ -167,7 +178,7 @@ class CompanyController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Company not found!');
+            notifier()->error(__('admin/notifier.company_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -197,7 +208,7 @@ class CompanyController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Company not found!');
+            notifier()->error(__('admin/notifier.company_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -227,7 +238,7 @@ class CompanyController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Company not found!');
+            notifier()->error(__('admin/notifier.company_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -247,14 +258,14 @@ class CompanyController extends Controller
             $basicInfo->uploadFiles();
             if ($basicInfo) {
                 // flash notification
-                notifier()->success('Company updated successfully.');
+                notifier()->success(__('admin/notifier.company_updated_successfully'));
             } else {
                 // flash notification
-                notifier()->error('Company cannot be updated successfully.');
+                notifier()->error(__('admin/notifier.company_cannot_be_updated_successfully'));
             }
         } else {
             // flash notification
-            notifier()->error('Company cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.company_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -273,17 +284,17 @@ class CompanyController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Company not found!');
+            notifier()->error(__('admin/notifier.company_not_found'));
             // redirect back
             return redirect()->back();
         }
         // delete user
         if ($this->userService->delete($id)) {
             // flash notification
-            notifier()->success('Company deleted successfully.');
+            notifier()->success(__('admin/notifier.company_deleted_successfully'));
         } else {
             // flash notification
-            notifier()->success('Company cannot be deleted successfully.');
+            notifier()->success(__('admin/notifier.company_cannot_be_deleted_successfully'));
         }
         // redirect back
         return redirect()->back();

@@ -33,11 +33,11 @@
                     <div class="col-lg-8">
                         <div class="card border border-primary">
                             <div class="card-header bg-transparent">
-                                {{--@if($user->hasRole('client'))
+                                @if($user->hasRole('client'))
                                     <div class="alert alert-danger text-center" role="alert">
-                                        Hello! Please wait for approval.
+                                        {{ __('admin/pending_project/show.approval_message') }}
                                     </div>
-                                @endif--}}
+                                @endif
                                 <h5 class="my-0 text-primary">
                                     {{ __('admin/pending_project/show.project_id') }} #{{ $project->project_id ?? 'N/A' }}
                                 </h5>
@@ -68,9 +68,9 @@
                                     <div class="form-group">
                                         <label for="company_id" class="@error('company_id') text-danger @enderror mt-3">{{ __('admin/pending_project/show.assign_companies') }}</label>
                                         <select id="company_id" name="company_id[]"
-                                                class="form-control select2 @error('company_id') is-invalid @enderror" data-placeholder="Select Companies" multiple required>
+                                                class="form-control select2 @error('company_id') is-invalid @enderror" data-placeholder="{{ __('admin/pending_project/show.select_companies') }}" multiple required>
                                             @foreach($companies as $company)
-                                                <option value="{{ $company->id }}">{{ $company->basicInfo->first_name }}</option>
+                                                <option value="{{ $company->id }}">{{ $company->basicInfo->first_name ?? '' }}</option>
                                             @endforeach
                                         </select>
                                         @error('company_id')
@@ -105,10 +105,10 @@
 
                                         <div class="mt-3">
                                             <a href="javascript:void(0)" class="text-dark font-weight-medium font-size-16">
-                                                {{ $author->basicInfo->first_name }} {{ $author->basicInfo->last_name }}
+                                                {{ $author->basicInfo->first_name ?? '' }} {{ $author->basicInfo->last_name ?? '' }}
                                             </a>
                                             <p class="text-body mt-1 mb-1">
-                                                {{ $author->basicInfo->designation }}
+                                                {{ $author->basicInfo->designation ?? '' }}
                                             </p>
                                             <a href="{{ route('backend.ums.client-approved.show', [$author->id]) }}" class="badge badge-danger p-1 mt-2">
                                                 {{ __('admin/pending_project/show.view_profile') }}
@@ -128,7 +128,7 @@
                                 <div class="profile-widgets">
                                     <div class="text-center">
                                         <div class="mt-3">
-                                            @if($author->basicInfo->personal_email)
+                                            @if(isset($author->basicInfo->personal_email))
                                                 <div class="mt-2">
                                                     <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.email_address') }}</p>
                                                     <h6 class="">
@@ -139,7 +139,7 @@
                                                 </div>
                                             @endif
 
-                                            @if($author->basicInfo->phone_no)
+                                            @if(isset($author->basicInfo->phone_no))
                                                 <div class="mt-3">
                                                     <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.phone_number') }}</p>
                                                     <h6 class="">
@@ -149,7 +149,7 @@
                                                     </h6>
                                                 </div>
                                             @endif
-                                            @if($author->residentialInfo->present_address_line_1)
+                                            @if(isset($author->residentialInfo->present_address_line_1))
                                                 <div class="mt-3">
                                                     <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.address') }}</p>
                                                     <h6 class="">
@@ -157,7 +157,7 @@
                                                     </h6>
                                                 </div>
                                             @endif
-                                            @if($author->residentialInfo->present_city)
+                                            @if(isset($author->residentialInfo->present_city))
                                                 <div class="mt-3">
                                                     <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.city_district') }}</p>
                                                     <h6 class="">
@@ -165,7 +165,7 @@
                                                     </h6>
                                                 </div>
                                             @endif
-                                            @if($author->residentialInfo->present_state)
+                                            @if(isset($author->residentialInfo->present_state))
                                                 <div class="mt-3">
                                                     <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.state_division') }}</p>
                                                     <h6 class="">
@@ -173,7 +173,7 @@
                                                     </h6>
                                                 </div>
                                             @endif
-                                            @if($author->residentialInfo->present_country)
+                                            @if(isset($author->residentialInfo->present_country))
                                                 <div class="mt-3">
                                                     <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.country') }}</p>
                                                     <h6 class="">

@@ -18,4 +18,6 @@ return [
     'city_district' => 'City/District',
     'state_division' => 'State/Division',
     'country' => 'Country',
+    'select_companies' => 'Select companies',
+    'approval_message' => 'Hello! Please wait for approval.',
 ];

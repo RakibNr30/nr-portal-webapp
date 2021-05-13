@@ -118,14 +118,14 @@ class AdminController extends Controller
             $basicInfo->uploadFiles();
             if ($basicInfo) {
                 // flash notification
-                notifier()->success('Admin created successfully.');
+                notifier()->success(__('admin/notifier.admin_created_successfully'));
             } else {
                 // flash notification
-                notifier()->error('Admin cannot be created successfully.');
+                notifier()->error(__('admin/notifier.admin_cannot_be_created_successfully'));
             }
         } else {
             // flash notification
-            notifier()->error('Admin cannot be created successfully.');
+            notifier()->error(__('admin/notifier.admin_cannot_be_created_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -145,7 +145,7 @@ class AdminController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Admin not found!');
+            notifier()->error(__('admin/notifier.admin_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -173,7 +173,7 @@ class AdminController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Admin not found!');
+            notifier()->error(__('admin/notifier.admin_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -203,7 +203,7 @@ class AdminController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Admin not found!');
+            notifier()->error(__('admin/notifier.admin_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -222,14 +222,14 @@ class AdminController extends Controller
             $basicInfo->uploadFiles();
             if ($basicInfo) {
                 // flash notification
-                notifier()->success('Admin updated successfully.');
+                notifier()->success(__('admin/notifier.admin_updated_successfully'));
             } else {
                 // flash notification
-                notifier()->error('Admin cannot be updated successfully.');
+                notifier()->error(__('admin/notifier.admin_cannot_be_updated_successfully'));
             }
         } else {
             // flash notification
-            notifier()->error('Admin cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.admin_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -248,17 +248,17 @@ class AdminController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Admin not found!');
+            notifier()->error(__('admin/notifier.admin_not_found'));
             // redirect back
             return redirect()->back();
         }
         // delete user
         if ($this->userService->delete($id)) {
             // flash notification
-            notifier()->success('Admin deleted successfully.');
+            notifier()->success(__('admin/notifier.admin_deleted_successfully'));
         } else {
             // flash notification
-            notifier()->success('Admin cannot be deleted successfully.');
+            notifier()->success(__('admin/notifier.admin_cannot_be_deleted_successfully'));
         }
         // redirect back
         return redirect()->back();

@@ -97,7 +97,7 @@ class ClientApprovedController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Approved client not found!');
+            notifier()->error(__('admin/notifier.client_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -128,7 +128,7 @@ class ClientApprovedController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Approved client not found!');
+            notifier()->error(__('admin/notifier.client_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -156,7 +156,7 @@ class ClientApprovedController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Approved client not found!');
+            notifier()->error(__('admin/notifier.client_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -185,14 +185,14 @@ class ClientApprovedController extends Controller
             $basicInfo->uploadFiles();
             if ($basicInfo && $residentialInfo) {
                 // flash notification
-                notifier()->success('Client updated successfully.');
+                notifier()->success(__('admin/notifier.client_updated_successfully'));
             } else {
                 // flash notification
-                notifier()->error('Client cannot be updated successfully.');
+                notifier()->error(__('admin/notifier.client_cannot_be_updated_successfully'));
             }
         } else {
             // flash notification
-            notifier()->error('Client cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.client_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();
@@ -211,17 +211,17 @@ class ClientApprovedController extends Controller
         // check if user doesn't exists
         if (empty($user)) {
             // flash notification
-            notifier()->error('Client not found!');
+            notifier()->error(__('admin/notifier.client_not_found'));
             // redirect back
             return redirect()->back();
         }
         // delete user
         if ($this->userService->delete($id)) {
             // flash notification
-            notifier()->success('Client deleted successfully.');
+            notifier()->success(__('admin/notifier.client_deleted_successfully'));
         } else {
             // flash notification
-            notifier()->success('Client cannot be deleted successfully.');
+            notifier()->success(__('admin/notifier.client_cannot_be_deleted_successfully'));
         }
         // redirect back
         return redirect()->back();

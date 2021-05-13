@@ -186,10 +186,10 @@
                                         <table class="table table-centered mb-0">
                                             <thead>
                                             <tr>
-                                                <th scope="col">Serial</th>
-                                                <th scope="col">Project</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Action</th>
+                                                <th scope="col">{{ __('admin/client/show.id') }}</th>
+                                                <th scope="col">{{ __('admin/client/show.project') }}</th>
+                                                <th scope="col">{{ __('admin/client/show.status') }}</th>
+                                                <th scope="col">{{ __('admin/client/show.action') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -209,29 +209,29 @@
                                                     <td>
                                                         @if($project->status == 0)
                                                             <span class="badge badge-soft-warning font-size-12">
-                                                                {{ 'Pending' }}
+                                                                {{ __('admin/client/show.pending') }}
                                                             </span>
                                                         @endif
                                                         @if($project->status == 1)
                                                             <span class="badge badge-soft-info font-size-12">
-                                                                {{ 'In Progress' }}
+                                                                {{ __('admin/client/show.in_progress') }}
                                                             </span>
                                                         @endif
                                                         @if($project->status == 2)
                                                             <span class="badge badge-soft-success font-size-12">
-                                                                {{ 'Accepted' }}
+                                                                {{ __('admin/client/show.accepted') }}
                                                             </span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if($project->status == 0)
-                                                            <a href="{{ route('backend.cms.project-pending.show', [$project->id]) }}" class="btn btn-primary btn-sm">View</a>
+                                                            <a href="{{ route('backend.cms.project-pending.show', [$project->id]) }}" class="btn btn-primary btn-sm">{{ __('admin/client/show.view') }}</a>
                                                         @endif
                                                         @if($project->status == 1)
-                                                            <a href="{{ route('backend.cms.project-approved.show', [$project->id]) }}" class="btn btn-primary btn-sm">View</a>
+                                                            <a href="{{ route('backend.cms.project-approved.show', [$project->id]) }}" class="btn btn-primary btn-sm">{{ __('admin/client/show.view') }}</a>
                                                         @endif
                                                         @if($project->status == 2)
-                                                            <a href="{{ route('backend.cms.project-accepted.show', [$project->id]) }}" class="btn btn-primary btn-sm">View</a>
+                                                            <a href="{{ route('backend.cms.project-accepted.show', [$project->id]) }}" class="btn btn-primary btn-sm">{{ __('admin/client/show.view') }}</a>
                                                         @endif
                                                     </td>
                                                 </tr>

@@ -68,11 +68,13 @@ class AdminDataTable extends DataTable
     public function html()
     {
         if(\Illuminate\Support\Facades\App::getLocale() == 'en') {
+            $create = "Create";
             $export = "Export";
             $print = "Print";
             $reload = "Reload";
             $langUrl = "";
         } else {
+            $create = "Creëer";
             $export = "Exporteren";
             $print = "Afdrukken";
             $reload = "Herlaad";
@@ -86,7 +88,7 @@ class AdminDataTable extends DataTable
             ->dom('Bflrtip')
             ->orderBy(1)
             ->buttons(
-            //Button::make('create'),
+                Button::make('create')->text($create),
                 Button::make('export')->text($export),
                 Button::make('print')->text($print),
                 Button::make('reload')->text($reload)

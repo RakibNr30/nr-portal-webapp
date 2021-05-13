@@ -58,10 +58,10 @@ class BasicInfoController extends Controller
         // check if userBasicInfo created
         if ($userBasicInfo) {
             // flash notification
-            notifier()->success('Your Basic Info updated successfully.');
+            notifier()->success(__('admin/notifier.your_basic_info_updated_successfully'));
         } else {
             // flash notification
-            notifier()->error('Your Basic Info cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.your_basic_info_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();

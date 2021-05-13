@@ -28,5 +28,15 @@
     "subject": "Company Acceptation",
     "body": "Company Acceptation Body",
     "mail_category_id": 6
+  },
+  {
+    "subject": "Client Creation",
+    "body": "Client Creation Body",
+    "mail_category_id": 7
+  },
+  {
+    "subject": "Change Password",
+    "body": "Change Password Body",
+    "mail_category_id": 8
   }
 ]

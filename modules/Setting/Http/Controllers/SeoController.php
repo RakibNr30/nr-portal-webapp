@@ -55,7 +55,7 @@ class SeoController extends Controller
         // check if seo doesn't exists
         if (empty($seo)) {
             // flash notification
-            notifier()->error('Seo not found!');
+            notifier()->error(__('admin/notifier.seo_not_found'));
             // redirect back
             return redirect()->back();
         }
@@ -64,10 +64,10 @@ class SeoController extends Controller
         // check if seo updated
         if ($seo) {
             // flash notification
-            notifier()->success('Seo updated successfully.');
+            notifier()->success(__('admin/notifier.seo_updated_successfully'));
         } else {
             // flash notification
-            notifier()->error('Seo cannot be updated successfully.');
+            notifier()->error(__('admin/notifier.seo_cannot_be_updated_successfully'));
         }
         // redirect back
         return redirect()->back();
