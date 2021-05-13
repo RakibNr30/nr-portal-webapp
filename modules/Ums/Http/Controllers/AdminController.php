@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 
 // requests...
 use Carbon\Carbon;
-use Modules\Ums\Entities\User;
 use Modules\Ums\Http\Requests\UserStoreRequest;
 use Modules\Ums\Http\Requests\UserUpdateRequest;
 
@@ -18,7 +17,6 @@ use Modules\Ums\DataTables\AdminDataTable;
 use Modules\Ums\Services\RoleService;
 use Modules\Ums\Services\UserBasicInfoService;
 use Modules\Ums\Services\UserService;
-use function GuzzleHttp\Promise\all;
 
 class AdminController extends Controller
 {
@@ -113,12 +111,17 @@ class AdminController extends Controller
             $data['personal_phone'] = $user->phone;
             $basicInfo = $this->userBasicInfoService->create($data);
 
-            MailManager::send($mail_data['email'], $mail_data);
             // upload files
             $basicInfo->uploadFiles();
             if ($basicInfo) {
                 // flash notification
                 notifier()->success(__('admin/notifier.admin_created_successfully'));
+                try {
+                    MailManager::send($mail_data['email'], $mail_data);
+                } catch (\Exception $exception) {
+                    // flash notification
+                    notifier()->warning(__('admin/notifier.admin_created_successfully_but_email_sending_failed'));
+                }
             } else {
                 // flash notification
                 notifier()->error(__('admin/notifier.admin_cannot_be_created_successfully'));

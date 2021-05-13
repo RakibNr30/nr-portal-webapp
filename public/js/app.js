@@ -1980,7 +1980,7 @@ __webpack_require__.r(__webpack_exports__);
         new Noty({
           type: 'success',
           layout: 'bottomLeft',
-          text: "Incoming message from ".concat(sender_name.first_name + ' ' + x, " !"),
+          text: "Inkomend bericht van ".concat(sender_name.first_name + ' ' + x, " !"),
           timeout: 5000
         }).show();
         var vid = document.getElementById("noty_audio");
@@ -2001,7 +2001,7 @@ __webpack_require__.r(__webpack_exports__);
       new Noty({
         type: 'success',
         layout: 'bottomLeft',
-        text: "Incoming message from ".concat(sender_name.first_name + ' ' + x1, " !"),
+        text: "Inkomend bericht van ".concat(sender_name.first_name + ' ' + x1, " !"),
         timeout: 5000
       }).show();
       var vid_sec = document.getElementById("noty_audio");
@@ -48639,7 +48639,7 @@ var render = function() {
     _c("ul", [
       _c("li", { staticStyle: { cursor: "default" } }, [
         _c("div", { staticClass: "mobile-form", attrs: { id: "searchBox" } }, [
-          _c("p", [_vm._v("Search User")]),
+          _c("p", [_vm._v("Zoek gebruiker")]),
           _vm._v(" "),
           _c(
             "form",
@@ -48662,10 +48662,10 @@ var render = function() {
                 attrs: {
                   id: "sbox",
                   onblur:
-                    "if (this.placeholder == '') {this.placeholder = 'Type to search';}",
+                    "if (this.placeholder == '') {this.placeholder = 'Type om te zoeken';}",
                   onfocus:
-                    "if (this.placeholder == 'Type to search') {this.placeholder = '';}",
-                  placeholder: "Type to search",
+                    "if (this.placeholder == 'Type om te zoeken') {this.placeholder = '';}",
+                  placeholder: "Type om te zoeken",
                   type: "search",
                   "x-webkit-speech": ""
                 },
@@ -48825,10 +48825,10 @@ var staticRenderFns = [
             _c(
               "b",
               { staticStyle: { "font-weight": "550px", color: "#666" } },
-              [_vm._v("No Matching Result !")]
+              [_vm._v("Geen overeenkomend resultaat !")]
             ),
             _vm._v(
-              "\n                Make sure you typed the user firstname, lastname correctly."
+              "\n                Zorg ervoor dat u de voornaam en achternaam van de gebruiker correct hebt getypt."
             )
           ]
         )
@@ -48868,7 +48868,7 @@ var render = function() {
               ? _vm.contact.first_name +
                   " " +
                   (_vm.contact.last_name ? _vm.contact.last_name : "")
-              : "Select a Contact"
+              : "Selecteer een contactpersoon"
           )
         )
       ]),
@@ -48938,7 +48938,7 @@ var render = function() {
           expression: "message"
         }
       ],
-      attrs: { placeholder: "Type your message..." },
+      attrs: { placeholder: "Schrijf je bericht..." },
       domProps: { value: _vm.message },
       on: {
         keydown: function($event) {
@@ -48973,7 +48973,7 @@ var render = function() {
           expression: "message"
         }
       },
-      [_c("i", { staticClass: "mdi mdi-reply" }), _vm._v(" Send")]
+      [_c("i", { staticClass: "mdi mdi-reply" }), _vm._v(" Sturen")]
     )
   ])
 }
@@ -49099,7 +49099,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-center mt-4" }, [
     _c("h6", { staticStyle: { "margin-bottom": "10px" } }, [
-      _vm._v("Send a message")
+      _vm._v("Stuur een bericht")
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -49118,7 +49118,7 @@ var render = function() {
             id: "textarea",
             maxlength: "225",
             rows: "1",
-            placeholder: "Type your message..."
+            placeholder: "Schrijf je bericht..."
           },
           domProps: { value: _vm.message },
           on: {
@@ -49161,7 +49161,7 @@ var render = function() {
               staticClass: "fa fa-paper-plane",
               attrs: { "aria-hidden": "true" }
             }),
-            _vm._v("\n                Send\n            ")
+            _vm._v("\n                Sturen\n            ")
           ]
         )
       ])

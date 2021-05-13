@@ -145,6 +145,14 @@ return [
             ]
         ],
         [
+            "name" => "Chat History",
+            "name_dt" => "Chat History",
+            "id" => "chat_history",
+            "icon" => "fa-comment",
+            "url" => "/backend/chat-history",
+            "permission" => "chat_history",
+        ],
+        [
             "name" => "App Settings",
             "name_dt" => "Instellingen",
             "id" => "app_settings",

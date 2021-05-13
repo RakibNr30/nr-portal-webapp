@@ -74,9 +74,14 @@ class ChangePasswordController extends Controller
         // check if user created
         if ($user) {
             $mail_data['email'] = $user->email;
-            MailManager::send($mail_data['email'], $mail_data);
             // flash notification
             notifier()->success(__('admin/notifier.password_changed_successfully'));
+            try {
+                MailManager::send($mail_data['email'], $mail_data);
+            } catch (\Exception $exception) {
+                // flash notification
+                notifier()->warning(__('admin/notifier.password_changed_successfully_but_email_sending_failed'));
+            }
         } else {
             // flash notification
             notifier()->error(__('admin/notifier.password_cannot_be_changed'));

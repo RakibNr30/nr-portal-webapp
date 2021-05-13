@@ -87,8 +87,7 @@
                                         @endforeach
                                     @else
                                         <div class="alert alert-danger text-center" role="alert">
-                                            <i class="mdi mdi-bullseye-arrow mr-2"></i> No notification found !
-
+                                            <i class="mdi mdi-bullseye-arrow mr-2"></i> {{ __('admin/master.no_notification_found') }}
                                         </div>
                                     @endif
                                 </div>

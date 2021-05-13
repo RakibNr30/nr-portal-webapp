@@ -108,6 +108,13 @@
         ]
     },
     {
+        "name": "chat_history",
+        "roles": [
+            "super_admin",
+            "admin"
+        ]
+    },
+    {
         "name": "app_settings",
         "roles": [
             "super_admin",

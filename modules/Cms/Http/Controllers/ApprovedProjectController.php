@@ -345,11 +345,15 @@ class ApprovedProjectController extends Controller
                 'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has started a project #' . $project->project_id,
                 'status' => 'unseen',
             ]);
-
-            MailManager::send($company_mail_data['email'], $company_mail_data);
-
             // flash notification
             notifier()->success(__('admin/notifier.project_approved_by_client_successfully'));
+            try {
+                MailManager::send($company_mail_data['email'], $company_mail_data);
+            } catch (\Exception $exception) {
+                // flash notification
+                notifier()->warning(__('admin/notifier.client_approved_by_client_successfully_but_email_sending_failed'));
+            }
+
             return redirect()->route('backend.cms.project-accepted.index');
         } else {
             // flash notification

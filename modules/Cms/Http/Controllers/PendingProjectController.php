@@ -263,7 +263,12 @@ class PendingProjectController extends Controller
                 'email' => $client->email,
             ];
 
-            MailManager::send($client_mail_data['email'], $client_mail_data);
+            try {
+                MailManager::send($client_mail_data['email'], $client_mail_data);
+            } catch (\Exception $exception) {
+                // flash notification
+                notifier()->warning(__('admin/notifier.project_approved_successfully_but_email_sending_failed'));
+            }
 
             // Notification for Company
             foreach ($project->company_id as $company_id) {
@@ -286,8 +291,12 @@ class PendingProjectController extends Controller
                     'email' => $company->email,
                 ];
 
-                MailManager::send($company_mail_data['email'], $company_mail_data);
-
+                try {
+                    MailManager::send($company_mail_data['email'], $company_mail_data);
+                } catch (\Exception $exception) {
+                    // flash notification
+                    notifier()->warning(__('admin/notifier.project_approved_successfully_but_email_sending_failed'));
+                }
             }
 
             // flash notification

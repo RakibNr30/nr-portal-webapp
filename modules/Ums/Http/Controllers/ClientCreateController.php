@@ -105,9 +105,14 @@ class ClientCreateController extends Controller
             $basicInfo->uploadFiles();
             if ($basicInfo && $residentialInfo) {
                 $mail_data['user_id'] = $user->id;
-                MailManager::send($mail_data['email'], $mail_data);
                 // flash notification
                 notifier()->success(__('admin/notifier.client_created_successfully'));
+                try {
+                    MailManager::send($mail_data['email'], $mail_data);
+                } catch (\Exception $exception) {
+                    // flash notification
+                    notifier()->warning(__('admin/notifier.client_created_successfully_but_email_sending_failed'));
+                }
             } else {
                 // flash notification
                 notifier()->error(__('admin/notifier.client_cannot_be_created_successfully'));

@@ -145,13 +145,17 @@ class CompanyController extends Controller
             $basicInfo = $this->userBasicInfoService->create($data);
             $residentialInfo = $this->userResidentialInfoService->create($data);
 
-            MailManager::send($mail_data['email'], $mail_data);
-
             // upload files
             $basicInfo->uploadFiles();
             if ($basicInfo) {
                 // flash notification
                 notifier()->success(__('admin/notifier.company_created_successfully'));
+                try {
+                    MailManager::send($mail_data['email'], $mail_data);
+                } catch (\Exception $exception) {
+                    // flash notification
+                    notifier()->warning(__('admin/notifier.company_created_successfully_but_email_sending_failed'));
+                }
             } else {
                 // flash notification
                 notifier()->error(__('admin/notifier.company_cannot_be_created_successfully'));

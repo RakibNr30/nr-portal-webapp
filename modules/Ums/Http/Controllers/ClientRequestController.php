@@ -179,10 +179,15 @@ class ClientRequestController extends Controller
                     'status' => 'unseen',
                 ]);
 
-                MailManager::send($mail_data['email'], $mail_data);
-
                 // flash notification
                 notifier()->success(__('admin/notifier.client_approved_successfully'));
+                try {
+                    MailManager::send($mail_data['email'], $mail_data);
+                } catch (\Exception $exception) {
+                    // flash notification
+                    notifier()->warning(__('admin/notifier.client_approved_successfully_but_email_sending_failed'));
+                }
+
                 // delete request client
                 $this->clientRequestService->delete($data['client_id']);
                 // redirect to

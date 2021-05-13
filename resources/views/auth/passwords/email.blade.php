@@ -25,7 +25,7 @@
                         </div>
                     @endif
                     <div class="input-group mb-3">
-                        <input id="email" name="email" placeholder="Enter your email" value="{{ old('email') }}" type="email" class="form-control @error('email') is-invalid @enderror" required autocomplete="email" autofocus>
+                        <input id="email" name="email" placeholder="E-mail" value="{{ old('email') }}" type="email" class="form-control @error('email') is-invalid @enderror" required autocomplete="email" autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

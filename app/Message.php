@@ -21,4 +21,11 @@ class Message extends Model
     {
         return $this->hasOne(User::class, 'id', 'from');
     }
+
+    private $format = 'h:i:s - M d, Y';
+
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format($this->format);
+    }
 }
