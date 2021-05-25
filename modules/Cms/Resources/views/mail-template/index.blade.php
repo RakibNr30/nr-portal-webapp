@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ __('admin/mail_template/index.update') }} | {{ __('admin/mail_template/index.mail_template') }}
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">
@@ -26,11 +28,19 @@
                                 <div class="form-group col-md-12">
                                     <label for="mail_category">{{ __('admin/mail_template/index.mail_template_category') }}</label>
                                     <select id="mail_category" name="mail_category" class="form-control" required>
-                                        @foreach(config('core.mail_category') as $key => $mailCategory)
-                                            <option value="{{ $key }}" {{ $key == $mailContent->mail_category_id ? 'selected' : '' }}>
-                                                {{ $mailCategory }}
-                                            </option>
-                                        @endforeach
+                                        @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+                                            @foreach(config('core.mail_category') as $key => $mailCategory)
+                                                <option value="{{ $key }}" {{ $key == $mailContent->mail_category_id ? 'selected' : '' }}>
+                                                    {{ $mailCategory }}
+                                                </option>
+                                            @endforeach
+                                        @else
+                                            @foreach(config('core.mail_category_dt') as $key => $mailCategory)
+                                                <option value="{{ $key }}" {{ $key == $mailContent->mail_category_id ? 'selected' : '' }}>
+                                                    {{ $mailCategory }}
+                                                </option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                             </div>

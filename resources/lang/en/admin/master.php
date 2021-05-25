@@ -2,6 +2,7 @@
 
 return [
     'dutch' => 'Dutch',
+    'all_notifications' => 'All Notifications',
     'notifications' => 'Notifications',
     'view_all' => 'View All',
     'view_more' => 'View More',

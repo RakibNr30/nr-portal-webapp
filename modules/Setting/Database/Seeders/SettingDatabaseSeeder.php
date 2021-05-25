@@ -21,8 +21,8 @@ class SettingDatabaseSeeder extends Seeder
 
         //factory(\Modules\Setting\Entities\Site::class, 10)->create();
         //factory(\Modules\Setting\Entities\Contact::class, 10)->create();
-        factory(\Modules\Setting\Entities\Seo::class, 10)->create();
-        factory(\Modules\Setting\Entities\Socialite::class, 10)->create();
+        //factory(\Modules\Setting\Entities\Seo::class, 10)->create();
+        //factory(\Modules\Setting\Entities\Socialite::class, 10)->create();
         //[FACTORY_REGISTER]
 
         // get data from json

@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ __('admin/profile/account_info.account_info') }}
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">
@@ -51,7 +53,7 @@
                                            value="{{ old('phone') ?: $user->phone }}"
                                            type="text"
                                            class="form-control @error('phone') is-invalid @enderror"
-                                           placeholder="Enter phone number" autofocus required readonly>
+                                           placeholder="{{ __('admin/profile/account_info.enter_phone_no') }}" autofocus>
                                     @error('phone')
                                     <span class="invalid-feedback"
                                           role="alert"><strong>{{ $message }}</strong></span>
@@ -63,7 +65,7 @@
                                            value="{{ old('email') ?: $user->email }}"
                                            type="email"
                                            class="form-control @error('email') is-invalid @enderror"
-                                           placeholder="Enter your email" autofocus required readonly>
+                                           placeholder="{{ __('admin/profile/account_info.enter_email_address') }}" autofocus required readonly>
                                     @error('email')
                                     <span class="invalid-feedback"
                                           role="alert"><strong>{{ $message }}</strong></span>

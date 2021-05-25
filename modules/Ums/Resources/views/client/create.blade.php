@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ __('admin/client/create.create') }} | {{ __('admin/client/create.client') }}
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

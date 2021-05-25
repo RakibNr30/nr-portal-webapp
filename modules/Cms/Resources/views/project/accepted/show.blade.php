@@ -3,6 +3,15 @@
     $user = \Modules\Ums\Entities\User::find(auth()->user()->id);
     $currentCompany = 0;
 @endphp
+@section('title')
+    Show |
+    @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+        {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0]) }}
+    @else
+        {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0] . '_dt') }}
+    @endif
+    | Project
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

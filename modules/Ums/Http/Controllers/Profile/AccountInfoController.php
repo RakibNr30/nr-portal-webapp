@@ -49,7 +49,7 @@ class AccountInfoController extends Controller
         $request->validate([
             'avatar' => 'sometimes|image|max:1024',
             'email' => 'required|email|unique:users,email,' . $id,
-            'phone' => 'required|unique:users,phone,' . $id,
+            'phone' => 'unique:users,phone,' . $id,
         ]);
         // create user
         $user = $this->userService->update($request->all(), $id);

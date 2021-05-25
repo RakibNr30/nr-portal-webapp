@@ -2,6 +2,9 @@
 @php
     $user = \Modules\Ums\Entities\User::find(auth()->user()->id);
 @endphp
+@section('title')
+    Create | Project
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

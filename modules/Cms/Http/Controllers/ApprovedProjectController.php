@@ -2,7 +2,9 @@
 
 namespace Modules\Cms\Http\Controllers;
 
+use App\Helpers\AuthManager;
 use App\Helpers\MailManager;
+use App\Helpers\PermissionManager;
 use App\Http\Controllers\Controller;
 
 // requests...
@@ -101,6 +103,10 @@ class ApprovedProjectController extends Controller
             return redirect()->back();
         }
 
+        if (!PermissionManager::hasApprovedPermission($project)) {
+            abort(404);
+        }
+
         $user = User::find(auth()->user()->id);
 
         if($user->hasRole('admin') || $user->hasRole('super_admin')) {
@@ -138,6 +144,9 @@ class ApprovedProjectController extends Controller
             // redirect back
             return redirect()->back();
         }
+        if (!PermissionManager::hasApprovedPermission($project)) {
+            abort(404);
+        }
         // return view
         return view('cms::project.edit', compact('project'));
     }
@@ -159,6 +168,9 @@ class ApprovedProjectController extends Controller
             notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back();
+        }
+        if (!PermissionManager::hasApprovedPermission($project)) {
+            abort(404);
         }
         // update project
         $project = $this->projectService->update($request->all(), $id);
@@ -193,6 +205,9 @@ class ApprovedProjectController extends Controller
             // redirect back
             return redirect()->back();
         }
+        if (!PermissionManager::hasApprovedPermission($project)) {
+            abort(404);
+        }
         // delete project
         if ($this->projectService->delete($id)) {
             // flash notification
@@ -225,6 +240,11 @@ class ApprovedProjectController extends Controller
             // redirect back
             return redirect()->back()->with('currentCompany', $currentCompany);
         }
+
+        if (!PermissionManager::hasApprovedPermission($project)) {
+            abort(404);
+        }
+
         // update project
         $project = $this->projectService->update($request->all(), $id);
         // upload files
@@ -302,6 +322,10 @@ class ApprovedProjectController extends Controller
             notifier()->error(__('admin/notifier.project_not_found'));
             // redirect back
             return redirect()->back()->with('currentCompany', $currentCompany);
+        }
+
+        if (!PermissionManager::hasApprovedPermission($project)) {
+            abort(404);
         }
 
         $data['selected_company_id'] = array_map('intval', $data['selected_company_id']);

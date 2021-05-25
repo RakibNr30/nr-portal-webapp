@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ __('admin/admin/edit.update') }} | {{ __('admin/admin/edit.admin') }}
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

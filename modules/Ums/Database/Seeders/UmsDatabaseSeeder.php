@@ -24,7 +24,7 @@ class UmsDatabaseSeeder extends Seeder
         Model::unguard();
 
         // seed social sites
-        $this->seedSocialSites();
+        // $this->seedSocialSites();
 
         // seed roles
         $this->seedRoles();

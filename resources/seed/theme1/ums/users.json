@@ -3,7 +3,7 @@
         "roles": ["admin"],
         "username": "admin",
         "phone": "+880 1XXXX XXXXXX",
-        "email": "info@effectief.nl",
+        "email": "J.spikker@live.nl",
         "password": "password",
         "basic_info":
         {
@@ -11,7 +11,7 @@
             "last_name": "Spikker",
             "about": null,
             "designation": "Owner",
-            "personal_email": "info@effectief.nl",
+            "personal_email": "j.spikker@live.nl",
             "mobile_no": "+880 1XXXX XXXXXX",
             "blood_group": null,
             "gender": "Male"
@@ -39,7 +39,7 @@
         "roles": ["company"],
         "username": "company2",
         "phone": "+880 1XXXX XXXXXX",
-        "email": "bedrijf@effectief.nl",
+        "email": "company2@example.com",
         "password": "password",
         "basic_info":
         {
@@ -47,7 +47,7 @@
             "last_name": null,
             "about": "If your company has an interesting and lengthy history, you might consider creating a visual timeline, like Nordstrom did on their company profile. The profile reads like a creative story from the very first line -- \"In 1887, John W. Nordstrom, at 16 years old, left Sweden for the United States. He arrived in New York with $5 in his pocket, unable to speak a word of English.\" With a good balance of image and text, the timeline serves as a reminder of Nordstrom's stability and growth.",
             "designation": "Owner",
-            "personal_email": "bedrijf@effectief.nl",
+            "personal_email": "company2@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
             "blood_group": null,
             "gender": null
@@ -57,7 +57,7 @@
         "roles": ["company"],
         "username": "company3",
         "phone": "+880 1XXXX XXXXXX",
-        "email": "pocketmbstu@gmail.com",
+        "email": "company3@example.com",
         "password": "password",
         "basic_info":
         {
@@ -65,7 +65,7 @@
             "last_name": null,
             "about": "If your company has an interesting and lengthy history, you might consider creating a visual timeline, like Nordstrom did on their company profile. The profile reads like a creative story from the very first line -- \"In 1887, John W. Nordstrom, at 16 years old, left Sweden for the United States. He arrived in New York with $5 in his pocket, unable to speak a word of English.\" With a good balance of image and text, the timeline serves as a reminder of Nordstrom's stability and growth.",
             "designation": "Owner",
-            "personal_email": "pocketmbstu@gmail.com",
+            "personal_email": "company3@example.com",
             "mobile_no": "+880 1XXXX XXXXXX",
             "blood_group": null,
             "gender": null
@@ -75,7 +75,7 @@
         "roles": ["client"],
         "username": "client",
         "phone": "+880 1XXXX XXXXXX",
-        "email": "klant@effectief.nl",
+        "email": "rakib.cse14th@gmail.com",
         "password": "password",
         "basic_info":
         {
@@ -83,7 +83,7 @@
             "last_name": "Rakib",
             "about": null,
             "designation": "Owner",
-            "personal_email": "klant@effectief.nl",
+            "personal_email": "rakib.cse14th@gmail.com",
             "mobile_no": "+880 1XXXX XXXXXX",
             "blood_group": "B (+ve)",
             "gender": "Male"

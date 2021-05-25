@@ -125,13 +125,15 @@ class AdminController extends Controller
             } else {
                 // flash notification
                 notifier()->error(__('admin/notifier.admin_cannot_be_created_successfully'));
+                return redirect()->back();
             }
         } else {
             // flash notification
             notifier()->error(__('admin/notifier.admin_cannot_be_created_successfully'));
+            return redirect()->back();
         }
         // redirect back
-        return redirect()->back();
+        return redirect()->route('backend.ums.admin.show', [$user->id]);
     }
 
     /**

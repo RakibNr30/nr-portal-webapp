@@ -1,0 +1,20 @@
+.account-page {background:none !important;}
+.bg-login-overlay, .bg-login {display:none !important;}
+.btn-primary {background:#e1a122 !important; border-color:#e1a122 !important;}
+.account-page img {margin-bottom:30px !Important; margin-top:10% !important;}
+#page-topbar {background:#00204c !important;}
+body[data-layout=detached] #layout-wrapper::before {background:#e1a122 !important;}
+
+.mm-active .active, a, .text-primary  {color:#00204c !important;}
+.btn-danger {background-color:#00204c !important; border-color:#00204c !important; color:#fff !important;}
+.bg-soft-primary {background-color: rgb(0 32 76 / 5%)!important;}
+
+.mm-active .active i {color:#e1a122 !important;}
+.navbar-brand-box img {
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+    width:300px !important;
+    height:auto !important;
+}
+
+body[data-layout=detached] .vertical-menu .user-img img {padding:0px !important; border:0px !Important;}

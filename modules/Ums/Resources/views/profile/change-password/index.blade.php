@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ __('admin/profile/change_password.change_password') }}
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

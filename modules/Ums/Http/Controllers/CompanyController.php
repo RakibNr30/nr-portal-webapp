@@ -159,13 +159,15 @@ class CompanyController extends Controller
             } else {
                 // flash notification
                 notifier()->error(__('admin/notifier.company_cannot_be_created_successfully'));
+                return redirect()->back();
             }
         } else {
             // flash notification
             notifier()->error(__('admin/notifier.company_cannot_be_created_successfully'));
+            return redirect()->back();
         }
         // redirect back
-        return redirect()->route('backend.ums.company.index');
+        return redirect()->route('backend.ums.company.show', [$user->id]);
     }
 
     /**

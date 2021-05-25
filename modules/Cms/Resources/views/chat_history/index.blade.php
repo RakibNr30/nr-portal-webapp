@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ __('admin/chat_history/index.history') }}
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

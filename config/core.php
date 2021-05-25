@@ -136,7 +136,7 @@ return [
             "children" => [
                 [
                     "name" => "Admin",
-                    "name_dt" => "Admin",
+                    "name_dt" => "Admins",
                     "id" => "admin",
                     "icon" => "fa-arrow-right",
                     "url" => "/backend/admin",
@@ -146,7 +146,7 @@ return [
         ],
         [
             "name" => "Chat History",
-            "name_dt" => "Chat History",
+            "name_dt" => "Chatgeschiedenis",
             "id" => "chat_history",
             "icon" => "fa-comment",
             "url" => "/backend/chat-history",
@@ -341,5 +341,15 @@ return [
         '6' => 'Company Acceptation',
         '7' => 'Client Creation',
         '8' => 'Change Password',
+    ],
+    'mail_category_dt' => [
+        '1' => 'Goedkeuring van de klant',
+        '2' => 'Beheerder aanmaken',
+        '3' => 'Oprichting van een bedrijf',
+        '4' => 'Projectgoedkeuring',
+        '5' => 'Bedrijfsselectie',
+        '6' => 'Acceptatie door het bedrijf',
+        '7' => 'Creatie van klanten',
+        '8' => 'Wachtwoord wijzigen',
     ]
 ];

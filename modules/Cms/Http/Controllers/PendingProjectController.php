@@ -2,13 +2,14 @@
 
 namespace Modules\Cms\Http\Controllers;
 
+use App\Helpers\AuthManager;
 use App\Helpers\MailManager;
+use App\Helpers\PermissionManager;
 use App\Http\Controllers\Controller;
 
 // requests...
 use App\Notification;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Modules\Cms\DataTables\PendingProjectDataTable;
 use Modules\Cms\Http\Requests\ProjectApproveRequest;
 use Modules\Cms\Http\Requests\ProjectUpdateRequest;
@@ -17,7 +18,6 @@ use Modules\Cms\Http\Requests\ProjectUpdateRequest;
 use Modules\Cms\Services\ProjectCategoryService;
 use Modules\Cms\Services\ProjectService;
 use Modules\Ums\Entities\User;
-use Modules\Ums\Entities\UserBasicInfo;
 use Modules\Ums\Services\UserService;
 
 class PendingProjectController extends Controller
@@ -89,6 +89,10 @@ class PendingProjectController extends Controller
             return redirect()->back();
         }
 
+        if (!PermissionManager::hasPendingPermission($project)) {
+            abort(404);
+        }
+
         $user = User::find(auth()->user()->id);
 
         if($user->hasRole('admin') || $user->hasRole('super_admin')) {
@@ -137,6 +141,10 @@ class PendingProjectController extends Controller
             return redirect()->back();
         }
 
+        if (!PermissionManager::hasPendingPermission($project)) {
+            abort(404);
+        }
+
         // companies
         $companies = $this->userService->companies();
 
@@ -168,6 +176,11 @@ class PendingProjectController extends Controller
             // redirect back
             return redirect()->back();
         }
+
+        if (!PermissionManager::hasPendingPermission($project)) {
+            abort(404);
+        }
+
         // update project
         $project = $this->projectService->update($request->all(), $id);
         // upload files
@@ -201,6 +214,11 @@ class PendingProjectController extends Controller
             // redirect back
             return redirect()->back();
         }
+
+        if (!PermissionManager::hasPendingPermission($project)) {
+            abort(404);
+        }
+
         // delete project
         if ($this->projectService->delete($id)) {
             // flash notification
@@ -223,6 +241,10 @@ class PendingProjectController extends Controller
      */
     public function approve(ProjectApproveRequest $request, $id)
     {
+        if (!AuthManager::isAdmin()) {
+            abort(404);
+        }
+
         $data = $request->all();
         $data['company_id'] = array_map('intval', $data['company_id']);
         // get project

@@ -6,7 +6,7 @@
     @endphp
 
     <meta charset="utf-8" />
-    <title>@yield('title')</title>
+    <title>Chique Wonen Portaal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="" name="description" />
@@ -19,12 +19,13 @@
     <link href="{{ asset('admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/stylecustom.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" />
 
     <style type="text/css">
         .not-message {
             color: #495057; 
-            font-weight: 450; 
+            font-weight: 500;
             font-size: 16px;
         }
         

@@ -2,6 +2,9 @@
 @php
     $user = \Modules\Ums\Entities\User::find(auth()->user()->id)
 @endphp
+@section('title')
+    {{ __('admin/my_project/index.my_projects') }} | {{ __('admin/my_project/index.project') }}
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

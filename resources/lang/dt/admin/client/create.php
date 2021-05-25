@@ -2,7 +2,7 @@
 
 return [
     'client' => 'Klant',
-    'create' => 'Creëer',
+    'create' => 'Toevoegen',
     'create_client' => 'Client aanmaken',
     'first_name' => 'Voornaam',
     'enter_first_name' => 'Voornaam',

@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ __('admin/profile/basic_info.basic_info') }}
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

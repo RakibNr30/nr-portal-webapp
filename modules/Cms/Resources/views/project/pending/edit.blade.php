@@ -2,6 +2,15 @@
 @php
     $user = \Modules\Ums\Entities\User::find(auth()->user()->id)
 @endphp
+@section('title')
+    Edit |
+    @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+        {{ config('core.project_paginate.pending.' . $user->getRoleNames()[0]) }}
+    @else
+        {{ config('core.project_paginate.pending.' . $user->getRoleNames()[0] . '_dt') }}
+    @endif
+    | Project
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">

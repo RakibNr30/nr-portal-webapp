@@ -2,6 +2,14 @@
 @php
     $user = \Modules\Ums\Entities\User::find(auth()->user()->id)
 @endphp
+@section('title')
+    @if(\Illuminate\Support\Facades\App::getLocale() == 'en')
+        {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0]) }}
+    @else
+        {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0] . '_dt') }}
+    @endif
+    | Project
+@stop
 @section('content')
     <div class="page-content">
         <div class="row">
@@ -35,7 +43,7 @@
                             @else
                                 {{ config('core.project_paginate.accepted.' . $user->getRoleNames()[0] . '_dt') }}
                             @endif
-                            project list
+                                projecten
                         </h4>
                         {!! $dataTable->table(['class' => 'table table-bordered dt-responsive nowrap', 'style' => 'width: 100%;']) !!}
                     </div>
