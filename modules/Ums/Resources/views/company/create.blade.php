@@ -26,7 +26,7 @@
                         {!! Form::open(['url' => route('backend.ums.company.store'), 'method' => 'user', 'files' => true]) !!}
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="company_name" class="@error('company_name') text-danger @enderror">{{ __('admin/company/create.company_name') }} *</label>
+                                <label for="company_name" class="@error('company_name') text-danger @enderror">{{ __('admin/company/create.company_name') }}</label>
                                 <input id="company_name" name="company_name" value="{{ old('company_name') }}"
                                        type="text"
                                        class="form-control @error('company_name') is-invalid @enderror"
@@ -37,17 +37,17 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="about" class="@error('about') text-danger @enderror">{{ __('admin/company/create.company_about') }} *</label>
+                                <label for="about" class="@error('about') text-danger @enderror">{{ __('admin/company/create.company_about') }}</label>
                                 <textarea id="about" name="about" rows="5"
                                           class="form-control @error('about') is-invalid @enderror"
-                                          placeholder="{{ __('admin/company/create.enter_company_about') }}" autofocus required>{{ old('about') }}</textarea>
+                                          placeholder="{{ __('admin/company/create.enter_company_about') }}" autofocus>{{ old('about') }}</textarea>
                                 @error('about')
                                 <span class="invalid-feedback"
                                       role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="email" class="@error('email') text-danger @enderror">{{ __('admin/company/create.company_email') }} *</label>
+                                <label for="email" class="@error('email') text-danger @enderror">{{ __('admin/company/create.company_email') }}</label>
                                 <input id="email" name="email" value="{{ old('email') }}" type="text"
                                        class="form-control @error('email') is-invalid @enderror"
                                        placeholder="{{ __('admin/company/create.enter_company_email') }}" autofocus required>
@@ -57,7 +57,7 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="phone" class="@error('phone') text-danger @enderror">{{ __('admin/company/create.company_phone') }} *</label>
+                                <label for="phone" class="@error('phone') text-danger @enderror">{{ __('admin/company/create.company_phone') }}</label>
                                 <input id="phone" name="phone" value="{{ old('phone') }}" type="text"
                                        class="form-control @error('phone') is-invalid @enderror"
                                        placeholder="{{ __('admin/company/create.enter_company_phone') }}" autofocus required>

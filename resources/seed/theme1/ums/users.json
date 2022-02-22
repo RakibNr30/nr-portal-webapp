@@ -1,18 +1,36 @@
 [
     {
+        "roles": ["super_admin"],
+        "username": "abdur-rakib-cs",
+        "phone": "+880 1710 115566",
+        "email": "abdurrakib.cs@gmail.com",
+        "password": "RAKIBnrnrnrRN",
+        "basic_info":
+        {
+            "first_name": "Abdur",
+            "last_name": "Rakib",
+            "about": null,
+            "designation": "Software Engineer",
+            "personal_email": "abdurrakib.cs@gmail.com",
+            "mobile_no": "+880 1710 115566",
+            "blood_group": null,
+            "gender": "Male"
+        }
+    },
+    {
         "roles": ["admin"],
-        "username": "admin",
-        "phone": "+880 1XXXX XXXXXX",
-        "email": "J.spikker@live.nl",
+        "username": "cs-abdur-rakib",
+        "phone": "+880 1515 233336",
+        "email": "cs.abdurrakib@gmail.com",
         "password": "password",
         "basic_info":
         {
-            "first_name": "Jordy",
-            "last_name": "Spikker",
+            "first_name": "Abdur",
+            "last_name": "Rakib",
             "about": null,
             "designation": "Owner",
-            "personal_email": "j.spikker@live.nl",
-            "mobile_no": "+880 1XXXX XXXXXX",
+            "personal_email": "cs.abdurrakib@gmail.com",
+            "mobile_no": "+880 1515 233336",
             "blood_group": null,
             "gender": "Male"
         }

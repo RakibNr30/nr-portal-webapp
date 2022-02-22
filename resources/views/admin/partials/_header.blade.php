@@ -115,6 +115,9 @@
                                         <div class="media-body">
                                             <div class="font-size-12 text-muted">
                                                 <p class="mb-1" style="color: #495057; font-weight: 450;">{{ $notification->message }}</p>
+                                                @php
+                                                    \Carbon\Carbon::setLocale('nl_NL');
+                                                @endphp
                                                 <p class="mb-0"><i class="mdi mdi-clock-outline"></i> {{ $notification->created_at->diffForHumans() }}</p>
                                             </div>
                                         </div>

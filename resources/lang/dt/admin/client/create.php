@@ -3,7 +3,7 @@
 return [
     'client' => 'Klant',
     'create' => 'Toevoegen',
-    'create_client' => 'Client aanmaken',
+    'create_client' => 'Klant aanmaken',
     'first_name' => 'Voornaam',
     'enter_first_name' => 'Voornaam',
     'last_name' => 'Achternaam',

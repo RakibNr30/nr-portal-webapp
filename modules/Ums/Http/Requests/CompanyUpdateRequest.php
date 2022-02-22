@@ -29,7 +29,6 @@ class CompanyUpdateRequest extends FormRequest
             $id = request()->route()->parameters()[request()->route()->parameterNames[0]],
 
             'company_name' => 'required',
-            'about' => 'required',
             'avatar' => 'sometimes|image|max:512',
             'email' => 'required|email|unique:users,email,' . $id,
             'phone' => 'required|unique:users,phone,' . $id,

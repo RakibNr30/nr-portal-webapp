@@ -132,7 +132,7 @@ class AllProjectDataTable extends DataTable
             $customerAddress = "Klant adres";
             $title = "Titel";
             $projectId = "Project Id";
-            $status = "Toestand";
+            $status = "Status";
             $action = "Actie";
             $serial = "ID";
         }

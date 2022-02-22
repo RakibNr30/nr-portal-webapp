@@ -165,3 +165,6 @@ input[type=file] {
 body[data-layout=detached] #layout-wrapper::before {
     background: #8E8B71;
 }
+.dt-button.dropdown-item.buttons-pdf {
+    display: none;
+}

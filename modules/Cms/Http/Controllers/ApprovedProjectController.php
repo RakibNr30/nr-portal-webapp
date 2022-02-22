@@ -21,6 +21,7 @@ use Modules\Cms\Services\ProjectCategoryService;
 use Modules\Cms\Services\ProjectService;
 use Modules\Ums\Entities\User;
 use Modules\Ums\Entities\UserBasicInfo;
+use Modules\Ums\Services\UserService;
 
 class ApprovedProjectController extends Controller
 {
@@ -28,15 +29,16 @@ class ApprovedProjectController extends Controller
      * @var $projectService
      */
     protected $projectService;
+    protected $userService;
     protected $user;
 
     /**
      * Constructor
      *
      * @param ProjectService $projectService
-     * @param Auth $auth
+     * @param UserService $userService
      */
-    public function __construct(ProjectService $projectService)
+    public function __construct(ProjectService $projectService, UserService $userService)
     {
         $this->middleware(function ($request, $next) {
             $this->user = User::find(auth()->user()->id);
@@ -48,6 +50,7 @@ class ApprovedProjectController extends Controller
             return $next($request);
         });
         $this->projectService = $projectService;
+        $this->userService = $userService;
     }
 
     /**
@@ -123,8 +126,10 @@ class ApprovedProjectController extends Controller
 
         $companies = $this->projectService->companies($project->company_id);
 
+        $author = $this->userService->find($project->author_id);
+
         // return view
-        return view('cms::project.approved.show', compact('project', 'companies'));
+        return view('cms::project.approved.show', compact('project', 'companies', 'author'));
     }
 
     /**
@@ -261,7 +266,7 @@ class ApprovedProjectController extends Controller
                     'notification_from' => $user->id,
                     'notification_to_type' => 'admin',
                     'notification_from_type' => 'company',
-                    'message' => 'Company: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has uploaded a file on project #' . $project->project_id,
+                    'message' => 'Company: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' heeft een bestand geüpload op project #' . $project->project_id,
                     'status' => 'unseen',
                 ]);
             }
@@ -274,7 +279,7 @@ class ApprovedProjectController extends Controller
                     'notification_to' => $project->author_id,
                     'notification_to_type' => 'client',
                     'notification_from_type' => 'admin',
-                    'message' => 'An admin has uploaded a file on your project #' . $project->project_id,
+                    'message' => 'Een beheerder heeft een bestand geüpload op uw #' . $project->project_id,
                     'status' => 'unseen',
                 ]);
 
@@ -286,7 +291,7 @@ class ApprovedProjectController extends Controller
                     'notification_to' => $request->all()['file_company_id'],
                     'notification_to_type' => 'company',
                     'notification_from_type' => 'admin',
-                    'message' => 'An admin has uploaded a file on assigned project #' . $project->project_id,
+                    'message' => 'Een beheerder heeft een bestand geüpload op toegewezen project #' . $project->project_id,
                     'status' => 'unseen',
                 ]);
             }
@@ -347,7 +352,7 @@ class ApprovedProjectController extends Controller
                 'notification_to' => $data['company_id'][0],
                 'notification_to_type' => 'company',
                 'notification_from_type' => 'client',
-                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has started a assigned project #' . $project->project_id,
+                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' is begonnen met een toegewezen project #' . $project->project_id,
                 'status' => 'unseen',
             ]);
 
@@ -366,7 +371,7 @@ class ApprovedProjectController extends Controller
                 'notification_from' => $user->id,
                 'notification_to_type' => 'admin',
                 'notification_from_type' => 'client',
-                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has started a project #' . $project->project_id,
+                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' is begonnen project #' . $project->project_id,
                 'status' => 'unseen',
             ]);
             // flash notification

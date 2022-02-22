@@ -32,10 +32,10 @@
                                 <tr>
                                     <td style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100vw;padding:32px">
                                         <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                                            <b>Hello {{ $user->basicInfo->first_name }} {{ $user->basicInfo->last_name }},</b><br>
+                                            <b>Hallo {{ $user->basicInfo->first_name }} {{ $user->basicInfo->last_name }},</b><br>
                                         {!! $mailContent->body !!}
                                         <hr>
-                                        <h3 style="text-align: center; line-height: 0">Related Information</h3>
+                                        <h3 style="text-align: center; line-height: 0">Bijbehorende informatie</h3>
                                         <hr>
 
                                         @if($data['mail_category_id'] == 1)
@@ -43,21 +43,21 @@
                                                 $project = \Modules\Cms\Entities\Project::find($data['project_id']);
                                             @endphp
                                             <ul>
-                                                <li>Email: {{ $data['email'] }}</li>
-                                                <li>Password: {{ $data['password'] }}</li>
+                                                <li>E-mail: {{ $data['email'] }}</li>
+                                                <li>Wachtwoord: {{ $data['password'] }}</li>
                                                 <li>Project ID #{{ $project->project_id }}</li>
                                             </ul>
                                         @endif
                                         @if($data['mail_category_id'] == 2)
                                             <ul>
-                                                <li>Email: {{ $data['email'] }}</li>
-                                                <li>Password: {{ $data['password'] }}</li>
+                                                <li>E-mail: {{ $data['email'] }}</li>
+                                                <li>Wachtwoord: {{ $data['password'] }}</li>
                                             </ul>
                                         @endif
                                         @if($data['mail_category_id'] == 3)
                                             <ul>
-                                                <li>Email: {{ $data['email'] }}</li>
-                                                <li>Password: {{ $data['password'] }}</li>
+                                                <li>E-mail: {{ $data['email'] }}</li>
+                                                <li>Wachtwoord: {{ $data['password'] }}</li>
                                             </ul>
                                         @endif
                                         @if($data['mail_category_id'] == 4)
@@ -67,7 +67,7 @@
                                             <ul>
                                                 <li>Project ID #{{ $project->project_id }}</li>
                                             </ul>
-                                            <h5>Selected Companies:</h5>
+                                            <h5>Geselecteerde bedrijven:</h5>
                                             <ol>
                                                 @foreach($project->company_id as $company_id)
                                                     @php
@@ -85,7 +85,7 @@
                                                 $client = \Modules\Ums\Entities\User::find($project->author_id);
                                             @endphp
                                             <ul>
-                                                <li>Client Name: {{ $client->basicInfo->first_name }} {{ $client->basicInfo->last_name }}</li>
+                                                <li>klantnaam: {{ $client->basicInfo->first_name }} {{ $client->basicInfo->last_name }}</li>
                                                 <li>Project ID #{{ $project->project_id }}</li>
                                             </ul>
                                         @endif
@@ -95,20 +95,20 @@
                                                 $client = \Modules\Ums\Entities\User::find($project->author_id);
                                             @endphp
                                             <ul>
-                                                <li>Client Name: {{ $client->basicInfo->first_name }} {{ $client->basicInfo->last_name }}</li>
+                                                <li>klantnaam: {{ $client->basicInfo->first_name }} {{ $client->basicInfo->last_name }}</li>
                                                 <li>Project ID #{{ $project->project_id }}</li>
                                             </ul>
                                         @endif
                                         @if($data['mail_category_id'] == 7)
                                             <ul>
-                                                <li>Email: {{ $data['email'] }}</li>
-                                                <li>Password: {{ $data['password'] }}</li>
+                                                <li>E-mail: {{ $data['email'] }}</li>
+                                                <li>Wachtwoord: {{ $data['password'] }}</li>
                                             </ul>
                                         @endif
                                         @if($data['mail_category_id'] == 8)
                                             <ul>
-                                                <li>Email: {{ $data['email'] }}</li>
-                                                <li>New Password: {{ $data['password'] }}</li>
+                                                <li>E-mail: {{ $data['email'] }}</li>
+                                                <li>Nieuw wachtwoord: {{ $data['password'] }}</li>
                                             </ul>
                                         @endif
                                         </p>
@@ -127,8 +127,7 @@
                                     <td align="center"
                                         style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100vw;padding:32px">
                                         <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';line-height:1.5em;margin-top:0;color:#b0adc5;font-size:12px;text-align:center">
-                                           {{-- © 2020 {{ config('app.name') }}. All rights reserved.</p>--}}
-
+                                            © {{ date('Y') }} {{ env('APP_NAME') }}. Alle rechten voorbehouden</p>
                                     </td>
                                 </tr>
                                 </tbody>

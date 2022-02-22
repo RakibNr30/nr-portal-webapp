@@ -78,6 +78,9 @@
                                                     <img src="{{ $user_avatar->avatar->file_url ?? config('core.image.default.avatar') }}" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
 
                                                     <a href="{{ $url }}"><h6 class="not-message">{{ $notify['message'] }}</h6></a>
+                                                    @php
+                                                        \Carbon\Carbon::setLocale('nl_NL');
+                                                    @endphp
                                                     <p class="text-muted mt-1 mb-0" style="margin-top: -15px !important;font-weight: 450;"><i class="mdi mdi-clock-outline"></i> {{ $newDateTime }} - {{ $DateTime->diffForHumans() }}</p>
                                                 </div>
 

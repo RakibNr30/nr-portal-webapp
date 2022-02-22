@@ -273,7 +273,7 @@ class PendingProjectController extends Controller
                 'notification_to' => $project->author_id,
                 'notification_to_type' => 'client',
                 'notification_from_type' => 'admin',
-                'message' => 'Project #' . $project->project_id . ' has been approved. Check it.',
+                'message' => 'Project #' . $project->project_id . ' is goedgekeurd. Bekijk het nu.',
                 'status' => 'unseen',
             ]);
 
@@ -301,7 +301,7 @@ class PendingProjectController extends Controller
                     'notification_to' => $company_id,
                     'notification_to_type' => 'company',
                     'notification_from_type' => 'admin',
-                    'message' => 'Project #' . $project->project_id . ' has been assigned to you. Check it.',
+                    'message' => 'Project #' . $project->project_id . ' is toegewezen aan jullie. Bekijk het nu.',
                     'status' => 'unseen',
                 ]);
 

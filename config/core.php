@@ -14,12 +14,12 @@ return [
             "children" => []
         ],
         [
-            "name" => "My Profile",
-            "name_dt" => "Mijn profiel",
-            "id" => "my_profile",
-            "icon" => "fa-user-alt",
-            "url" => "/backend/profile/account-info",
-            "permission" => "my_profile",
+            "name" => "My Messages",
+            "name_dt" => "Mijn berichten",
+            "id" => "my_messages",
+            "icon" => "mdi mdi-message-processing-outline",
+            "url" => "/inbox",
+            "permission" => "my_projects",
             "children" => []
         ],
         [
@@ -45,10 +45,10 @@ return [
             "name_client_dt" => "Mijn aanvragen",
             "name_company" => "My Projects",
             "name_company_dt" => "Mijn aanvragen",
-            "name_admin" => "",
-            "name_admin_dt" => "",
-            "name_super_admin" => "",
-            "name_super_admin_dt" => "",
+            "name_admin" => "My Projects",
+            "name_admin_dt" => "Mijn aanvragen",
+            "name_super_admin" => "My Projects",
+            "name_super_admin_dt" => "Mijn aanvragen",
             "id" => "project",
             "icon" => "fa-check-circle",
             "url" => "/backend/my-project",
@@ -287,7 +287,7 @@ return [
         'default' => [
             'logo' => '/admin/images/default/logo.png',
             'logo_sm' => '/admin/images/default/logo-sm.png',
-            'favicon' => '/admin/images/default/favicon.ico',
+            'favicon' => '/admin/images/default/favicon.png',
             'avatar' => '/admin/images/default/avatar.jpeg',
         ]
     ],

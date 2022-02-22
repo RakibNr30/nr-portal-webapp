@@ -41,7 +41,7 @@
                                        class="@error('about') text-danger @enderror">{{ __('admin/company/edit.company_about') }}</label>
                                 <textarea id="about" name="about" rows="5"
                                           class="form-control @error('about') is-invalid @enderror"
-                                          placeholder="{{ __('admin/company/edit.enter_company_about') }}" autofocus required>{{ old('about') ?: $user->basicInfo->about }}</textarea>
+                                          placeholder="{{ __('admin/company/edit.enter_company_about') }}" autofocus>{{ old('about') ?: $user->basicInfo->about }}</textarea>
                                 @error('about')
                                 <span class="invalid-feedback"
                                       role="alert"><strong>{{ $message }}</strong></span>

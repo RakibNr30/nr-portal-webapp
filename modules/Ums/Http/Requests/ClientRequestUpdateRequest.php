@@ -35,9 +35,6 @@ class ClientRequestUpdateRequest extends FormRequest
             'house_number' => 'required',
             'zip_code' => 'required',
             'city' => 'required',
-            'description' => 'required',
-            'project_title' => 'required',
-            'project_description' => 'required',
         ];
     }
 }

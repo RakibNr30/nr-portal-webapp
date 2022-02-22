@@ -43,7 +43,6 @@
                             @else
                                 {{ config('core.project_paginate.approved.' . $user->getRoleNames()[0] . '_dt') }}
                             @endif
-                                project list
                         </h4>
                         {!! $dataTable->table(['class' => 'table table-bordered dt-responsive nowrap', 'style' => 'width: 100%;']) !!}
                     </div>

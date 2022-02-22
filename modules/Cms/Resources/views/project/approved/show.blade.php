@@ -37,45 +37,189 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                @php
-                    $led = 'led-red';
-                    $counter = count($project->getMedia('project_attachment_company_1')) + count($project->getMedia('project_attachment_company_2')) + count($project->getMedia('project_attachment_company_3'));
-                    if ($counter == 0) $led = 'led-red';
-                    if ($counter == 1 || $counter == 2) $led = 'led-yellow';
-                    if ($counter == 3) $led = 'led-green';
-                @endphp
+                <div class="row">
+                    @if(\App\Helpers\AuthManager::isClient())
+                        <div class="col-lg-12">
+                            @php
+                                $led = 'led-red';
+                                $counter = count($project->getMedia('project_attachment_company_1')) + count($project->getMedia('project_attachment_company_2')) + count($project->getMedia('project_attachment_company_3'));
+                                if ($counter == 0) $led = 'led-red';
+                                if ($counter == 1 || $counter == 2) $led = 'led-yellow';
+                                if ($counter == 3) $led = 'led-green';
+                            @endphp
 
-                <div class="card border border-primary">
-                    <div class="card-header bg-transparent border-primary">
-                        <h5 class="my-0 text-primary">
-                            {{ __('admin/approved_project/show.project_id') }} #{{ $project->project_id ?? 'N/A' }}
-                        </h5>
-                        @if($user->hasRole('admin') || $user->hasRole('super_admin'))
-                            <div class="{{ $led }}"></div>
-                        @endif
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title mt-0">
-                            {{ $project->title ?? 'N/A' }}
-                        </h5>
-                        <p class="card-tex mt-1">
-                            {!! $project->description !!}
-                        </p>
+                            <div class="card border border-primary">
+                                <div class="card-header bg-transparent border-primary">
+                                    <h5 class="my-0 text-primary">
+                                        {{ __('admin/approved_project/show.project_id') }} #{{ $project->project_id ?? 'N/A' }}
+                                    </h5>
+                                    @if($user->hasRole('admin') || $user->hasRole('super_admin'))
+                                        <div class="{{ $led }}"></div>
+                                    @endif
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title mt-0">
+                                        {{ $project->title ?? 'N/A' }}
+                                    </h5>
+                                    <p class="card-tex mt-1">
+                                        {!! $project->description !!}
+                                    </p>
 
-                        @if(count($project->getMedia('client_project_image')))
-                            <h4 class="card-title">{{ __('admin/approved_project/show.project_images') }}</h4>
-                            <div class="popup-gallery">
-                                @foreach($project->getMedia('client_project_image') as $image)
-                                    <a class="float-left" href="{{ $image->getUrl() }}" title="{{ $image->file_name }}">
-                                        <div class="img-fluid" style="margin-right: 3px">
-                                            <img src="{{ $image->getUrl() }}" alt="" height="130">
+                                    @if(count($project->getMedia('client_project_image')))
+                                        <h4 class="card-title">{{ __('admin/approved_project/show.project_images') }}</h4>
+                                        <div class="popup-gallery">
+                                            @foreach($project->getMedia('client_project_image') as $image)
+                                                <a class="float-left" href="{{ $image->getUrl() }}" title="{{ $image->file_name }}">
+                                                    <div class="img-fluid" style="margin-right: 3px">
+                                                        <img src="{{ $image->getUrl() }}" alt="" height="130">
+                                                    </div>
+                                                </a>
+                                            @endforeach
                                         </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                        @endif
+                                    @endif
 
-                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-lg-8">
+                            @php
+                                $led = 'led-red';
+                                $counter = count($project->getMedia('project_attachment_company_1')) + count($project->getMedia('project_attachment_company_2')) + count($project->getMedia('project_attachment_company_3'));
+                                if ($counter == 0) $led = 'led-red';
+                                if ($counter == 1 || $counter == 2) $led = 'led-yellow';
+                                if ($counter == 3) $led = 'led-green';
+                            @endphp
+
+                            <div class="card border border-primary">
+                                <div class="card-header bg-transparent border-primary">
+                                    <h5 class="my-0 text-primary">
+                                        {{ __('admin/approved_project/show.project_id') }} #{{ $project->project_id ?? 'N/A' }}
+                                    </h5>
+                                    @if($user->hasRole('admin') || $user->hasRole('super_admin'))
+                                        <div class="{{ $led }}"></div>
+                                    @endif
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title mt-0">
+                                        {{ $project->title ?? 'N/A' }}
+                                    </h5>
+                                    <p class="card-tex mt-1">
+                                        {!! $project->description !!}
+                                    </p>
+
+                                    @if(count($project->getMedia('client_project_image')))
+                                        <h4 class="card-title">{{ __('admin/approved_project/show.project_images') }}</h4>
+                                        <div class="popup-gallery">
+                                            @foreach($project->getMedia('client_project_image') as $image)
+                                                <a class="float-left" href="{{ $image->getUrl() }}" title="{{ $image->file_name }}">
+                                                    <div class="img-fluid" style="margin-right: 3px">
+                                                        <img src="{{ $image->getUrl() }}" alt="" height="130">
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                        </div>
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card border border-primary">
+                                <div class="card-body">
+                                    <div class="profile-widgets">
+                                        <div class="text-center">
+                                            <span class="badge badge-success mb-3">{{ __('admin/pending_project/show.project_client') }}</span>
+                                            <br>
+                                            <div class="">
+                                                <img src="{{ $author->avatar->file_url ?? config('core.image.default.avatar') }}" alt="" class="avatar-lg mx-auto img-thumbnail rounded-circle">
+                                            </div>
+
+                                            <div class="mt-3">
+                                                <a href="javascript:void(0)" class="text-dark font-weight-medium font-size-16">
+                                                    {{ $author->basicInfo->first_name ?? '' }} {{ $author->basicInfo->last_name ?? '' }}
+                                                </a>
+                                                <p class="text-body mt-1 mb-1">
+                                                    {{ $author->basicInfo->designation ?? '' }}
+                                                </p>
+                                                <a href="{{ route('backend.ums.client-approved.show', [$author->id]) }}" class="badge badge-danger p-1 mt-2">
+                                                    {{ __('admin/pending_project/show.view_profile') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card border border-primary">
+                                <div class="card-header bg-primary">
+                                    <h6 class="text-center text-white mb-0">
+                                        {{ __('admin/pending_project/show.contact_info') }}
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="profile-widgets">
+                                        <div class="text-center">
+                                            <div class="mt-3">
+                                                @if(isset($author->basicInfo->personal_email))
+                                                    <div class="mt-2">
+                                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.email_address') }}</p>
+                                                        <h6 class="">
+                                                            <a href="mailto: {{ $author->basicInfo->personal_email }}" style="color: unset">
+                                                                {{ $author->basicInfo->personal_email }}
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                @endif
+
+                                                @if(isset($author->basicInfo->phone_no))
+                                                    <div class="mt-3">
+                                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.phone_number') }}</p>
+                                                        <h6 class="">
+                                                            <a href="tel: {{ $author->basicInfo->phone_no }}" style="color: unset">
+                                                                {{ $author->basicInfo->phone_no }}
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                @endif
+                                                @if(isset($author->residentialInfo->present_address_line_1))
+                                                    <div class="mt-3">
+                                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.address') }}</p>
+                                                        <h6 class="">
+                                                            {{ $author->residentialInfo->present_address_line_1 }}
+                                                        </h6>
+                                                    </div>
+                                                @endif
+                                                @if(isset($author->residentialInfo->present_city))
+                                                    <div class="mt-3">
+                                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.city_district') }}</p>
+                                                        <h6 class="">
+                                                            {{ $author->residentialInfo->present_city }}
+                                                        </h6>
+                                                    </div>
+                                                @endif
+                                                @if(isset($author->residentialInfo->present_state))
+                                                    <div class="mt-3">
+                                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.state_division') }}</p>
+                                                        <h6 class="">
+                                                            {{ $author->residentialInfo->present_state }}
+                                                        </h6>
+                                                    </div>
+                                                @endif
+                                                @if(isset($author->residentialInfo->present_country))
+                                                    <div class="mt-3">
+                                                        <p class="font-size-12 text-muted mb-1">{{ __('admin/pending_project/show.country') }}</p>
+                                                        <h6 class="">
+                                                            {{ $author->residentialInfo->present_country }}
+                                                        </h6>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
                 @include('admin.partials._alert')
@@ -181,7 +325,12 @@
                                         @foreach($companies as $index => $company)
                                             <a class="nav-link {{ $currentCompany == $company->id ? 'active' : '' }} {{ !$currentCompany && !$index ? 'active' : '' }} mt-0 mb-3" data-toggle="pill" href="#v-pills-{{ $index }}" role="tab" aria-controls="v-pills-{{ $index }}" aria-selected="true">
                                                 <p class="font-weight-bold mb-0 text-center">
-                                                    Company #{{ $index + 1 }}
+                                                    @if(app()->getLocale() == 'en')
+                                                        Company
+                                                    @else
+                                                        Bedrijf
+                                                    @endif
+                                                    #{{ $index + 1 }}
                                                 </p>
                                             </a>
                                         @endforeach
@@ -307,7 +456,12 @@
                                         @foreach($companies as $index => $company)
                                             <a class="nav-link {{ $currentCompany == $company->id ? 'active' : '' }} {{ !$currentCompany && !$index ? 'active' : '' }} mt-0 mb-3" data-toggle="pill" href="#v-pills-{{ $index }}" role="tab" aria-controls="v-pills-{{ $index }}" aria-selected="true">
                                                 <p class="font-weight-bold mb-0 text-center">
-                                                    Company #{{ $index + 1 }}
+                                                    @if(app()->getLocale() == 'en')
+                                                        Company
+                                                    @else
+                                                        Bedrijf
+                                                    @endif
+                                                    #{{ $index + 1 }}
                                                 </p>
                                             </a>
                                         @endforeach

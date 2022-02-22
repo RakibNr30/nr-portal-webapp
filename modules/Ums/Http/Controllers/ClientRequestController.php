@@ -163,7 +163,7 @@ class ClientRequestController extends Controller
                     'notification_from' => $user->id,
                     'notification_to_type' => 'admin',
                     'notification_from_type' => 'client',
-                    'message' => 'Client: ' . UserBasicInfo::where('user_id', $user->id)->first()->first_name . ' has requested for a project. Review it.',
+                    'message' => 'Client: ' . UserBasicInfo::where('user_id', $user->id)->first()->first_name . ' een project heeft aangevraagd. Beoordeel het.',
                     'status' => 'unseen',
                 ]);
 
@@ -175,7 +175,7 @@ class ClientRequestController extends Controller
                     'notification_to' => $user->id,
                     'notification_to_type' => 'client',
                     'notification_from_type' => 'admin',
-                    'message' => 'Your request has been approved and Project #'.$project_id.'. created. Check it.',
+                    'message' => 'Uw aanvraag is goedgekeurd en Project #'.$project_id.'. gemaakt. Controleer het.',
                     'status' => 'unseen',
                 ]);
 

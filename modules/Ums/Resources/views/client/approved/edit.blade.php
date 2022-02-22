@@ -109,7 +109,7 @@
                             <label for="description" class="@error('description') text-danger @enderror">{{ __('admin/client/edit.description') }}</label>
                             <textarea id="description" name="description" rows="4"
                                       class="form-control @error('description') is-invalid @enderror"
-                                      placeholder="{{ __('admin/client/edit.enter_description') }}" autofocus required>{{ old('description') ?: $user->basicInfo->about }}</textarea>
+                                      placeholder="{{ __('admin/client/edit.enter_description') }}" autofocus>{{ old('description') ?: $user->basicInfo->about }}</textarea>
                             @error('description')
                             <span class="invalid-feedback"
                                   role="alert"><strong>{{ $message }}</strong></span>

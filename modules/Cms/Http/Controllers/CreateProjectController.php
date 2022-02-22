@@ -85,7 +85,7 @@ class CreateProjectController extends Controller
                 'notification_from' => Auth::id(),
                 'notification_to_type' => 'admin',
                 'notification_from_type' => 'client',
-                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' has requested for a project. Review it.',
+                'message' => 'Client: ' . UserBasicInfo::where('user_id', Auth::id())->first()->first_name . ' een project heeft aangevraagd. Beoordeel het.',
                 'status' => 'unseen',
             ]);
 

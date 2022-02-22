@@ -2,6 +2,8 @@
 
 namespace Modules\Ums\Http\Controllers;
 
+use App\Helpers\AuthManager;
+use App\Helpers\PermissionManager;
 use App\Http\Controllers\Controller;
 
 // requests...
@@ -69,7 +71,7 @@ class ClientApprovedController extends Controller
         $this->roleService = $roleService;
         $this->userResidentialInfoService = $userResidentialInfoService;
         $this->projectService = $projectService;
-        $this->middleware(['permission:user_controls']);
+        //$this->middleware(['permission:user_controls']);
     }
 
     /**
@@ -80,6 +82,9 @@ class ClientApprovedController extends Controller
      */
     public function index(ClientApprovedDataTable $datatable)
     {
+        if (!AuthManager::isAdmin()) {
+            abort(404);
+        }
         return $datatable->render('ums::client.approved.index');
     }
 
@@ -123,6 +128,9 @@ class ClientApprovedController extends Controller
      */
     public function edit($id)
     {
+        if (!AuthManager::isAdmin()) {
+            abort(404);
+        }
         // get user
         $user = $this->userService->find($id);
         // check if user doesn't exists
@@ -151,6 +159,9 @@ class ClientApprovedController extends Controller
      */
     public function update(ClientRequestUpdateRequest $request, $id)
     {
+        if (!AuthManager::isAdmin()) {
+            abort(404);
+        }
         // get user
         $user = $this->userService->find($id);
         // check if user doesn't exists
@@ -206,6 +217,9 @@ class ClientApprovedController extends Controller
      */
     public function destroy($id)
     {
+        if (!AuthManager::isAdmin()) {
+            abort(404);
+        }
         // get user
         $user = $this->userService->find($id);
         // check if user doesn't exists

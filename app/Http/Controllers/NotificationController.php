@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AuthManager;
 use App\Notification;
 use Auth;
 use Modules\Ums\Entities\User;
@@ -41,6 +42,9 @@ class NotificationController extends Controller
 
     public function inbox()
     {
+        if (AuthManager::isAdmin()) {
+            abort(404);
+        }
         return view('inbox');
     }
 }

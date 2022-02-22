@@ -12,7 +12,7 @@ return [
     'your_attachment' => 'Uw bijlage',
     'attachment_from_admin' => 'Offerte van Chique Wonen',
     'attachment_from_company' => 'Offerte van bedrijf',
-    'attachment' => 'Hechting',
+    'attachment' => 'Upload hier de offerte',
     'no_attachment_found' => 'Geen bijlage gevonden',
     'file_name' => 'Bestandsnaam',
     'download' => 'Downloaden',
